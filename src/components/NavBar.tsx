@@ -10,8 +10,8 @@ function NavBar() {
 
     return (
         <>
-            <nav className="w-full bg-neutral-100">
-                <div className="max-w-[1200px] flex flex-wrap justify-between items-center p-4">
+            <nav className="w-full flex justify-center bg-neutral-100">
+                <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center p-4">
                     <div className="flex items-center">
                         <img src={logo} width={80} height={80} />
                         <span className="text-base font-bold">
@@ -20,7 +20,7 @@ function NavBar() {
                     </div>
 
                     <button
-                        className="p-2 focus:bg-secondary-300 rounded-lg md:hidden"
+                        className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg md:hidden"
                         onClick={onToggleMenu}
                     >
                         <svg
@@ -46,13 +46,13 @@ function NavBar() {
                         md:block md:w-auto`}
                     >
                         <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
-                            <li className="py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li className="w-full text-center md:w-auto py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
                                 Home
                             </li>
-                            <li className="py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li className="w-full text-center md:w-auto  py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
                                 About
                             </li>
-                            <li className="py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li className="w-full text-center md:w-auto  py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
                                 Contact Us
                             </li>
                         </ul>
