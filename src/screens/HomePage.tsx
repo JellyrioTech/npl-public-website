@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import jumbotronBG from "../assets/jumbotronBG.png";
 import { useNavigate } from "react-router-dom";
 import routes from "../util/routes";
+import Button from "../components/Button";
 
 function HomePage() {
     const navigate = useNavigate();
@@ -26,12 +27,10 @@ function HomePage() {
                         <p className="py-2 md:px-5 bg-neutral-100 font-roboto text-[18px] md:text-[20px]">
                             Test your skills and write your own legacy
                         </p>
-                        <button
-                            className="mt-4 md:mt-2 bg-secondary-500 rounded-full px-6 py-3 font-bold font-roboto hover:bg-secondary-300 focus:bg-secondary-300 md:px-10 md:py-3"
+                        <Button
                             onClick={handleLearnMoreButton}
-                        >
-                            Learn More
-                        </button>
+                            text={"Learn More"}
+                        ></Button>
                     </div>
                 </div>
             </section>
