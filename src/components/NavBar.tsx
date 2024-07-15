@@ -1,7 +1,10 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import routes from "../util/routes";
 
 function NavBar() {
+    const navigator = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
 
     function onToggleMenu() {
@@ -46,13 +49,22 @@ function NavBar() {
                         md:block md:w-auto`}
                     >
                         <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
-                            <li className="w-full text-center md:w-auto py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li
+                                className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                onClick={() => navigator(routes.Home)}
+                            >
                                 Home
                             </li>
-                            <li className="w-full text-center md:w-auto  py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li
+                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                onClick={() => navigator(routes.About)}
+                            >
                                 About
                             </li>
-                            <li className="w-full text-center md:w-auto  py-3 px-2 hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100">
+                            <li
+                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                onClick={() => navigator(routes.Contact)}
+                            >
                                 Contact Us
                             </li>
                         </ul>
