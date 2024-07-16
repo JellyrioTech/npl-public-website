@@ -4,17 +4,23 @@ import HomePage from "./screens/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
 import routes from "./util/routes";
 import RegisterPage from "./screens/RegisterPage";
+import Layout from "./screens/Layout";
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path={routes.Home} element={<HomePage />} />
-                <Route
-                    path={routes.LearnMore}
-                    element={<TournamentInfoPage />}
-                />
-                <Route path={routes.RegisterNow} element={<RegisterPage />} />
+                <Route path={routes.Home} element={<Layout />}>
+                    <Route index element={<HomePage />} />
+                    <Route
+                        path={routes.LearnMore}
+                        element={<TournamentInfoPage />}
+                    />
+                    <Route
+                        path={routes.RegisterNow}
+                        element={<RegisterPage />}
+                    />
+                </Route>
             </Routes>
         </Router>
     );

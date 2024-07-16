@@ -13,8 +13,6 @@ function HomePage() {
 
     return (
         <div className="bg-primary-900">
-            <NavBar />
-
             <section className="relative w-full h-screen bg-neutral-100">
                 <div
                     className="absolute inset-0 bg-no-repeat bg-center bg-cover"
