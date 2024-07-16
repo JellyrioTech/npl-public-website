@@ -3,6 +3,7 @@ import "./App.css";
 import HomePage from "./screens/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
 import routes from "./util/routes";
+import RegisterPage from "./screens/RegisterPage";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     path={routes.LearnMore}
                     element={<TournamentInfoPage />}
                 />
+                <Route path={routes.RegisterNow} element={<RegisterPage />} />
             </Routes>
         </Router>
     );

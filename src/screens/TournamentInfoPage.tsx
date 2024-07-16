@@ -227,7 +227,7 @@ function TournamentInfoPage() {
                     So are you ready to see your true potential and write your
                     own legacy?
                 </p>
-                <div className="md:basis-1/3 md:mx-auto">
+                <div className="md:basis-1/3 mx-auto">
                     <Button
                         onClick={() => navigator(routes.RegisterNow)}
                         text={"Register Now"}
