@@ -11,6 +11,24 @@ function NavBar() {
         setMenuOpen(!menuOpen);
     }
 
+    function onClickNavigation(route: String) {
+        switch (route) {
+            case "home": {
+                navigator(routes.Home);
+                break;
+            }
+            case "about": {
+                navigator(routes.About);
+                break;
+            }
+            case "contact": {
+                navigator(routes.Contact);
+                break;
+            }
+        }
+        setMenuOpen(false);
+    }
+
     return (
         <>
             <nav className="w-full flex justify-center sticky top-0 z-50 bg-neutral-100">
@@ -51,19 +69,19 @@ function NavBar() {
                         <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
                             <li
                                 className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => navigator(routes.Home)}
+                                onClick={() => onClickNavigation("home")}
                             >
                                 Home
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => navigator(routes.About)}
+                                onClick={() => onClickNavigation("about")}
                             >
                                 About
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => navigator(routes.Contact)}
+                                onClick={() => onClickNavigation("contact")}
                             >
                                 Contact Us
                             </li>

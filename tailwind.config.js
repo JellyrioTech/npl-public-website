@@ -5,6 +5,7 @@ export default {
         extend: {
             colors: {
                 primary: {
+                    100: "#E3F8C4",
                     500: "#74B816",
                     900: "#314E09",
                 },
@@ -16,6 +17,7 @@ export default {
                 tertiary: {
                     100: "#ACCBBF",
                     300: "#5D947E",
+                    700: "#284036",
                 },
             },
             fontFamily: {
@@ -24,6 +26,8 @@ export default {
             },
             neutral: {
                 100: "#FFFFFC",
+                300: "#E1E5DB",
+                500: "#AEB1AA",
                 900: "#020100",
             },
         },
