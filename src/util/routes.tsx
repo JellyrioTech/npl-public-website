@@ -4,6 +4,7 @@ const routes = {
     Contact: "/contact",
     RegisterNow: "/register",
     About: "/about",
+    Download: "/download",
 };
 
 export default routes;

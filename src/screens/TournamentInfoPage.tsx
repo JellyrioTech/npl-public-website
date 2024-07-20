@@ -31,7 +31,7 @@ function TournamentInfoPage() {
                         series of hard games and write their own legacy.{" "}
                     </p>
                     <Button
-                        onClick={() => navigator(routes.RegisterNow)}
+                        onClick={() => navigator(routes.Download)}
                         text={"Register Now"}
                     ></Button>
                 </div>
@@ -229,7 +229,7 @@ function TournamentInfoPage() {
                 </p>
                 <div className="md:basis-1/3 mx-auto">
                     <Button
-                        onClick={() => navigator(routes.RegisterNow)}
+                        onClick={() => navigator(routes.Download)}
                         text={"Register Now"}
                     ></Button>
                 </div>

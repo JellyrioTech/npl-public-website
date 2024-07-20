@@ -5,6 +5,7 @@ import TournamentInfoPage from "./screens/TournamentInfoPage";
 import routes from "./util/routes";
 import RegisterPage from "./screens/RegisterPage";
 import Layout from "./screens/Layout";
+import DownloadPage from "./screens/DownloadPage";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         path={routes.RegisterNow}
                         element={<RegisterPage />}
                     />
+                    <Route path={routes.Download} element={<DownloadPage />} />
                 </Route>
             </Routes>
         </Router>
