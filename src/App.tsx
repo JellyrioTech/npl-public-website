@@ -6,6 +6,8 @@ import routes from "./util/routes";
 import RegisterPage from "./screens/RegisterPage";
 import Layout from "./screens/Layout";
 import DownloadPage from "./screens/DownloadPage";
+import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";
+import TermsAndConditionPage from "./screens/TermsAndConditionPage";
 
 function App() {
     return (
@@ -22,6 +24,14 @@ function App() {
                         element={<RegisterPage />}
                     />
                     <Route path={routes.Download} element={<DownloadPage />} />
+                    <Route
+                        path={routes.PrivacyPolicy}
+                        element={<PrivacyPolicyPage />}
+                    />
+                    <Route
+                        path={routes.TermsAndCondition}
+                        element={<TermsAndConditionPage />}
+                    />
                 </Route>
             </Routes>
         </Router>
