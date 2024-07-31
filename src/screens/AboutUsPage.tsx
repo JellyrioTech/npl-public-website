@@ -50,7 +50,7 @@ const AboutUsPage = () => {
                 <h2 className="font-bold font-roboto text-2xl text-tertiary-700">
                     Our Team
                 </h2>
-                <div className="flex gap-5">
+                <div className="flex gap-5 flex-wrap">
                     <img
                         src="shuvo.jpg"
                         className="w-[300px] h-auto border-4 border-tertiary-700 rounded-md"

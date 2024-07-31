@@ -9,6 +9,7 @@ import DownloadPage from "./screens/DownloadPage";
 import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";
 import TermsAndConditionPage from "./screens/TermsAndConditionPage";
 import AboutUsPage from "./screens/AboutUsPage";
+import ContactUsPage from "./screens/ContactUsPage";
 
 function App() {
     return (
@@ -26,6 +27,8 @@ function App() {
                     />
                     <Route path={routes.About} element={<AboutUsPage />} />
                     <Route path={routes.Download} element={<DownloadPage />} />
+                    <Route path={routes.Contact} element={<ContactUsPage />} />
+
                     <Route
                         path={routes.PrivacyPolicy}
                         element={<PrivacyPolicyPage />}
