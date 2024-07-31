@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import routes from "../util/routes";
 import React, { useState } from "react";
 
 function RegisterPage() {
-    const navigator = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
