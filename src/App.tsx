@@ -8,6 +8,7 @@ import Layout from "./screens/Layout";
 import DownloadPage from "./screens/DownloadPage";
 import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";
 import TermsAndConditionPage from "./screens/TermsAndConditionPage";
+import AboutUsPage from "./screens/AboutUsPage";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         path={routes.RegisterNow}
                         element={<RegisterPage />}
                     />
+                    <Route path={routes.About} element={<AboutUsPage />} />
                     <Route path={routes.Download} element={<DownloadPage />} />
                     <Route
                         path={routes.PrivacyPolicy}

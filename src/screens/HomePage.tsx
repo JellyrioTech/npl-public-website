@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import jumbotronBG from "../assets/jumbotronBG.png";
 import { useNavigate } from "react-router-dom";
 import routes from "../util/routes";

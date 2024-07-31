@@ -77,7 +77,7 @@ function NavBar() {
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
                                 onClick={() => onClickNavigation("about")}
                             >
-                                About
+                                About Us
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
