@@ -34,7 +34,13 @@ function NavBar() {
             <nav className="w-full flex justify-center sticky top-0 z-50 bg-neutral-100">
                 <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center p-2">
                     <div className="flex items-center">
-                        <img src={logo} width={80} height={80} />
+                        <img
+                            src={logo}
+                            width={80}
+                            height={80}
+                            className="cursor-pointer"
+                            onClick={() => onClickNavigation("home")}
+                        />
                         <span className="text-base font-bold">
                             Nesterin Pickleball League
                         </span>
