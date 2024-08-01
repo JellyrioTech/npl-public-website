@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../../public/App_logo_white.png";
 import routes from "../util/routes";
 
 function Footer() {
+    const navigator = useNavigate();
     return (
         <footer className="bg-tertiary-700">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6">
@@ -43,20 +45,24 @@ function Footer() {
                             </h2>
                             <ul className="text-neutral-300 font-medium">
                                 <li className="mb-4">
-                                    <a
-                                        href={routes.PrivacyPolicy}
-                                        className="hover:underline"
+                                    <p
+                                        className="hover:underline cursor-pointer"
+                                        onClick={() =>
+                                            navigator(routes.PrivacyPolicy)
+                                        }
                                     >
                                         Privacy Policy
-                                    </a>
+                                    </p>
                                 </li>
                                 <li>
-                                    <a
-                                        href={routes.TermsAndCondition}
-                                        className="hover:underline"
+                                    <p
+                                        className="hover:underline cursor-pointer"
+                                        onClick={() =>
+                                            navigator(routes.TermsAndCondition)
+                                        }
                                     >
                                         Terms &amp; Conditions
-                                    </a>
+                                    </p>
                                 </li>
                             </ul>
                         </div>

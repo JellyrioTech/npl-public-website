@@ -15,28 +15,30 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route path={routes.LearnMore} element={<Layout />}>
+                    <Route index element={<TournamentInfoPage />} />
+                </Route>
+                <Route path={routes.RegisterNow} element={<Layout />}>
+                    <Route index element={<RegisterPage />} />
+                </Route>
+                <Route path={routes.About} element={<Layout />}>
+                    <Route index element={<AboutUsPage />} />
+                </Route>
+                <Route path={routes.Download} element={<Layout />}>
+                    <Route index element={<DownloadPage />} />
+                </Route>
+                <Route path={routes.Contact} element={<Layout />}>
+                    <Route index element={<ContactUsPage />} />
+                </Route>
+
+                <Route path={routes.PrivacyPolicy} element={<Layout />}>
+                    <Route index element={<PrivacyPolicyPage />} />
+                </Route>
+                <Route path={routes.TermsAndCondition} element={<Layout />}>
+                    <Route index element={<TermsAndConditionPage />} />
+                </Route>
                 <Route path={routes.Home} element={<Layout />}>
                     <Route index element={<HomePage />} />
-                    <Route
-                        path={routes.LearnMore}
-                        element={<TournamentInfoPage />}
-                    />
-                    <Route
-                        path={routes.RegisterNow}
-                        element={<RegisterPage />}
-                    />
-                    <Route path={routes.About} element={<AboutUsPage />} />
-                    <Route path={routes.Download} element={<DownloadPage />} />
-                    <Route path={routes.Contact} element={<ContactUsPage />} />
-
-                    <Route
-                        path={routes.PrivacyPolicy}
-                        element={<PrivacyPolicyPage />}
-                    />
-                    <Route
-                        path={routes.TermsAndCondition}
-                        element={<TermsAndConditionPage />}
-                    />
                 </Route>
             </Routes>
         </Router>
