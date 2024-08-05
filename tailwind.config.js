@@ -30,6 +30,12 @@ export default {
                 500: "#AEB1AA",
                 900: "#020100",
             },
+            backgroundImage: {
+                redGradient:
+                    "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
+                greenGradient:
+                    "linear-gradient(to bottom, #1E4B3B, 80%, #121D19)",
+            },
         },
     },
     plugins: [],

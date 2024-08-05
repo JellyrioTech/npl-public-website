@@ -18,7 +18,7 @@ function App() {
                 <Route path={routes.LearnMore} element={<Layout />}>
                     <Route index element={<TournamentInfoPage />} />
                 </Route>
-                <Route path={routes.RegisterNow} element={<Layout />}>
+                <Route path={routes.Register} element={<Layout />}>
                     <Route index element={<RegisterPage />} />
                 </Route>
                 <Route path={routes.About} element={<Layout />}>

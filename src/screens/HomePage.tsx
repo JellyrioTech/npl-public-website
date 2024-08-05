@@ -10,6 +10,10 @@ function HomePage() {
         navigate(routes.LearnMore);
     };
 
+    const handleRegistrationButton = () => {
+        navigate(routes.Register);
+    };
+
     return (
         <div className="bg-primary-900">
             <section className="relative w-full h-screen bg-neutral-100">
@@ -27,6 +31,10 @@ function HomePage() {
                         <Button
                             onClick={handleLearnMoreButton}
                             text={"Learn More"}
+                        ></Button>
+                        <Button
+                            onClick={handleRegistrationButton}
+                            text={"Registe"}
                         ></Button>
                     </div>
                 </div>
