@@ -10,6 +10,7 @@ import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";
 import TermsAndConditionPage from "./screens/TermsAndConditionPage";
 import AboutUsPage from "./screens/AboutUsPage";
 import ContactUsPage from "./screens/ContactUsPage";
+import LoginPage from "./screens/LoginPage";
 
 function App() {
     return (
@@ -39,6 +40,9 @@ function App() {
                 </Route>
                 <Route path={routes.Home} element={<Layout />}>
                     <Route index element={<HomePage />} />
+                </Route>
+                <Route path={routes.Login} element={<Layout />}>
+                    <Route index element={<LoginPage />} />
                 </Route>
             </Routes>
         </Router>
