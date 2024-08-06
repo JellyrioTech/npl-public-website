@@ -45,12 +45,12 @@ function LoginPage() {
     }
 
     return (
-        <div className="w-full bg-primary-900">
-            <div className="w-full flex flex-col items-center justify-center px-6 py-8 mx-auto rounded-lg shadow-md space-y-4">
+        <div className="w-full h-screen bg-primary-900">
+            <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
                 <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
                     Welcome Back!
                 </p>
-                <div className="w-lg bg-neutral-100 p-10 rounded-lg">
+                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
                     {error && (
                         <p className="text-red-600 mb-8 text-sm">{error}</p>
                     )}
@@ -64,6 +64,7 @@ function LoginPage() {
                                     type={"email"}
                                     name={"email"}
                                     value={email}
+                                    placeholder="eg: henry@example.com"
                                     onChange={(e) => setEmail(e.target.value)}
                                     isRequired={true}
                                 ></InputField>
@@ -71,6 +72,7 @@ function LoginPage() {
                                     type={"password"}
                                     name={"password"}
                                     value={password}
+                                    placeholder="******"
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }

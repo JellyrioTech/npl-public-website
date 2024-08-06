@@ -1,4 +1,3 @@
-import NetworkModuleEngine from "npl-service-module/dist/ModuleEngine";
 import Button from "../components/Button";
 import React, { useState } from "react";
 import { NetworkModule } from "../NetworkEngine";
@@ -11,6 +10,8 @@ function RegisterPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isUserRecieveEmailUpdates, setIsUserRecieveEmailUpdates] =
+        useState(true);
     const [error, setError] = useState<string | null>();
 
     const navigate = useNavigate();
@@ -41,6 +42,18 @@ function RegisterPage() {
             setError("Something went wrong, please try");
             return;
         }
+
+        if (isUserRecieveEmailUpdates) {
+            const permission = await NetworkModule.userService.setPermission({
+                marketing_promotion_email: true,
+            });
+        }
+    };
+
+    const handleRecieveEmailUpdates = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setIsUserRecieveEmailUpdates(e.target.checked);
     };
 
     function resetFields() {
@@ -51,28 +64,26 @@ function RegisterPage() {
     }
 
     return (
-        <div className="w-full flex flex-col justify-center items-center">
-            <div className="w-[80%] max-w-[800px] flex flex-col md:flex-row rounded-lg my-10">
-                <div className="w-full md:w-3/4 flex flex-col justify-center gap-4 bg-greenGradient p-10">
-                    <p className="text-2xl font-oswald text-neutral-100 font-bold">
-                        Register Now
-                    </p>
-                    <p className="text-neutral-300 w-3/4">
-                        Register now to join tournaments, track your games, and
-                        more
-                    </p>
-                </div>
-                <div className="bg-neutral-100 p-10">
+        <div className="w-full h-screen bg-primary-900">
+            <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
+                <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
+                    Welcome!
+                </p>
+                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
                     {error && (
                         <p className="text-red-600 mb-8 text-sm">{error}</p>
                     )}
-                    <form onSubmit={handleRegistrationSubmit}>
-                        <div className="rounded-xl flex flex-col items-center gap-6">
+                    <form
+                        onSubmit={handleRegistrationSubmit}
+                        className="space-y-4 md:space-y-5"
+                    >
+                        <div className="rounded-xl flex flex-col items-center gap-1 md:gap-3">
                             <div className="space-y-4">
                                 <InputField
                                     type={"text"}
                                     name={"name"}
                                     value={name}
+                                    placeholder="Henry Jones"
                                     onChange={(e) => setName(e.target.value)}
                                     isRequired={true}
                                 ></InputField>
@@ -80,6 +91,7 @@ function RegisterPage() {
                                     type={"email"}
                                     name={"email"}
                                     value={email}
+                                    placeholder="eg: henry@example.com"
                                     onChange={(e) => setEmail(e.target.value)}
                                     isRequired={true}
                                 ></InputField>
@@ -87,74 +99,74 @@ function RegisterPage() {
                                     type={"password"}
                                     name={"password"}
                                     value={password}
+                                    placeholder="******"
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }
                                     isRequired={true}
                                 ></InputField>
-                                {/* <div>
-                                    <label className="mb-1 text-gray-600 font-semibold">
-                                        Name
-                                    </label>
+                                <div className="pr-10 flex items-center pt-1 space-x-4">
                                     <input
-                                        type="text"
-                                        name="name"
-                                        value={name}
-                                        onChange={(e) =>
-                                            setName(e.target.value)
-                                        }
-                                        className="border-b-2 border-primary-500 px-4 py-2 outline-none rounded-md w-full"
-                                        required
+                                        type="checkbox"
+                                        onChange={handleRecieveEmailUpdates}
+                                        checked={isUserRecieveEmailUpdates}
+                                        className="w-4 h-4 focus:ring-2 text-secondary-300 focus:ring-secondary-300 bg-secondary-300 rounded"
                                     />
-                                </div> */}
-                                {/* <div>
-                                    <label className="mb-1 text-gray-600 font-semibold">
-                                        Email
+                                    <label className="text-sm text-neutral-600">
+                                        I would like to receive email updates
+                                        about new tournaments and promotions
                                     </label>
-                                    <input
-                                        type="text"
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) =>
-                                            setEmail(e.target.value)
-                                        }
-                                        className="border-b-2 border-primary-500 px-4 py-2 outline-none rounded-md w-full"
-                                        required
-                                    />
-                                </div> */}
-                                {/* <div>
-                                    <label className="mb-1 text-gray-600 font-semibold">
-                                        Password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={password}
-                                        onChange={(e) =>
-                                            setPassword(e.target.value)
-                                        }
-                                        className="border-b-2 border-primary-500 px-4 py-2 outline-none rounded-md w-full"
-                                        required
-                                    />
-                                </div> */}
+                                </div>
                             </div>
+
                             <Button
-                                text={"Register Now"}
+                                text={"Create Account"}
                                 type="submit"
                             ></Button>
+
+                            <div className="pt-6 text-sm text-neutral-500 space-y-1">
+                                <p>
+                                    By clicking on{" "}
+                                    <span className="font-bold">
+                                        Create Account
+                                    </span>{" "}
+                                    you are agreeing to the following:
+                                </p>
+                                <ol className="list-decimal list-inside">
+                                    <li>
+                                        You are agreeing with our{" "}
+                                        <a
+                                            href={routes.TermsAndCondition}
+                                            target="_blank"
+                                            className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                        >
+                                            Terms of Service
+                                        </a>
+                                    </li>
+                                    <li>
+                                        You are agreeing with our{" "}
+                                        <a
+                                            href={routes.PrivacyPolicy}
+                                            target="_blank"
+                                            className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                        >
+                                            Privacy Policy
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
                     </form>
-
-                    <p className="mt-8">
-                        Already have an account?{" "}
-                        <span
-                            className="font-bold text-secondary-500 cursor-pointer hover:underline mt-8"
-                            onClick={() => navigate(routes.Login)}
-                        >
-                            Login Here
-                        </span>
-                    </p>
                 </div>
+                <p className="mt-6 text-neutral-100">
+                    Already have an account?{" "}
+                    <span
+                        className="font-bold text-secondary-500 cursor-pointer hover:underline"
+                        onClick={() => navigate(routes.Login)}
+                    >
+                        Login Here
+                    </span>
+                </p>
             </div>
         </div>
     );
