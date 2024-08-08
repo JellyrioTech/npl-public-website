@@ -24,12 +24,23 @@ function TournamentInfoPage() {
                         Arena Battle Series
                     </p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center gap-5">
                     <p className="text-center px-6 mb-4">
-                        Have you wondered what it takes to be the best? We
-                        present this series to you. Players battle out in a
-                        series of hard games and write their own legacy.{" "}
+                        Ever wondered what it takes to be the best? Join us in
+                        the{" "}
+                        <span className="font-semibold text-secondary-500">
+                            Arena Battle Series
+                        </span>{" "}
+                        where player face off in a series of challenging games,
+                        creating their own legacy.
                     </p>
+                    <div className="flex w-3/4 justify-center items-center border-4 border-secondary-300 rounded px-5 py-2 shadow-inner bg-secondary-100">
+                        <p className="text-sm">
+                            This is more than just earning a medal. Its an honor
+                            you must defend and prove yourself worthy of.
+                        </p>
+                        <img src={medal} className="w-[70px] h-[70px]" />
+                    </div>
                     <Button
                         onClick={() => navigator(routes.Download)}
                         text={"Register Now"}
@@ -37,25 +48,17 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex gap-5 md:gap-7 md:justify-around md:max-w-[800px]">
-                <p className="mt-5 md:basis-2/3">
-                    This is more than just earning a medal. Its an honor that
-                    you have to defend and prove your worthy of the honor
-                </p>
-                <img src={medal} className="w-[100px] h-[100px]" />
-            </div>
-
             <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
                 <p className="font-roboto text-xl font-bold">What is Arena?</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            Imagine the Arena as a kingdom. In real world, these
-                            are small dedicated areas or clubs or parks.
+                            Imagine the Arena as a kingdom. In the real world,
+                            these are small dedicated areas, clubs, or parks.
                         </p>
                         <p>
-                            Each arena have its own dedicated champion and
-                            defender to help and defend the arena.
+                            Each arena has its own dedicated champion and
+                            defender to help and protect the arena.
                         </p>
                     </div>
                     <img
@@ -69,56 +72,56 @@ function TournamentInfoPage() {
                     </p>
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            There is going to be 3 champions and 3 defenders for
-                            every arena
-                        </p>
-                        <p>
-                            Each defender and Champions will be determined by
-                            Arena Battle Series.
-                        </p>
-                        <p>
-                            Champions and defender have to defend their position
-                            for every arena battle series that happens for that
+                            There will be 3 champions and 3 defenders for each
                             arena.
+                        </p>
+                        <p>
+                            Each Defender and Champions will be determined by
+                            the Arena Battle Series.
+                        </p>
+                        <p>
+                            Champions and Defenders must defend their positions
+                            in every arena battle series.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px] gap-5">
                 <p className="font-roboto text-xl font-bold">Champions</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            They are the highest honor given to the player.
-                            Champions are the king and top level for that arena
+                            Champions hold the highest hoonor given to players.
+                            They are the kings and top-level players of the
+                            arena.
                         </p>
                         <p>
-                            Only top 3 players will be awarded this Champion
-                            honor
+                            Only top 3 players will be awarded the Champion
+                            title.
                         </p>
                     </div>
                     <img src={champBagde} className="w-[100px] h-[100px]" />
                 </div>
-                <div className="flex gap-5 items-center md:text-center md:px-6 md:text-balance md:mt-5">
-                    <p className="mt-5">
-                        There are ranks for champion badge. Rank 1 being the
-                        highest and awarded to 1st position, Rank 2 for 2nd
-                        position and Rank 3 for 3rd position
-                    </p>
-                </div>
-                <div className="flex gap-5 items-center mt-10 md:mt-5 md:justify-around">
+
+                <div className="flex items-center mt-10 md:mt-5 md:justify-around">
                     <img
                         src={championAvatar}
                         className="w-[100px] h-[100px] p-2"
                     />
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            Since its the highest honor to be the champion, they
-                            only have to defend their position for every Arena
-                            Battle Series
+                            As champions, they only need to defend their
+                            positions in every Arena Battle Series.
                         </p>
                     </div>
+                </div>
+                <div className="flex w-3/4 justify-center items-center mx-auto mt-5 border-4 border-secondary-300 rounded px-5 py-3 shadow-inner bg-secondary-100">
+                    <p>
+                        Champion badges are ranked. Rank 1 for the 1st position,
+                        Rank 2 for the 2nd position, and Rank 3 for the 3rd
+                        position.
+                    </p>
                 </div>
             </div>
 
@@ -127,24 +130,16 @@ function TournamentInfoPage() {
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 pr-2 md:basis-2/3">
                         <p className="mt-5">
-                            They are the front liners and the second highest
-                            honor given to the player
+                            Defenders are the frontline warriors and hold the
+                            second highest honor given to players.
                         </p>
                         <p>
-                            Holding the Defender badge comes with lot of
-                            responsibility as they will have to defend their
-                            title against players who wanted to become defender
-                            for that arena
+                            Holding the Defender badge comes with great
+                            responsibility as they must defend their title
+                            against players aspiring to be the next defender.
                         </p>
                     </div>
                     <img src={defenderBagde} className="w-[100px] h-[100px]" />
-                </div>
-                <div className="flex gap-5 items-center md:text-center md:px-6 md:text-balance md:mt-5">
-                    <p className="mt-5">
-                        There are ranks for defender badge. Rank 1 being the
-                        highest and awarded to 4th position, Rank 2 for 5th
-                        position and Rank 3 for 6th position
-                    </p>
                 </div>
                 <div className="flex gap-5 items-center mt-10 md:mt-5 md:justify-around">
                     <img
@@ -153,15 +148,22 @@ function TournamentInfoPage() {
                     />
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            Like champions, defender have to defend their
-                            position in Arena Battle Series
+                            Like champions, defenders must defend their position
+                            in the Arena Battle Series.
                         </p>
                         <p>
-                            However, they also have to defend in Defender Battle
-                            X series where the old and new potential defenders
-                            will fight for the title (Upcoming)
+                            However, they also compete in the Defender Battle X
+                            Series, where current and aspiring defenders battle
+                            for the title (Upcoming Feature).
                         </p>
                     </div>
+                </div>
+                <div className="flex w-3/4 justify-center items-center mx-auto mt-5 border-4 border-secondary-300 rounded px-5 py-3 shadow-inner bg-secondary-100">
+                    <p>
+                        Defender badges are ranked: Rank 1 for the 4th position,
+                        Rank 2 for the 5th position, and Rank 3 for the 6th
+                        position.
+                    </p>
                 </div>
             </div>
 
@@ -172,60 +174,65 @@ function TournamentInfoPage() {
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:basis-2/3">
                         <p className="mt-5">
-                            Total 12 or 16 player will be registered for the
+                            A total of 10 players will be registered for the
                             battle series.
                         </p>
                         <p>
-                            It will be mostly round robin games where players
-                            will be scored individually depending on win/loss
-                            and score difference
+                            The games will be mostly round-robin, where player
+                            score individually based on wins, losses, and score
+                            differences.
                         </p>
                     </div>
                     <img src={appLogo} className="w-[100px] h-[100px]" />
                 </div>
                 <div className="flex gap-5 items-center md:text-center md:px-6 md:text-balance md:mt-5">
                     <p className="mt-5">
-                        The rules and number of rounds might change due to the
-                        total number of people showing up. All game format will
-                        be explained before game starts. However, be prepared to
-                        play a lot of games
+                        The rules and number of rounds may change based on the
+                        number of participants. All game formats will be
+                        explained before the start. Be prepared to play a lot of
+                        games!
                     </p>
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px] gap-5">
                 <p className="font-roboto text-xl font-bold">Prizes</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:gap-3 md:basis-2/3">
                         <p className="mt-5">
-                            Since this is an highest honor battle series in all
-                            of our series, we have prizes from top 1 player all
-                            the way to top 6 player
+                            This is the highest honor battle series in all our
+                            events. We have prizes for the top 6 players.
                         </p>
+                        <p>Champions receive medals and high prize money.</p>
                         <p>
-                            For each champions we will have champion medals and
-                            high prize money
-                        </p>
-                        <p>
-                            For each defenders, we will have defender medals and
-                            mid prize money
+                            Defenders receive medals and mid-range prize money.
                         </p>
                     </div>
                     <img src={crownLogo} className="w-[100px] h-[100px]" />
                 </div>
-                <div className="flex gap-5 items-center md:text-center md:px-6 md:text-balance md:mt-5">
-                    <p className="mt-5">
-                        The best part is your achievement will be written in our
-                        legacy book and all active champions and defender will
-                        proudly be shown for the arenas they represents
+                <div className="flex gap-5 items-center md:px-6 md:text-balance md:mt-5">
+                    <p className="font-bold">
+                        Spectators and audience members also have a chance to
+                        win prizes! For the final round, pick your favorite
+                        player. Depending on their final position, you might win
+                        prizes as a{" "}
+                        <span className="font-semibold text-secondary-300">
+                            Superfan
+                        </span>{" "}
+                        (randomly drawn from the pool of supporters).
                     </p>
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px] md:gap-4">
-                <p className="text-lg text-primary-900 font-bold text-center">
-                    So are you ready to see your true potential and write your
-                    own legacy?
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col justify-center items-center md:max-w-[800px]">
+                <p className="text-balance text-center">
+                    Your achievements will the recorded in our legacy book, and
+                    all active champions and defenders will be proudly displayed
+                    for the arenas they represent.
+                </p>
+                <p className="text-xl md:text-2xl text-primary-500 font-bold text-center text-balance mt-8">
+                    Are your ready to see your true potential and write your own
+                    legacy?
                 </p>
                 <div className="md:basis-1/3 mx-auto">
                     <Button
