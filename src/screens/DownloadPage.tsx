@@ -35,7 +35,10 @@ function DownloadPage() {
                                     the app
                                 </p>
                                 <div className="flex space-x-1">
-                                    <a href="www.google.com" target="_blank">
+                                    <a
+                                        href="https://apps.apple.com/us/app/nesterin-pickleball-league/id6590604559"
+                                        target="_blank"
+                                    >
                                         <img
                                             src={appstoreDownload}
                                             className="w-[120px]"
@@ -56,9 +59,13 @@ function DownloadPage() {
                                     an account)
                                 </li>
                                 <li>
+                                    You will have to choose an avatar or mascot
+                                    that fits your play style
+                                </li>
+                                <li>
                                     Once in home screen, Click on{" "}
                                     <span className="font-semibold text-secondary-500">
-                                        View Arena
+                                        Tap View Arena
                                     </span>
                                 </li>
                                 <li>
@@ -74,7 +81,10 @@ function DownloadPage() {
                                     </span>{" "}
                                     button
                                 </li>
-                                <li>Register for an open tournament</li>
+                                <li>
+                                    Go through the tournament details and rules.
+                                    Finally Register for the tournament
+                                </li>
                             </ol>
                         </div>
 
