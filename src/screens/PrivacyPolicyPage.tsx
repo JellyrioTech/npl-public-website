@@ -222,15 +222,25 @@ function PrivacyPolicyPage() {
                 </p>
                 <p>
                     You are able to delete certain Personal Information we have
-                    about you. The Personal Information you can delete may
-                    change as the Mobile Application and Services change. When
-                    you delete Personal Information, however, we may maintain a
-                    copy of the unrevised Personal Information in our records
-                    for the duration necessary to comply with our obligations to
-                    our affiliates and partners, and for the purposes described
-                    below. If you would like to delete your Personal Information
-                    or permanently delete your account, you can do so by
-                    contacting us.
+                    about you such as your Address. The Personal Information you
+                    can delete may change as the Mobile Application and Services
+                    change. When you delete Personal Information, however, we
+                    may maintain a copy of the unrevised Personal Information in
+                    our records for the duration necessary to comply with our
+                    obligations to our affiliates and partners, and for the
+                    purposes described below. If you would like to delete your
+                    Personal Information or permanently delete your account, you
+                    can do so by contacting us.
+                </p>
+                <p>
+                    You will be able to delete your account from our app
+                    directly by simply going to edit profile screen in the
+                    settings tab and tap on delete account. You will need to
+                    enter your password and need to confirm that you understand
+                    how your data will be deleted and processed in the
+                    respective delete account screen. For more latest
+                    information on how we will handle the delete account
+                    process, please visit the delete account screen.
                 </p>
             </div>
             <div className="flex flex-col space-y-4 mt-5">
