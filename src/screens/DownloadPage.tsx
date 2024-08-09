@@ -2,7 +2,6 @@ import phoneScreen from "../../public/mockupApp.png";
 import backgroundImage from "../../public/backgroundArt.jpg";
 import darkLogo from "../../public/App_logo_dark.png";
 import appstoreDownload from "../assets/App Store download.png";
-import playstoreDownload from "../assets/Google Play download.png";
 import amazonAppStore from "../assets/amazon_appstore.png";
 
 function DownloadPage() {
