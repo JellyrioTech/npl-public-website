@@ -7,6 +7,7 @@ export default {
                 primary: {
                     100: "#E3F8C4",
                     500: "#74B816",
+                    700: "#5B8F11",
                     900: "#314E09",
                 },
                 secondary: {

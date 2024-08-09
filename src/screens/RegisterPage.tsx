@@ -4,7 +4,7 @@ import { NetworkModule } from "../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { useNavigate } from "react-router";
 import InputField from "../components/InputField";
-import routes from "../util/routes";
+import { routes } from "../util/routes";
 
 function RegisterPage() {
     const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 import jumbotronBG from "../assets/jumbotronBG.png";
 import { useNavigate } from "react-router-dom";
-import routes from "../util/routes";
+import { routes } from "../util/routes";
 import Button from "../components/Button";
 
 function HomePage() {
@@ -8,10 +8,6 @@ function HomePage() {
 
     const handleLearnMoreButton = () => {
         navigate(routes.LearnMore);
-    };
-
-    const handleRegistrationButton = () => {
-        navigate(routes.Register);
     };
 
     return (
@@ -31,10 +27,6 @@ function HomePage() {
                         <Button
                             onClick={handleLearnMoreButton}
                             text={"Learn More"}
-                        ></Button>
-                        <Button
-                            onClick={handleRegistrationButton}
-                            text={"Registe"}
                         ></Button>
                     </div>
                 </div>

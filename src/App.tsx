@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./screens/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
-import routes from "./util/routes";
+import { routes, admin_routes } from "./util/routes";
 import RegisterPage from "./screens/RegisterPage";
 import Layout from "./screens/Layout";
 import DownloadPage from "./screens/DownloadPage";
@@ -11,6 +11,7 @@ import TermsAndConditionPage from "./screens/TermsAndConditionPage";
 import AboutUsPage from "./screens/AboutUsPage";
 import ContactUsPage from "./screens/ContactUsPage";
 import LoginPage from "./screens/LoginPage";
+import AdminDashboard from "./screens/AdminDashboard";
 
 function App() {
     return (
@@ -43,6 +44,9 @@ function App() {
                 </Route>
                 <Route path={routes.Login} element={<Layout />}>
                     <Route index element={<LoginPage />} />
+                </Route>
+                <Route path={admin_routes.dashboard}>
+                    <Route index element={<AdminDashboard />} />
                 </Route>
             </Routes>
         </Router>
