@@ -28,7 +28,6 @@ const AdminRouteGuard: React.FC = () => {
         return <div>Loading...</div>;
     }
     if (isUserAdmin !== null && !isUserAdmin) {
-        console.log("why i am here");
         return <Navigate to={"/login"} />;
     }
 
