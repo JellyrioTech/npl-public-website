@@ -44,7 +44,9 @@ function AdminDashboard() {
             arenaZipcode,
             {
                 loaderCallback: (showLoader) => {},
-                errorCallBack: () => {},
+                errorCallBack: () => {
+                    closeCreateArenaModal();
+                },
                 success: () => {
                     closeCreateArenaModal();
                     setRefresh(new Date().toString());
@@ -70,6 +72,7 @@ function AdminDashboard() {
                 <div className="mt-4 space-y-4 mx:auto">
                     {arenas.map((arena) => (
                         <SimpleCard
+                            key={arena.arenaId}
                             name={arena.name}
                             address="No address"
                             city="Orlando"

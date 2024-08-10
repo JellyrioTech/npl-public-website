@@ -5,7 +5,7 @@ import { AdminRouteGuardVM } from "./AdminRouteGuardVM";
 const AdminRouteGuard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-    const [isUserAdmin, setIsUserAdmin] = useState(false);
+    const [isUserAdmin, setIsUserAdmin] = useState<boolean | null>(null);
 
     useEffect(() => {
         setError("");
@@ -26,11 +26,16 @@ const AdminRouteGuard: React.FC = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    if (!isUserAdmin || error !== "") {
+    if (isUserAdmin !== null && !isUserAdmin) {
+        console.log("why i am here");
         return <Navigate to={"/login"} />;
     }
 
-    return <Outlet />;
+    if (isUserAdmin !== null && isUserAdmin) {
+        return <Outlet />;
+    }
+
+    return null;
 };
 
 export default AdminRouteGuard;
