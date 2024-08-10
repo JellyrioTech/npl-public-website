@@ -1,7 +1,9 @@
-import { ReactHTMLElement, useState } from "react";
+import { ReactHTMLElement, useEffect, useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import SimpleCard from "../components/SimpleCard";
+import { AdminDashboardVM } from "./AdminDashboardVM";
+import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 
 function AdminDashboard() {
     const [arenaName, setArenaName] = useState("");
@@ -10,6 +12,20 @@ function AdminDashboard() {
     const [arenaState, setArenaState] = useState("");
     const [arenaZipcode, setArenaZipcode] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(true);
+    const [arenas, setArenas] = useState<
+        TournamentServiceResponse.GetArenaNearPlayerResponse[]
+    >([]);
+    const [refresh, setRefresh] = useState("");
+
+    useEffect(() => {
+        AdminDashboardVM.getArenas({
+            loaderCallback: (showLoader) => {},
+            errorCallBack: () => {},
+            success: (obj) => {
+                setArenas(obj.arenas);
+            },
+        });
+    }, [refresh]);
 
     const openCreateArenaModal = () => {
         setIsModalVisible(true);
@@ -19,7 +35,23 @@ function AdminDashboard() {
         setIsModalVisible(false);
     };
 
-    const handleAddArena = () => {};
+    const handleAddArena = () => {
+        AdminDashboardVM.createArena(
+            arenaName,
+            arenaAddress,
+            arenaCity,
+            arenaState,
+            arenaZipcode,
+            {
+                loaderCallback: (showLoader) => {},
+                errorCallBack: () => {},
+                success: () => {
+                    closeCreateArenaModal();
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
+    };
 
     return (
         <div className="w-full h-screen bg-neutral-100 p-10">
@@ -36,27 +68,16 @@ function AdminDashboard() {
                 </div>
 
                 <div className="mt-4 space-y-4 mx:auto">
-                    <SimpleCard
-                        name="Orlando Racquet"
-                        address="7059 S Orange Blossom Trl"
-                        city="Orlando"
-                        state="Florida"
-                        zipcode="32809"
-                    ></SimpleCard>
-                    <SimpleCard
-                        name="Orlando Racquet"
-                        address="7059 S Orange Blossom Trl"
-                        city="Orlando"
-                        state="Florida"
-                        zipcode="32809"
-                    ></SimpleCard>
-                    <SimpleCard
-                        name="Orlando Racquet"
-                        address="7059 S Orange Blossom Trl"
-                        city="Orlando"
-                        state="Florida"
-                        zipcode="32809"
-                    ></SimpleCard>
+                    {arenas.map((arena) => (
+                        <SimpleCard
+                            name={arena.name}
+                            address="No address"
+                            city="Orlando"
+                            state="Florida"
+                            zipcode="32809"
+                            onClick={() => {}}
+                        />
+                    ))}
                 </div>
             </section>
 

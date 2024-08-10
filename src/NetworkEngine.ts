@@ -3,8 +3,8 @@ import NetworkModuleEngine from "npl-service-module/dist/ModuleEngine";
 const Environment = {
     ENV: "Development",
     BLACKBLAZE_KEY: "K004zFRZ93cIT1bDB5w6WzrB9JZ3Ye0",
-    BASE_URL: "https://responsibility-productivity-inn-media.trycloudflare.com",
-    WS_URL: "ws://responsibility-productivity-inn-media.trycloudflare.com/s2/",
+    BASE_URL: "https://favour-emails-bluetooth-looking.trycloudflare.com",
+    WS_URL: "ws://favour-emails-bluetooth-looking.trycloudflare.com/s2/",
     SSO_BASE: "/s1/api/sso",
     GAME_SERVICE_BASE: "/s2",
     GAME_SERVICE_API: "/api",
