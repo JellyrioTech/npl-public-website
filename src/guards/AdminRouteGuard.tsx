@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AdminRouteGuardVM } from "./AdminRouteGuardVM";
+import AdminNavBar from "../components/AdminNavBar";
 
 const AdminRouteGuard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +33,14 @@ const AdminRouteGuard: React.FC = () => {
     }
 
     if (isUserAdmin !== null && isUserAdmin) {
-        return <Outlet />;
+        return (
+            <div>
+                <AdminNavBar />
+                <main>
+                    <Outlet />
+                </main>
+            </div>
+        );
     }
 
     return null;
