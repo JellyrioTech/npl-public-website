@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import SimpleCard from "../components/SimpleCard";
+import TableCard from "../components/TableCard";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ function AdminDashboard() {
     const [arenaCity, setArenaCity] = useState("");
     const [arenaState, setArenaState] = useState("");
     const [arenaZipcode, setArenaZipcode] = useState("");
-    const [isModalVisible, setIsModalVisible] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [arenas, setArenas] = useState<
         TournamentServiceResponse.GetArenaNearPlayerResponse[]
     >([]);
@@ -59,8 +59,8 @@ function AdminDashboard() {
         );
     };
 
-    const handleArenaClick = () => {
-        navigate(admin_routes.arenaDetails(arenaName));
+    const handleArenaClick = (id: number) => {
+        navigate(admin_routes.arenaDetails(id));
     };
 
     return (
@@ -79,14 +79,14 @@ function AdminDashboard() {
 
                 <div className="mt-4 space-y-4 mx:auto">
                     {arenas.map((arena) => (
-                        <SimpleCard
+                        <TableCard
                             key={arena.arenaId}
                             name={arena.name}
                             address="No address"
                             city="Orlando"
                             state="Florida"
                             zipcode="32809"
-                            onClick={() => {}}
+                            onClick={() => handleArenaClick(arena.arenaId)}
                         />
                     ))}
                 </div>

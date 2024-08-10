@@ -50,7 +50,7 @@ function App() {
                 <Route path={routes.Admin} element={<AdminRouteGuard />}>
                     <Route index element={<AdminDashboard />} />
                 </Route>
-                <Route path={admin_routes.arenaDetails(":arenaName")}>
+                <Route path={admin_routes.arenaDetailsPath}>
                     <Route index element={<AdminArenaDetailsPage />} />
                 </Route>
             </Routes>

@@ -4,14 +4,14 @@ type CardProps = {
     city: string;
     state: string;
     zipcode: string;
-    onClick?: () => void;
+    onClick: (name: string) => void;
 };
 
-const SimpleCard: React.FC<CardProps> = (props: CardProps) => {
+const TableCard: React.FC<CardProps> = (props: CardProps) => {
     return (
         <div
             className="p-6 bg-primary-900 rounded-lg cursor-pointer shadow-md hover:bg-primary-700 flex"
-            onClick={props.onClick}
+            onClick={() => props.onClick(props.name)}
         >
             <p className="basis-1/3 font-bold text-lg uppercase text-neutral-100">
                 {props.name}
@@ -26,4 +26,4 @@ const SimpleCard: React.FC<CardProps> = (props: CardProps) => {
     );
 };
 
-export default SimpleCard;
+export default TableCard;

@@ -12,6 +12,7 @@ export const routes = {
 };
 
 export const admin_routes = {
-    dashboard: `${routes.Admin}/dashboard`,
-    arena: `${routes.Admin}/arena`,
+    dashboard: `${routes.Admin}/`,
+    arenaDetails: (id: number) => `${routes.Admin}/arena/${id}`,
+    arenaDetailsPath: `${routes.Admin}/arena/:arenaId`,
 };
