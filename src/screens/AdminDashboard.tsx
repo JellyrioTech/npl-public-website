@@ -1,9 +1,11 @@
-import { ReactHTMLElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import SimpleCard from "../components/SimpleCard";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
+import { useNavigate } from "react-router-dom";
+import { admin_routes } from "../util/routes";
 
 function AdminDashboard() {
     const [arenaName, setArenaName] = useState("");
@@ -26,6 +28,8 @@ function AdminDashboard() {
             },
         });
     }, [refresh]);
+
+    const navigate = useNavigate();
 
     const openCreateArenaModal = () => {
         setIsModalVisible(true);
@@ -53,6 +57,10 @@ function AdminDashboard() {
                 },
             }
         );
+    };
+
+    const handleArenaClick = () => {
+        navigate(admin_routes.arenaDetails(arenaName));
     };
 
     return (

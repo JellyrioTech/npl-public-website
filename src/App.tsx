@@ -13,6 +13,7 @@ import ContactUsPage from "./screens/ContactUsPage";
 import LoginPage from "./screens/LoginPage";
 import AdminDashboard from "./screens/AdminDashboard";
 import AdminRouteGuard from "./guards/AdminRouteGuard";
+import AdminArenaDetailsPage from "./screens/AdminArenaDetailsPage";
 
 function App() {
     return (
@@ -48,6 +49,9 @@ function App() {
                 </Route>
                 <Route path={routes.Admin} element={<AdminRouteGuard />}>
                     <Route index element={<AdminDashboard />} />
+                </Route>
+                <Route path={admin_routes.arenaDetails(":arenaName")}>
+                    <Route index element={<AdminArenaDetailsPage />} />
                 </Route>
             </Routes>
         </Router>
