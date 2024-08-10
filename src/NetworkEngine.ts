@@ -1,16 +1,15 @@
 import NetworkModuleEngine from "npl-service-module/dist/ModuleEngine";
+import { AuthToken } from "./util/Token";
 
 const Environment = {
     ENV: "Development",
     BLACKBLAZE_KEY: "K004zFRZ93cIT1bDB5w6WzrB9JZ3Ye0",
-    BASE_URL: "https://favour-emails-bluetooth-looking.trycloudflare.com",
-    WS_URL: "ws://favour-emails-bluetooth-looking.trycloudflare.com/s2/",
+    BASE_URL: "/adminApi",
+    WS_URL: "ws://liver-nova-denied-postposted.trycloudflare.com/s2/",
     SSO_BASE: "/s1/api/sso",
     GAME_SERVICE_BASE: "/s2",
     GAME_SERVICE_API: "/api",
 };
-
-export let authToken = "";
 
 export const NetworkModule = new NetworkModuleEngine({
     BASE_URL: Environment.BASE_URL,
@@ -20,7 +19,7 @@ export const NetworkModule = new NetworkModuleEngine({
     GAME_SERVICE_API: Environment.GAME_SERVICE_API,
     ENV: Environment.ENV,
     authTokenHandler: () => {
-        return authToken;
+        return AuthToken;
     },
     networkErrorHandler: () => {},
 });

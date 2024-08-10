@@ -12,6 +12,7 @@ import AboutUsPage from "./screens/AboutUsPage";
 import ContactUsPage from "./screens/ContactUsPage";
 import LoginPage from "./screens/LoginPage";
 import AdminDashboard from "./screens/AdminDashboard";
+import AdminRouteGuard from "./guards/AdminRouteGuard";
 
 function App() {
     return (
@@ -45,7 +46,7 @@ function App() {
                 <Route path={routes.Login} element={<Layout />}>
                     <Route index element={<LoginPage />} />
                 </Route>
-                <Route path={admin_routes.dashboard}>
+                <Route path={routes.Admin} element={<AdminRouteGuard />}>
                     <Route index element={<AdminDashboard />} />
                 </Route>
             </Routes>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
 import { NetworkModule } from "../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
+import { AuthToken, setAuthToken } from "../util/Token";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
@@ -37,6 +38,8 @@ function LoginPage() {
             setError("Something went wrong, please try");
             return;
         }
+        setAuthToken(response.token);
+        navigate(routes.Admin);
     };
 
     function resetFields() {
