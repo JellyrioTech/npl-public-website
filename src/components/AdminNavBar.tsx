@@ -62,7 +62,7 @@ const AdminNavBar: React.FC = () => {
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => navigator(routes.Admin)}
+                                onClick={() => navigator(admin_routes.userList)}
                             >
                                 Users
                             </li>

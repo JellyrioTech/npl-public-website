@@ -14,6 +14,7 @@ import LoginPage from "./screens/LoginPage";
 import AdminRouteGuard from "./guards/AdminRouteGuard";
 import AdminArenaDetailsPage from "./screens/ArenaDetails/AdminArenaDetailsPage";
 import AdminHomePage from "./screens/AdminHomePage";
+import UserListAdminPage from "./screens/UserListAdmin/UserListAdminPage";
 
 function App() {
     return (
@@ -58,6 +59,12 @@ function App() {
                     element={<AdminRouteGuard />}
                 >
                     <Route index element={<AdminArenaDetailsPage />} />
+                </Route>
+                <Route
+                    path={admin_routes.userList}
+                    element={<AdminRouteGuard />}
+                >
+                    <Route index element={<UserListAdminPage />} />
                 </Route>
             </Routes>
         </Router>

@@ -22,4 +22,10 @@ export const NetworkModule = new NetworkModuleEngine({
         return AuthToken;
     },
     networkErrorHandler: () => {},
+    getDeviceId: () => {
+        return "";
+    },
+    getDeviceType: () => {
+        return "web";
+    },
 });
