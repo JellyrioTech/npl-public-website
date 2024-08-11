@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import TableCard from "../components/TableCard";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { useNavigate } from "react-router-dom";
 import { admin_routes } from "../util/routes";
+import CardHeader from "../components/CardHeader";
 
-function AdminDashboard() {
+function AdminDashboardArenaList() {
     const [arenaName, setArenaName] = useState("");
     const [arenaAddress, setArenaAddress] = useState("");
     const [arenaCity, setArenaCity] = useState("");
@@ -64,13 +64,10 @@ function AdminDashboard() {
     };
 
     return (
-        <div className="w-full h-screen bg-neutral-100 p-10">
+        <>
             <section className="max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
                 <div className="flex justify-between">
-                    <div>
-                        <p className="text-2xl font-bold">Create Arena</p>
-                        <hr className="border-2 border-secondary-700" />
-                    </div>
+                    <CardHeader header="Create Arena" type="h1"></CardHeader>
                     <Button
                         text={"Create Arena"}
                         onClick={openCreateArenaModal}
@@ -79,15 +76,22 @@ function AdminDashboard() {
 
                 <div className="mt-4 space-y-4 mx:auto">
                     {arenas.map((arena) => (
-                        <TableCard
-                            key={arena.arenaId}
-                            name={arena.name}
-                            address="No address"
-                            city="Orlando"
-                            state="Florida"
-                            zipcode="32809"
+                        <div
+                            className="p-6 bg-primary-900 rounded-lg cursor-pointer shadow-md hover:bg-primary-700 flex"
                             onClick={() => handleArenaClick(arena.arenaId)}
-                        />
+                        >
+                            <p className="basis-1/3 font-bold text-lg uppercase text-neutral-100">
+                                {arena.name}
+                            </p>
+                            <div>
+                                <p className="text-neutral-300">
+                                    Address: No Address
+                                </p>
+                                <p className="text-neutral-300">
+                                    Orlando, Florida
+                                </p>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </section>
@@ -183,8 +187,8 @@ function AdminDashboard() {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
-export default AdminDashboard;
+export default AdminDashboardArenaList;

@@ -11,9 +11,9 @@ import TermsAndConditionPage from "./screens/TermsAndConditionPage";
 import AboutUsPage from "./screens/AboutUsPage";
 import ContactUsPage from "./screens/ContactUsPage";
 import LoginPage from "./screens/LoginPage";
-import AdminDashboard from "./screens/AdminDashboard";
 import AdminRouteGuard from "./guards/AdminRouteGuard";
-import AdminArenaDetailsPage from "./screens/AdminArenaDetailsPage";
+import AdminArenaDetailsPage from "./screens/ArenaDetails/AdminArenaDetailsPage";
+import AdminHomePage from "./screens/AdminHomePage";
 
 function App() {
     return (
@@ -48,9 +48,15 @@ function App() {
                     <Route index element={<LoginPage />} />
                 </Route>
                 <Route path={routes.Admin} element={<AdminRouteGuard />}>
-                    <Route index element={<AdminDashboard />} />
+                    <Route index element={<AdminHomePage />} />
                 </Route>
-                <Route path={admin_routes.arenaDetailsPath}>
+                <Route path={routes.Admin} element={<AdminRouteGuard />}>
+                    <Route index element={<AdminArenaDetailsPage />} />
+                </Route>
+                <Route
+                    path={admin_routes.arenaDetailsPath}
+                    element={<AdminRouteGuard />}
+                >
                     <Route index element={<AdminArenaDetailsPage />} />
                 </Route>
             </Routes>
