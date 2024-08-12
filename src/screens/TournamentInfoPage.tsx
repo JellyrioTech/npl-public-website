@@ -23,6 +23,12 @@ function TournamentInfoPage() {
                     <p className="font-roboto text-xl font-bold md:text-2xl mt-2">
                         Arena Battle Series
                     </p>
+                    <p className="font-roboto mt-1">
+                        on{" "}
+                        <span className="text-primary-500 text-lg md:text-2xl font-bold">
+                            September 13, 2024 at 5:00pm EST
+                        </span>
+                    </p>
                 </div>
                 <div className="flex flex-col items-center gap-5">
                     <p className="text-center px-6 mb-4">
@@ -45,6 +51,134 @@ function TournamentInfoPage() {
                         onClick={() => navigator(routes.Download)}
                         text={"Register Now"}
                     ></Button>
+                </div>
+            </div>
+
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+                <p className="font-roboto text-xl font-bold">
+                    Tournament Details
+                </p>
+                <div className="flex">
+                    <div className="flex flex-col gap-1 md:basis-2/3">
+                        <p className="mt-5">
+                            <b>Location:</b> 7059 S Orange Blossom Trl, Orlando,
+                            FL 32809
+                        </p>
+                        <p>
+                            <b>Game Type:</b> Doubles Round Robin
+                        </p>
+                        <p className="mt-5 text-3xl text-secondary-500 font-bold">
+                            Prizes
+                        </p>
+                        <div className="flex flex-wrap justify-between">
+                            <div className="flex-col flex">
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={champBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 1
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $100
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 1 Champion Medal
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={champBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 2
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $80
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 2 Champion Medal
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={champBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 3
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $70
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 3 Champion Medal
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex-col flex">
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={defenderBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 4
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $40
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 1 Defender Medal
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={defenderBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 5
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $30
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 2 Defender Medal
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="pt-3 flex gap-5">
+                                    <img
+                                        src={defenderBagde}
+                                        className="w-[100px] h-[100px]"
+                                    />
+                                    <div className="flex flex-col">
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            Position 6
+                                        </p>
+                                        <p className="font-roboto text-primary-900 font-bold text-4xl pt-3">
+                                            $20
+                                        </p>
+                                        <p className="font-roboto text-secondary-900 text-base">
+                                            - Rank 3 Defender Medal
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
