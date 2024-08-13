@@ -340,21 +340,26 @@ function TermsAndConditionPage() {
 
                 <p>
                     If you have any questions, concerns, or complaints regarding
-                    this Agreement, we encourage you to contact us using the
-                    details below:
+                    this Agreement, we encourage you to contact us on{" "}
+                    <a
+                        className="font-semibold font-roboto text-secondary-500"
+                        href="info@nesterin.com"
+                    >
+                        info@nesterin.com
+                    </a>
                 </p>
-                <a
-                    className="font-semibold font-roboto text-secondary-500"
-                    href="info@nesterin.com"
-                >
-                    info@nesterin.com
-                </a>
-                <p>This document was last updated on July 31, 2024</p>
+
+                <p className="mt-3">
+                    Trouble Seeing Documents?{" "}
+                    <a href={policyLink} className="text-blue-400 font-bold">
+                        Download Privacy Policy{" "}
+                    </a>{" "}
+                </p>
+
+                <p className="italic text-neutral-500 font-semibold text-sm pt-8">
+                    This document was last updated on July 31, 2024
+                </p>
             </div>
-            <p className="mt-3">Trouble Seeing Documents? </p>
-            <a href={policyLink} className="mt-3 text-blue-400 font-bold">
-                Download Privacy Policy{" "}
-            </a>
         </div>
     );
 }

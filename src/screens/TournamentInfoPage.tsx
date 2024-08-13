@@ -31,7 +31,7 @@ function TournamentInfoPage() {
                         series of hard games and write their own legacy.{" "}
                     </p>
                     <Button
-                        onClick={() => navigator(routes.Download)}
+                        onClick={() => navigator(routes.Register)}
                         text={"Register Now"}
                     ></Button>
                 </div>
