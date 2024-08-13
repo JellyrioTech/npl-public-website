@@ -1,6 +1,6 @@
 import jumbotronBG from "../assets/jumbotronBG.png";
 import { useNavigate } from "react-router-dom";
-import routes from "../util/routes";
+import { routes } from "../util/routes";
 import Button from "../components/Button";
 
 function HomePage() {

@@ -8,7 +8,7 @@ import appLogo from "../../public/App_logo_white.png";
 import crownLogo from "../../public/Crown_Intro.png";
 import medal from "../../public/Medal.png";
 import arenaClearoneLogo from "../../public/Arena Clearone Logo.png";
-import routes from "../util/routes";
+import { routes } from "../util/routes";
 import Button from "../components/Button";
 
 function TournamentInfoPage() {
@@ -48,7 +48,7 @@ function TournamentInfoPage() {
                         <img src={medal} className="w-[70px] h-[70px]" />
                     </div>
                     <Button
-                        onClick={() => navigator(routes.Download)}
+                        onClick={() => navigator(routes.Register)}
                         text={"Register Now"}
                     ></Button>
                 </div>

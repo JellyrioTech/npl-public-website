@@ -1,32 +1,14 @@
 import { useState } from "react";
-import logo from "../../public/App_logo_white.png";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../util/routes";
+import logo from "/App_logo_white.png";
+import { admin_routes, routes } from "../util/routes";
 
-function NavBar() {
+const AdminNavBar: React.FC = () => {
     const navigator = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
 
     function onToggleMenu() {
         setMenuOpen(!menuOpen);
-    }
-
-    function onClickNavigation(route: String) {
-        switch (route) {
-            case "home": {
-                navigator(routes.Home);
-                break;
-            }
-            case "about": {
-                navigator(routes.About);
-                break;
-            }
-            case "contact": {
-                navigator(routes.Contact);
-                break;
-            }
-        }
-        setMenuOpen(false);
     }
 
     return (
@@ -36,12 +18,11 @@ function NavBar() {
                     <div className="flex items-center">
                         <img
                             src={logo}
-                            width={60}
-                            height={60}
+                            width={80}
+                            height={80}
                             className="cursor-pointer"
-                            onClick={() => onClickNavigation("home")}
                         />
-                        <span className="text-base font-bold ml-2">
+                        <span className="text-base font-bold">
                             Nesterin Pickleball League
                         </span>
                     </div>
@@ -69,27 +50,27 @@ function NavBar() {
 
                     <div
                         className={`w-full 
-                        ${menuOpen ? "block" : "hidden"} 
-                        md:block md:w-auto`}
+            ${menuOpen ? "block" : "hidden"} 
+            md:block md:w-auto`}
                     >
                         <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
                             <li
                                 className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("home")}
+                                onClick={() => navigator(routes.Admin)}
                             >
-                                Home
+                                Arena
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("about")}
+                                onClick={() => navigator(admin_routes.userList)}
                             >
-                                About Us
+                                Users
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("contact")}
+                                onClick={() => navigator(routes.Admin)}
                             >
-                                Contact Us
+                                App Datas
                             </li>
                         </ul>
                     </div>
@@ -97,6 +78,6 @@ function NavBar() {
             </nav>
         </>
     );
-}
+};
 
-export default NavBar;
+export default AdminNavBar;

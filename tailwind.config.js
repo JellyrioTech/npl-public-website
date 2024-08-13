@@ -7,6 +7,7 @@ export default {
                 primary: {
                     100: "#E3F8C4",
                     500: "#74B816",
+                    700: "#5B8F11",
                     900: "#314E09",
                 },
                 secondary: {
@@ -31,6 +32,12 @@ export default {
                 300: "#E1E5DB",
                 500: "#AEB1AA",
                 900: "#020100",
+            },
+            backgroundImage: {
+                redGradient:
+                    "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
+                greenGradient:
+                    "linear-gradient(to bottom, #1E4B3B, 80%, #121D19)",
             },
         },
     },
