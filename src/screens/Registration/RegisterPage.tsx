@@ -22,19 +22,25 @@ function RegisterPage() {
         e.preventDefault();
         setError("");
 
-        SSORoutes.registerUser(name, email, password, {
-            loaderCallback: () => {},
-            errorCallBack: (code, error) => {
-                setError(error);
-            },
-            success: () => {
-                // Todo: - Navigate to rules screen
-            },
-        });
-
-        if (isUserRecieveEmailUpdates) {
-            RegisterPageVM.optForMarketingEmail();
-        }
+        SSORoutes.registerUser(
+            email,
+            password,
+            name,
+            isUserRecieveEmailUpdates,
+            {
+                loaderCallback: () => {},
+                errorCallBack: (code, error) => {
+                    if (code === 2) {
+                        navigate(routes.Error);
+                    } else {
+                        setError(error);
+                    }
+                },
+                success: () => {
+                    // Todo: - Navigate to rules screen
+                },
+            }
+        );
     };
 
     const handleSignIn = async () => {
@@ -212,25 +218,20 @@ function RegisterPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
-            <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
-                {getFormTitle()}
-            </p>
-            <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
-                {error && <p className="text-red-600 mb-8 text-sm">{error}</p>}
-                {(screen === "EmailCheck" && EmailCheckForm()) ||
-                    (screen === "SignIn" && SignInForm()) ||
-                    (screen === "Register" && RegisterForm())}
+        <div className="w-full min-h-screen py-10 bg-primary-900">
+            <div className="flex flex-col items-center justify-center px-8 mx-auto rounded-lg">
+                <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
+                    {getFormTitle()}
+                </p>
+                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
+                    {error && (
+                        <p className="text-red-600 mb-8 text-sm">{error}</p>
+                    )}
+                    {(screen === "EmailCheck" && EmailCheckForm()) ||
+                        (screen === "SignIn" && SignInForm()) ||
+                        (screen === "Register" && RegisterForm())}
+                </div>
             </div>
-            <p className="mt-6 text-neutral-100">
-                Already have an account?{" "}
-                <span
-                    className="font-bold text-secondary-500 cursor-pointer hover:underline"
-                    onClick={() => navigate(routes.Login)}
-                >
-                    Login Here
-                </span>
-            </p>
         </div>
     );
 }

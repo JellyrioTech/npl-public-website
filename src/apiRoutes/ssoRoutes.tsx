@@ -25,6 +25,7 @@ export namespace SSORoutes {
         email: string,
         password: string,
         name: string,
+        emailOption: boolean,
         cb: AsyncResponseCallback<UserServiceResponse.RegisterResponseBody, {}>
     ) {
         if (!name || !email || !password) {
@@ -59,6 +60,13 @@ export namespace SSORoutes {
                 2,
                 "Your account has been created but there is something wrong in our internal server. Please reach out to us for assistance."
             );
+        }
+
+        const emailOpt = await NetworkModule.userService.setPermission({
+            marketing_promotion_email: emailOption,
+        });
+        if (emailOpt instanceof ErrorResponse) {
+            console.log(emailOpt.errorMessage);
         }
 
         return cb.success({

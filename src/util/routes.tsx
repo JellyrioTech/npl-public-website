@@ -9,6 +9,7 @@ export const routes = {
     PrivacyPolicy: "/privacyPolicy",
     TermsAndCondition: "/termsAndConditions",
     Admin: "/admin/inside",
+    Error: "/404",
 };
 
 export const admin_routes = {

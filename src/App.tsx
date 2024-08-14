@@ -15,6 +15,7 @@ import AdminRouteGuard from "./guards/AdminRouteGuard";
 import AdminArenaDetailsPage from "./screens/ArenaDetails/AdminArenaDetailsPage";
 import AdminHomePage from "./screens/AdminHomePage";
 import UserListAdminPage from "./screens/UserListAdmin/UserListAdminPage";
+import ErrorPage from "./screens/ErrorPage";
 
 function App() {
     return (
@@ -47,6 +48,9 @@ function App() {
                 </Route>
                 <Route path={routes.Login} element={<Layout />}>
                     <Route index element={<LoginPage />} />
+                </Route>
+                <Route path={routes.Error} element={<Layout />}>
+                    <Route index element={<ErrorPage />} />
                 </Route>
                 <Route path={routes.Admin} element={<AdminRouteGuard />}>
                     <Route index element={<AdminHomePage />} />

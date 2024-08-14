@@ -28,47 +28,51 @@ function LoginPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
-            <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
-                Welcome!
-            </p>
-            <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
-                {error && <p className="text-red-600 mb-8 text-sm">{error}</p>}
-                <form
-                    onSubmit={handleSignIn}
-                    className="space-y-4 md:space-y-5"
-                >
-                    <div className="space-y-4">
-                        <InputField
-                            type={"email"}
-                            name={"Enter Your Email"}
-                            value={email}
-                            placeholder="eg: henry@example.com"
-                            onChange={(e) => setEmail(e.target.value)}
-                            isRequired={true}
-                        ></InputField>
-                        <InputField
-                            type={"password"}
-                            name={"password"}
-                            value={password}
-                            placeholder="******"
-                            onChange={(e) => setPassword(e.target.value)}
-                            isRequired={true}
-                        ></InputField>
-                    </div>
+        <div className="w-full min-h-screen py-10 bg-primary-900">
+            <div className="flex flex-col items-center justify-center px-8 mx-auto rounded-lg">
+                <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
+                    Welcome!
+                </p>
+                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
+                    {error && (
+                        <p className="text-red-600 mb-8 text-sm">{error}</p>
+                    )}
+                    <form
+                        onSubmit={handleSignIn}
+                        className="space-y-4 md:space-y-5"
+                    >
+                        <div className="space-y-4">
+                            <InputField
+                                type={"email"}
+                                name={"Enter Your Email"}
+                                value={email}
+                                placeholder="eg: henry@example.com"
+                                onChange={(e) => setEmail(e.target.value)}
+                                isRequired={true}
+                            ></InputField>
+                            <InputField
+                                type={"password"}
+                                name={"password"}
+                                value={password}
+                                placeholder="******"
+                                onChange={(e) => setPassword(e.target.value)}
+                                isRequired={true}
+                            ></InputField>
+                        </div>
 
-                    <Button text="Sign In" type="submit"></Button>
-                </form>
+                        <Button text="Sign In" type="submit"></Button>
+                    </form>
+                </div>
+                <p className="mt-6 text-neutral-100">
+                    Don't have an account?{" "}
+                    <span
+                        className="font-bold text-secondary-500 cursor-pointer hover:underline mt-8"
+                        onClick={() => navigate(routes.Register)}
+                    >
+                        Sign Up Here
+                    </span>
+                </p>
             </div>
-            <p className="mt-6 text-neutral-100">
-                Don't have an account?{" "}
-                <span
-                    className="font-bold text-secondary-500 cursor-pointer hover:underline mt-8"
-                    onClick={() => navigate(routes.Register)}
-                >
-                    Sign Up Here
-                </span>
-            </p>
         </div>
     );
 }
