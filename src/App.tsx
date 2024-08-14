@@ -3,7 +3,7 @@ import "./App.css";
 import HomePage from "./screens/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
 import { routes, admin_routes } from "./util/routes";
-import RegisterPage from "./screens/RegisterPage";
+import RegisterPage from "./screens/Registration/RegisterPage";
 import Layout from "./screens/Layout";
 import DownloadPage from "./screens/DownloadPage";
 import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";

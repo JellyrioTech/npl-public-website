@@ -1,15 +1,23 @@
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import React, { useState } from "react";
-import { NetworkModule } from "../NetworkEngine";
+import { NetworkModule } from "../../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { useNavigate } from "react-router";
-import InputField from "../components/InputField";
-import { routes } from "../util/routes";
+import InputField from "../../components/InputField";
+import { routes } from "../../util/routes";
+import { Validation } from "../../util/validation";
+import { RegisterPageVM } from "./RegisterPageVM";
 
 function RegisterPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isEmailExists, setIsEmailExists] = useState<Boolean | undefined>(
+        undefined
+    );
+    const [screen, setScreen] = useState<"SignIn" | "Register" | "EmailCheck">(
+        "EmailCheck"
+    );
     const [isUserRecieveEmailUpdates, setIsUserRecieveEmailUpdates] =
         useState(true);
     const [error, setError] = useState<string | null>();
@@ -63,11 +71,74 @@ function RegisterPage() {
         setError("");
     }
 
+    const checkEmailExists = () => {
+        if (email === "") {
+            setError("Please enter your email");
+            return;
+        }
+
+        if (Validation.validateEmail(email)) {
+            console.log(`[${email}] valid: ${Validation.validateEmail(email)}`);
+            RegisterPageVM.verifyEmail(email, {
+                loaderCallback: () => {},
+                errorCallBack: (error) => {
+                    setError("");
+                    setIsEmailExists(false);
+                },
+                success: () => {
+                    setError("Email already exists");
+                    setIsEmailExists(true);
+                },
+            });
+        }
+    };
+
+    const getSubmitButtonText = (): string => {
+        if (isEmailExists === undefined || isEmailExists) return "Next";
+        return "Register";
+    };
+
+    const returnFieldByEmailAvailability = () => {
+        if (isEmailExists !== undefined && !isEmailExists) {
+            return (
+                <InputField
+                    type={"password"}
+                    name={"password"}
+                    value={password}
+                    placeholder="******"
+                    onChange={(e) => setPassword(e.target.value)}
+                    isRequired={true}
+                ></InputField>
+            );
+        }
+
+        return (
+            <>
+                <InputField
+                    type={"text"}
+                    name={"name"}
+                    value={name}
+                    placeholder="Henry Jones"
+                    onChange={(e) => setName(e.target.value)}
+                    isRequired={true}
+                ></InputField>
+                <InputField
+                    type={"password"}
+                    name={"password"}
+                    value={password}
+                    placeholder="******"
+                    onChange={(e) => setPassword(e.target.value)}
+                    isRequired={true}
+                ></InputField>
+            </>
+        );
+    };
+
     return (
         <div className="w-full h-screen bg-primary-900">
             <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
                 <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
-                    Welcome!
+                    Alright, Let's Get Started!
                 </p>
                 <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
                     {error && (
@@ -80,31 +151,17 @@ function RegisterPage() {
                         <div className="rounded-xl flex flex-col items-center gap-1 md:gap-3">
                             <div className="space-y-4">
                                 <InputField
-                                    type={"text"}
-                                    name={"name"}
-                                    value={name}
-                                    placeholder="Henry Jones"
-                                    onChange={(e) => setName(e.target.value)}
-                                    isRequired={true}
-                                ></InputField>
-                                <InputField
                                     type={"email"}
-                                    name={"email"}
+                                    name={"Enter Your Email"}
                                     value={email}
                                     placeholder="eg: henry@example.com"
                                     onChange={(e) => setEmail(e.target.value)}
                                     isRequired={true}
                                 ></InputField>
-                                <InputField
-                                    type={"password"}
-                                    name={"password"}
-                                    value={password}
-                                    placeholder="******"
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                    isRequired={true}
-                                ></InputField>
+
+                                {isEmailExists !== undefined &&
+                                    returnFieldByEmailAvailability()}
+
                                 <div className="pr-10 flex items-center pt-1 space-x-4">
                                     <input
                                         type="checkbox"
@@ -120,8 +177,9 @@ function RegisterPage() {
                             </div>
 
                             <Button
-                                text={"Create Account"}
+                                text={getSubmitButtonText()}
                                 type="submit"
+                                onClick={() => checkEmailExists()}
                             ></Button>
 
                             <div className="pt-6 text-sm text-neutral-500 space-y-1">
