@@ -27,16 +27,38 @@ export namespace SSORoutes {
         name: string,
         cb: AsyncResponseCallback<UserServiceResponse.RegisterResponseBody, {}>
     ) {
+        if (!name || !email || !password) {
+            cb.errorCallBack(1, "Please fill out all the fields");
+            return;
+        }
+        if (password.length < 4) {
+            cb.errorCallBack(1, "Password must be at least 4 characters long");
+            return;
+        }
         cb.loaderCallback(true);
         const resp = await NetworkModule.ssoService.registerUser(
+            name,
             email,
-            password,
-            name
+            password
         );
         cb.loaderCallback(false);
 
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
+        }
+
+        cb.loaderCallback(true);
+        const gameServiceResp =
+            await NetworkModule.userService.registerUserToGameService(
+                resp.token
+            );
+        cb.loaderCallback(false);
+
+        if (gameServiceResp instanceof ErrorResponse) {
+            return cb.errorCallBack(
+                2,
+                "Your account has been created but there is something wrong in our internal server. Please reach out to us for assistance."
+            );
         }
 
         return cb.success({
@@ -62,12 +84,6 @@ export namespace SSORoutes {
             token: resp.token,
             name: resp.name,
             ssoId: resp.ssoId,
-        });
-    }
-
-    export async function optForMarketingEmail() {
-        const resp = await NetworkModule.userService.setPermission({
-            marketing_promotion_email: true,
         });
     }
 }

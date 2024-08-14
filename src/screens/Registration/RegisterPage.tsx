@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import InputField from "../../components/InputField";
 import { routes } from "../../util/routes";
-import { Validation } from "../../util/validation";
 import { RegisterPageVM } from "./RegisterPageVM";
-import { FormStates } from "./FormStates";
 import { SSORoutes } from "../../apiRoutes/ssoRoutes";
 
 function RegisterPage() {
@@ -13,9 +11,7 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [screen, setScreen] = useState<"SignIn" | "Register" | "EmailCheck">(
-        "EmailCheck"
-    );
+    const [screen, setScreen] = useState<RegisterPageVM.Screens>("EmailCheck");
     const [isUserRecieveEmailUpdates, setIsUserRecieveEmailUpdates] =
         useState(true);
     const [error, setError] = useState<string | null>();
@@ -26,40 +22,29 @@ function RegisterPage() {
         e.preventDefault();
         setError("");
 
-        if (!name || !email || !password) {
-            resetFields();
-            setError("Please fill out all the fields");
-            return;
-        }
-
-        if (password.length < 4) {
-            setError("Password must be at least 4 characters long");
-            setPassword("");
-            return;
-        }
-
         SSORoutes.registerUser(name, email, password, {
             loaderCallback: () => {},
-            errorCallBack: () => {
-                setError("Something went wrong");
+            errorCallBack: (code, error) => {
+                setError(error);
             },
             success: () => {
-                console.log("success register");
+                // Todo: - Navigate to rules screen
             },
         });
 
         if (isUserRecieveEmailUpdates) {
-            SSORoutes.optForMarketingEmail();
+            RegisterPageVM.optForMarketingEmail();
         }
     };
 
-    const handleSignIn = async (e: React.FormEvent) => {
+    const handleSignIn = async () => {
         SSORoutes.signinUser(email, password, {
             loaderCallback: () => {},
-            errorCallBack: () => {
-                setError("Something went wrong");
+            errorCallBack: (code, error) => {
+                setError(error);
             },
             success: () => {
+                // TODO: - Navigiation
                 console.log("success signing");
             },
         });
@@ -71,36 +56,17 @@ function RegisterPage() {
         setIsUserRecieveEmailUpdates(e.target.checked);
     };
 
-    function resetFields() {
-        setName("");
-        setEmail("");
-        setPassword("");
-        setError("");
-    }
-
     const checkEmailExists = () => {
-        console.log("check email");
-        if (email === "") {
-            setError("Please enter your email");
-            return;
-        }
-
-        if (Validation.validateEmail(email)) {
-            console.log(`[${email}] valid: ${Validation.validateEmail(email)}`);
-            RegisterPageVM.verifyEmailUnique(email, {
-                loaderCallback: () => {},
-                // Email already exists
-                errorCallBack: () => {
-                    setError("Email already exists. Login to your account");
-                    setScreen("SignIn");
-                },
-                //Email is unique
-                success: () => {
-                    setError("");
-                    setScreen("Register");
-                },
-            });
-        }
+        setError("");
+        RegisterPageVM.verifyEmailUnique(email, {
+            loaderCallback: () => {},
+            errorCallBack: (code, error) => {
+                setError(error);
+            },
+            success: (obj) => {
+                setScreen(obj.screens);
+            },
+        });
     };
 
     const getFormTitle = () => {
@@ -108,9 +74,9 @@ function RegisterPage() {
             case "EmailCheck":
                 return "Alright, Let's Get Started!";
             case "Register":
-                return "Welcome!";
+                return "Let's Quickly Create An Account!";
             case "SignIn":
-                return "Login To Your Account";
+                return "Welcome Back!";
         }
     };
 
@@ -159,7 +125,7 @@ function RegisterPage() {
                     ></InputField>
                 </div>
 
-                <Button text="Next" type="submit"></Button>
+                <Button text="Sign In" type="submit"></Button>
             </form>
         );
     };
@@ -210,7 +176,7 @@ function RegisterPage() {
                     </div>
                 </div>
 
-                <Button text="Next" type="submit"></Button>
+                <Button text="Create Account" type="submit"></Button>
             </form>
         );
     };

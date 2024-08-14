@@ -6,7 +6,7 @@ type InputFieldProps = {
     value: string;
     placeholder?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    isRequired: boolean;
+    isRequired?: boolean;
     isDisabled?: boolean;
 };
 
