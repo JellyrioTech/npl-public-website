@@ -6,7 +6,7 @@ const Layout: React.FC = () => {
     return (
         <div>
             <NavBar />
-            <main>
+            <main className="w-full h-screen bg-primary-900">
                 <Outlet />
             </main>
             <Footer />

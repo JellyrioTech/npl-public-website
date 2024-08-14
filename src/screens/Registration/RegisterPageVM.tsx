@@ -25,7 +25,7 @@ export namespace RegisterPageVM {
             if (resp.code === 3) {
                 return cb.success({ screens: "Register" });
             }
-            return cb.errorCallBack(1, "Email already exists");
+            return cb.errorCallBack(1, resp.errorMessage);
         }
         return cb.success({ screens: "SignIn" });
     }

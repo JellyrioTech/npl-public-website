@@ -174,6 +174,36 @@ function RegisterPage() {
                             tournaments and promotions
                         </label>
                     </div>
+
+                    <div className="pt-6 text-sm text-neutral-500 space-y-1">
+                        <p>
+                            By clicking on{" "}
+                            <span className="font-bold">Create Account</span>{" "}
+                            you are agreeing to the following:
+                        </p>
+                        <ol className="list-decimal list-inside">
+                            <li>
+                                You are agreeing with our{" "}
+                                <a
+                                    href={routes.TermsAndCondition}
+                                    target="_blank"
+                                    className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                >
+                                    Terms of Service
+                                </a>
+                            </li>
+                            <li>
+                                You are agreeing with our{" "}
+                                <a
+                                    href={routes.PrivacyPolicy}
+                                    target="_blank"
+                                    className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                >
+                                    Privacy Policy
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
 
                 <Button text="Create Account" type="submit"></Button>
@@ -182,29 +212,25 @@ function RegisterPage() {
     };
 
     return (
-        <div className="w-full h-screen bg-primary-900">
-            <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
-                <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
-                    {getFormTitle()}
-                </p>
-                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
-                    {error && (
-                        <p className="text-red-600 mb-8 text-sm">{error}</p>
-                    )}
-                    {(screen === "EmailCheck" && EmailCheckForm()) ||
-                        (screen === "SignIn" && SignInForm()) ||
-                        (screen === "Register" && RegisterForm())}
-                </div>
-                <p className="mt-6 text-neutral-100">
-                    Already have an account?{" "}
-                    <span
-                        className="font-bold text-secondary-500 cursor-pointer hover:underline"
-                        onClick={() => navigate(routes.Login)}
-                    >
-                        Login Here
-                    </span>
-                </p>
+        <div className="flex flex-col items-center justify-center pt-10 px-8 mx-auto rounded-lg">
+            <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
+                {getFormTitle()}
+            </p>
+            <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
+                {error && <p className="text-red-600 mb-8 text-sm">{error}</p>}
+                {(screen === "EmailCheck" && EmailCheckForm()) ||
+                    (screen === "SignIn" && SignInForm()) ||
+                    (screen === "Register" && RegisterForm())}
             </div>
+            <p className="mt-6 text-neutral-100">
+                Already have an account?{" "}
+                <span
+                    className="font-bold text-secondary-500 cursor-pointer hover:underline"
+                    onClick={() => navigate(routes.Login)}
+                >
+                    Login Here
+                </span>
+            </p>
         </div>
     );
 }
