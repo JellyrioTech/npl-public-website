@@ -7,6 +7,7 @@ type InputFieldProps = {
     placeholder?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     isRequired: boolean;
+    isDisabled?: boolean;
 };
 
 const InputField: React.FC<InputFieldProps> = (props) => {
@@ -23,6 +24,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
                 onChange={props.onChange}
                 className="border-b-2 border-primary-500 px-4 py-2 outline-none rounded-md w-full"
                 required={props.isRequired}
+                disabled={props.isDisabled}
             />
         </div>
     );

@@ -3,7 +3,7 @@ import { routes } from "../util/routes";
 
 function Footer() {
     return (
-        <footer className="bg-tertiary-700">
+        <footer className="block bg-tertiary-700">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6">
                 <div className="items-center justify-center md:flex md:justify-between">
                     <div className="flex items-center justify-start">
