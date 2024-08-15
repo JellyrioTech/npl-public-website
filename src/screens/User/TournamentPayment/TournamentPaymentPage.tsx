@@ -5,10 +5,18 @@ import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { PaymentResponse } from "npl-service-module/dist/services/Response/PaymentService.response";
 import { CommonUtil } from "../../../util/CommonUtil";
 import Button from "../../../components/Button";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentForm from "./PaymentForm";
+
+const stripePromise = loadStripe(
+    "pk_test_51PMrIMRsr5aJLfHYA5IPYVFMXN7wALfhePegD4WTh7SNqoUkixGRiIFuq8lKnRPfz4ZSyS1j7jWnjT0cMS7fOH1C004w6uxnbO"
+);
 
 const TournamentPaymentPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
     const [payment, setPayment] = useState<Partial<PaymentResponse>>({});
+    const [paymentDoc, setPaymentDoc] = useState("");
 
     useEffect(() => {
         TournamentPaymentVM.getPaymentIntent(Number(tournamentId), {
@@ -16,6 +24,13 @@ const TournamentPaymentPage: React.FC = () => {
             errorCallBack: (code, error) => {},
             success: (obj) => {
                 setPayment(obj);
+            },
+        });
+        TournamentPaymentVM.getPaymentDoc({
+            loaderCallback: () => {},
+            errorCallBack: (code, error) => {},
+            success: (obj) => {
+                setPaymentDoc(obj.link);
             },
         });
     }, []);
@@ -81,14 +96,19 @@ const TournamentPaymentPage: React.FC = () => {
                 <p className="mt-3 font-roboto text-md md:text-lg mb-2">
                     By completing this transaction, you agree to our{" "}
                     <a
-                        href=""
+                        href={`https://f004.backblazeb2.com/file/npl-docs-public/${paymentDoc}`}
                         className="font-bold text-blue-500"
                         target="_blank"
                     >
                         Payment Terms and Conditions.
                     </a>
                 </p>
-                <Button text="Continue and Complete Payment" />
+                <Elements stripe={stripePromise}>
+                    <PaymentForm
+                        intent={payment.intentSecret || ""}
+                        customerId={payment.customerId || ""}
+                    />
+                </Elements>
             </div>
         </BaseContent>
     );

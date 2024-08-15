@@ -18,4 +18,18 @@ export namespace TournamentPaymentVM {
         }
         cb.success(resp.result!);
     }
+
+    export async function getPaymentDoc(
+        cb: AsyncResponseCallback<{ link: string }, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp = await NetworkModule.userService.getAppData(
+            "payment_policy"
+        );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({ link: resp.result?.dataInfo || "" });
+    }
 }
