@@ -15,6 +15,7 @@ export namespace TournamentRulesVM {
                 status: TournamentTypes.Status;
                 rules: Partial<TournamentServiceResponse.TournamentRules_Struct>;
                 userStatus: TournamentRegisterTypes.status | undefined;
+                toc: string;
             },
             {}
         >
@@ -37,6 +38,22 @@ export namespace TournamentRulesVM {
             status: resp.result.status,
             rules: resp.result!.rules || {},
             userStatus: resp.result!.currentUser?.status,
+            toc: resp.result!.tocLink || "",
         });
+    }
+
+    export async function registerTournament(
+        tournamentId: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp = await NetworkModule.tournamentService.joinTournament(
+            tournamentId
+        );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
     }
 }
