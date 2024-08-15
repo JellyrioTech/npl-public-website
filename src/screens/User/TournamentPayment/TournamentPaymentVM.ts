@@ -32,4 +32,20 @@ export namespace TournamentPaymentVM {
         }
         cb.success({ link: resp.result?.dataInfo || "" });
     }
+
+    export async function finalizeTournamentPosition(
+        paymentIntent: string,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.finalizeTournamentRegistration(
+                paymentIntent
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }

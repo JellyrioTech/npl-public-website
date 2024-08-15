@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { TournamentRulesVM } from "./TournamentRulesVM";
-import { TournamentRegisterTypes } from "npl-service-module";
+import { TournamentRegisterTypes, TournamentTypes } from "npl-service-module";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { routes, UserRoutes } from "../../../util/routes";
 import BaseContent from "../../../components/BaseContent";
@@ -16,6 +16,9 @@ const TournamentRulesPage: React.FC = () => {
         Partial<TournamentServiceResponse.TournamentRules_Struct>
     >({});
     const [toc, setToc] = useState("");
+    const [tournamentStatus, setTournamentStatus] = useState<
+        TournamentTypes.Status | undefined
+    >();
     const [hasAgreedToTermsAndCondition, setHasAgreedToTermsAndCondition] =
         useState(false);
     const [hasAgreedToRules, setHasAgreedToRules] = useState(false);
@@ -40,6 +43,7 @@ const TournamentRulesPage: React.FC = () => {
                 setUserStatus(obj.userStatus);
                 setUserRules(obj.rules);
                 setToc(obj.toc);
+                setTournamentStatus(obj.status);
             },
         });
     }, []);
@@ -107,7 +111,8 @@ const TournamentRulesPage: React.FC = () => {
                     document.
                 </p>
             </div>
-            {userStatus === "pending" || userStatus === undefined ? (
+            {(userStatus === "pending" || userStatus === undefined) &&
+            tournamentStatus === "open" ? (
                 <div className="bg-neutral-100 p-5 rounded-xl ">
                     <h2 className="font-oswald font-bold text-xl md:text-2xl ">
                         Are you ready to Register for the Tournament?

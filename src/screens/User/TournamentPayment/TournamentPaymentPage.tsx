@@ -8,6 +8,7 @@ import Button from "../../../components/Button";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./PaymentForm";
+import { UserRoutes } from "../../../util/routes";
 
 const stripePromise = loadStripe(
     "pk_test_51PMrIMRsr5aJLfHYA5IPYVFMXN7wALfhePegD4WTh7SNqoUkixGRiIFuq8lKnRPfz4ZSyS1j7jWnjT0cMS7fOH1C004w6uxnbO"
@@ -17,6 +18,7 @@ const TournamentPaymentPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
     const [payment, setPayment] = useState<Partial<PaymentResponse>>({});
     const [paymentDoc, setPaymentDoc] = useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
         TournamentPaymentVM.getPaymentIntent(Number(tournamentId), {
@@ -107,6 +109,10 @@ const TournamentPaymentPage: React.FC = () => {
                     <PaymentForm
                         intent={payment.intentSecret || ""}
                         customerId={payment.customerId || ""}
+                        errorCb={setError}
+                        onSuccess={() => {
+                            window.location.pathname = `${UserRoutes.TournamentRules}/${tournamentId}`;
+                        }}
                     />
                 </Elements>
             </div>

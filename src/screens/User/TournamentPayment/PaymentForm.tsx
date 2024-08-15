@@ -1,10 +1,14 @@
 import React from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Button from "../../../components/Button";
+import { TournamentPaymentVM } from "./TournamentPaymentVM";
 
-const PaymentForm: React.FC<{ intent: string; customerId: string }> = ({
-    intent,
-}) => {
+const PaymentForm: React.FC<{
+    intent: string;
+    customerId: string;
+    errorCb: (msg: string) => void;
+    onSuccess: () => void;
+}> = ({ intent, errorCb, onSuccess }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -38,9 +42,11 @@ const PaymentForm: React.FC<{ intent: string; customerId: string }> = ({
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        errorCb("");
 
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet.
+            errorCb("Payment Method is not intialized");
             return;
         }
 
@@ -57,10 +63,23 @@ const PaymentForm: React.FC<{ intent: string; customerId: string }> = ({
             );
 
             if (error) {
-                console.error("Payment failed:", error);
+                errorCb(`Payment Failed: ${error.message}`);
+                return;
             } else if (paymentIntent?.status === "succeeded") {
-                console.log("Payment succeeded:", paymentIntent);
+                TournamentPaymentVM.finalizeTournamentPosition(intent, {
+                    loaderCallback: () => {},
+                    errorCallBack: (code, error) => {
+                        errorCb(error || "");
+                        return;
+                    },
+                    success: () => {
+                        onSuccess();
+                        return;
+                    },
+                });
             }
+            errorCb(`Something wrong with processing the payment`);
+            return;
         }
     };
 
