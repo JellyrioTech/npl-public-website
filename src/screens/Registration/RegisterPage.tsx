@@ -2,7 +2,7 @@ import Button from "../../components/Button";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import InputField from "../../components/InputField";
-import { routes } from "../../util/routes";
+import { routes, UserRoutes } from "../../util/routes";
 import { RegisterPageVM } from "./RegisterPageVM";
 import { SSORoutes } from "../../apiRoutes/ssoRoutes";
 
@@ -43,15 +43,16 @@ function RegisterPage() {
         );
     };
 
-    const handleSignIn = async () => {
+    const handleSignIn = async (e: React.FormEvent) => {
+        e.preventDefault();
         SSORoutes.signinUser(email, password, {
             loaderCallback: () => {},
             errorCallBack: (code, error) => {
                 setError(error);
             },
             success: () => {
-                // TODO: - Navigiation
-                console.log("success signing");
+                console.log("");
+                window.location.pathname = UserRoutes.TournamentRules;
             },
         });
     };
@@ -111,7 +112,11 @@ function RegisterPage() {
 
     const SignInForm = () => {
         return (
-            <form onSubmit={handleSignIn} className="space-y-4 md:space-y-5">
+            <form
+                onSubmit={handleSignIn}
+                method="POST"
+                className="space-y-4 md:space-y-5"
+            >
                 <div className="space-y-4">
                     <InputField
                         type={"email"}
@@ -141,6 +146,7 @@ function RegisterPage() {
             <form
                 onSubmit={handleRegistrationSubmit}
                 className="space-y-4 md:space-y-5"
+                method="POST"
             >
                 <div className="space-y-4">
                     <InputField

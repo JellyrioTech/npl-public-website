@@ -10,6 +10,11 @@ export const routes = {
     TermsAndCondition: "/termsAndConditions",
     Admin: "/admin/inside",
     Error: "/404",
+    User: "/main/inside",
+};
+
+export const UserRoutes = {
+    TournamentRules: `${routes.User}/tournamentRules`,
 };
 
 export const admin_routes = {
