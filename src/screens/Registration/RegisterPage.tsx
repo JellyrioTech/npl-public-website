@@ -37,7 +37,7 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    // Todo: - Navigate to rules screen
+                    window.location.pathname = UserRoutes.TournamentRules;
                 },
             }
         );
@@ -51,7 +51,6 @@ function RegisterPage() {
                 setError(error);
             },
             success: () => {
-                console.log("");
                 window.location.pathname = UserRoutes.TournamentRules;
             },
         });
