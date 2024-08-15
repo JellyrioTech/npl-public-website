@@ -3,7 +3,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { TournamentRulesVM } from "./TournamentRulesVM";
 import { TournamentRegisterTypes } from "npl-service-module";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
-import { routes } from "../../../util/routes";
+import { routes, UserRoutes } from "../../../util/routes";
 import BaseContent from "../../../components/BaseContent";
 import Button from "../../../components/Button";
 
@@ -33,6 +33,10 @@ const TournamentRulesPage: React.FC = () => {
                 }
             },
             success: (obj) => {
+                if (obj.userStatus === "pending") {
+                    window.location.pathname = `${UserRoutes.TournamentPayment}/${tournamentId}`;
+                    return;
+                }
                 setUserStatus(obj.userStatus);
                 setUserRules(obj.rules);
                 setToc(obj.toc);
@@ -52,7 +56,9 @@ const TournamentRulesPage: React.FC = () => {
             errorCallBack: (code, errorMsg) => {
                 setError(errorMsg || "");
             },
-            success: () => {},
+            success: () => {
+                window.location.pathname = `${UserRoutes.TournamentPayment}/${tournamentId}`;
+            },
         });
     };
     return (

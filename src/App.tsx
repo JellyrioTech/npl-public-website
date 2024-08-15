@@ -18,6 +18,7 @@ import UserListAdminPage from "./screens/UserListAdmin/UserListAdminPage";
 import ErrorPage from "./screens/ErrorPage";
 import TournamentRulesPage from "./screens/User/TournamentRules/TournamentRulesPage";
 import UserMainRouteGuard from "./guards/UserMainRouteGuard";
+import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPaymentPage";
 
 function App() {
     return (
@@ -77,6 +78,12 @@ function App() {
                     element={<UserMainRouteGuard />}
                 >
                     <Route index element={<TournamentRulesPage />} />
+                </Route>
+                <Route
+                    path={`${UserRoutes.TournamentPayment}/:tournamentId`}
+                    element={<UserMainRouteGuard />}
+                >
+                    <Route index element={<TournamentPaymentPage />} />
                 </Route>
             </Routes>
         </Router>

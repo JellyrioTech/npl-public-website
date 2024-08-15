@@ -51,7 +51,7 @@ function RegisterPage() {
                 setError(error);
             },
             success: () => {
-                window.location.pathname = UserRoutes.TournamentRules;
+                window.location.pathname = `${UserRoutes.TournamentRules}/6`;
             },
         });
     };

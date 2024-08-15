@@ -15,6 +15,7 @@ export const routes = {
 
 export const UserRoutes = {
     TournamentRules: `${routes.User}/tournamentRules`,
+    TournamentPayment: `${routes.User}/tournamentPayment`,
 };
 
 export const admin_routes = {

@@ -53,6 +53,7 @@ export namespace TournamentRulesVM {
         cb.loaderCallback(false);
         if (resp instanceof ErrorResponse) {
             cb.errorCallBack(1, resp.errorMessage);
+            return;
         }
         cb.success({});
     }
