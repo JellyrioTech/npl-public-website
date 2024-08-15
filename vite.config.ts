@@ -6,7 +6,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/adminApi": {
-                target: "https://responsibility-enzyme-camcorder-film.trycloudflare.com",
+                target: "https://elected-reload-doctor-taxi.trycloudflare.com",
                 changeOrigin: true,
                 secure: false,
                 rewrite: (path) => path.replace(/^\/adminApi/, ""),

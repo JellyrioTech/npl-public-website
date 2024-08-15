@@ -1,5 +1,6 @@
 import NetworkModuleEngine from "npl-service-module/dist/ModuleEngine";
 import { AuthToken } from "./util/Token";
+import Cookies from "js-cookie";
 
 const Environment = {
     ENV: "Development",
@@ -21,7 +22,12 @@ export const NetworkModule = new NetworkModuleEngine({
     authTokenHandler: () => {
         return AuthToken;
     },
-    networkErrorHandler: () => {},
+    networkErrorHandler: (httpCode) => {
+        if (httpCode === 403) {
+            Cookies.remove("auth_check");
+            return;
+        }
+    },
     getDeviceId: () => {
         return "";
     },

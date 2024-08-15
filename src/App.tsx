@@ -73,7 +73,7 @@ function App() {
                     <Route index element={<UserListAdminPage />} />
                 </Route>
                 <Route
-                    path={UserRoutes.TournamentRules}
+                    path={`${UserRoutes.TournamentRules}/:tournamentId`}
                     element={<UserMainRouteGuard />}
                 >
                     <Route index element={<TournamentRulesPage />} />
