@@ -19,6 +19,7 @@ import ErrorPage from "./screens/ErrorPage";
 import TournamentRulesPage from "./screens/User/TournamentRules/TournamentRulesPage";
 import UserMainRouteGuard from "./guards/UserMainRouteGuard";
 import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPaymentPage";
+import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/TournamentPaymentSuccessPage";
 
 function App() {
     return (
@@ -84,6 +85,12 @@ function App() {
                     element={<UserMainRouteGuard />}
                 >
                     <Route index element={<TournamentPaymentPage />} />
+                </Route>
+                <Route
+                    path={`${UserRoutes.TournamentPaymentSuccess}/:tournamentId`}
+                    element={<UserMainRouteGuard />}
+                >
+                    <Route index element={<TournamentPaymentSuccessPage />} />
                 </Route>
             </Routes>
         </Router>
