@@ -5,10 +5,10 @@ import Cookies from "js-cookie";
 const Environment = {
     ENV: "Development",
     BLACKBLAZE_KEY: "K004zFRZ93cIT1bDB5w6WzrB9JZ3Ye0",
-    BASE_URL: "/adminApi",
+    BASE_URL: "",
     WS_URL: "ws://liver-nova-denied-postposted.trycloudflare.com/s2/",
-    SSO_BASE: "/s1/api/sso",
-    GAME_SERVICE_BASE: "/s2",
+    SSO_BASE: "/ssoService/api/sso",
+    GAME_SERVICE_BASE: "/gameService",
     GAME_SERVICE_API: "/api",
 };
 

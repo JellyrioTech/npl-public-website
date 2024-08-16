@@ -6,11 +6,17 @@ import mkcert from "vite-plugin-mkcert";
 export default defineConfig({
     server: {
         proxy: {
-            "/adminApi": {
-                target: "https://elected-reload-doctor-taxi.trycloudflare.com",
+            "/gameService": {
+                target: "http://localhost:3600",
                 changeOrigin: true,
                 secure: false,
-                rewrite: (path) => path.replace(/^\/adminApi/, ""),
+                rewrite: (path) => path.replace(/^\/gameService/, ""),
+            },
+            "/ssoService": {
+                target: "http://localhost:3000",
+                changeOrigin: true,
+                secure: false,
+                rewrite: (path) => path.replace(/^\/ssoService/, ""),
             },
         },
     },
