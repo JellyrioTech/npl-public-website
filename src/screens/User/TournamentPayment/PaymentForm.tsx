@@ -2,6 +2,7 @@ import React from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Button from "../../../components/Button";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
+import { UserRoutes } from "../../../util/routes";
 
 const PaymentForm: React.FC<{
     intent: string;
@@ -69,7 +70,7 @@ const PaymentForm: React.FC<{
                 TournamentPaymentVM.finalizeTournamentPosition(intent, {
                     loaderCallback: () => {},
                     errorCallBack: (code, error) => {
-                        errorCb(error || "");
+                        window.location.pathname = `${UserRoutes.TournamentPaymentError}`;
                         return;
                     },
                     success: () => {

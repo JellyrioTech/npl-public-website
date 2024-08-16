@@ -17,6 +17,7 @@ export const UserRoutes = {
     TournamentRules: `${routes.User}/tournamentRules`,
     TournamentPayment: `${routes.User}/tournamentPayment`,
     TournamentPaymentSuccess: `${routes.User}/paymentSuccesss`,
+    TournamentPaymentError: `${routes.User}/paymentError`,
 };
 
 export const admin_routes = {

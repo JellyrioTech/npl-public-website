@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { PaymentResponse } from "npl-service-module/dist/services/Response/PaymentService.response";
 import { CommonUtil } from "../../../util/CommonUtil";
-import Button from "../../../components/Button";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./PaymentForm";
@@ -111,7 +110,7 @@ const TournamentPaymentPage: React.FC = () => {
                         customerId={payment.customerId || ""}
                         errorCb={setError}
                         onSuccess={() => {
-                            window.location.pathname = `${UserRoutes.TournamentRules}/${tournamentId}`;
+                            window.location.pathname = `${UserRoutes.TournamentPaymentSuccess}/${tournamentId}`;
                         }}
                     />
                 </Elements>
