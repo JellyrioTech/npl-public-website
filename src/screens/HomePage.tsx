@@ -19,7 +19,7 @@ function HomePage() {
                 >
                     <div className="mt-10 flex flex-col items-center gap-4">
                         <p className="font-oswald font-bold text-4xl md:text-5xl">
-                            Arena Battle Series
+                            Arena Battle Series {import.meta.env.VITE_ENV}
                         </p>
                         <p className="py-2 md:px-5 bg-neutral-100 font-roboto text-[18px] md:text-[20px]">
                             Test your skills and write your own legacy

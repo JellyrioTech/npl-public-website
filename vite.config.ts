@@ -1,24 +1,38 @@
-import { defineConfig } from "vite";
+import { defineConfig, PluginOption } from "vite";
 import react from "@vitejs/plugin-react";
 import mkcert from "vite-plugin-mkcert";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-    server: {
-        proxy: {
-            "/gameService": {
-                target: "http://localhost:3600",
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path) => path.replace(/^\/gameService/, ""),
-            },
-            "/ssoService": {
-                target: "http://localhost:3000",
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path) => path.replace(/^\/ssoService/, ""),
-            },
+export default defineConfig(({ mode }) => {
+    return {
+        server: {
+            proxy:
+                mode === "development"
+                    ? {
+                          "/gameService": {
+                              target: "https://emotions-respected-net-researcher.trycloudflare.com",
+                              changeOrigin: true,
+                              secure: false,
+                              rewrite: (path) =>
+                                  path.replace(/^\/gameService/, ""),
+                          },
+                          "/ssoService": {
+                              target: "https://emotions-respected-net-researcher.trycloudflare.com",
+                              changeOrigin: true,
+                              secure: false,
+                              rewrite: (path) =>
+                                  path.replace(/^\/ssoService/, ""),
+                          },
+                      }
+                    : undefined,
         },
-    },
-    plugins: [react(), mkcert()],
+        plugins: [
+            react(),
+            mode === "development"
+                ? mkcert()
+                : ((): PluginOption[] => {
+                      return [];
+                  })(),
+        ],
+    };
 });

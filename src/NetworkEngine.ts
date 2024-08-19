@@ -3,13 +3,13 @@ import { AuthToken } from "./util/Token";
 import Cookies from "js-cookie";
 
 const Environment = {
-    ENV: "Development",
-    BLACKBLAZE_KEY: "K004zFRZ93cIT1bDB5w6WzrB9JZ3Ye0",
-    BASE_URL: "",
-    WS_URL: "ws://liver-nova-denied-postposted.trycloudflare.com/s2/",
-    SSO_BASE: "/ssoService/api/sso",
-    GAME_SERVICE_BASE: "/gameService",
-    GAME_SERVICE_API: "/api",
+    ENV: import.meta.env.VITE_ENV,
+    BLACKBLAZE_KEY: import.meta.env.VITE_BLACKBLAZE_KEY,
+    BASE_URL: import.meta.env.VITE_BASE_URL,
+    WS_URL: import.meta.env.VITE_WS_URL,
+    SSO_BASE: import.meta.env.VITE_SSO_BASE,
+    GAME_SERVICE_BASE: import.meta.env.VITE_GAME_SERVICE_BASE,
+    GAME_SERVICE_API: import.meta.env.VITE_GAME_SERVICE_API,
 };
 
 export const NetworkModule = new NetworkModuleEngine({

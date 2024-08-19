@@ -56,6 +56,7 @@ const PaymentForm: React.FC<{
         const cardElement = elements.getElement(CardElement);
 
         if (cardElement) {
+            showLoader();
             const { error, paymentIntent } = await stripe.confirmCardPayment(
                 intent,
                 {
@@ -64,6 +65,7 @@ const PaymentForm: React.FC<{
                     },
                 }
             );
+            hideLoader();
 
             if (error) {
                 errorCb(`Payment Failed: ${error.message}`);

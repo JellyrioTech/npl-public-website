@@ -10,9 +10,8 @@ import PaymentForm from "./PaymentForm";
 import { UserRoutes } from "../../../util/routes";
 import { useLoader } from "../../../components/LoaderProvider";
 
-const stripePromise = loadStripe(
-    "pk_test_51PMrIMRsr5aJLfHYA5IPYVFMXN7wALfhePegD4WTh7SNqoUkixGRiIFuq8lKnRPfz4ZSyS1j7jWnjT0cMS7fOH1C004w6uxnbO"
-);
+const stripeKey = import.meta.env.VITE_STRIPE_PUB_KEY;
+const stripePromise = loadStripe(stripeKey);
 
 const TournamentPaymentPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
