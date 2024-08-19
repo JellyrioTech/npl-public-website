@@ -1,5 +1,4 @@
 import NetworkModuleEngine from "npl-service-module/dist/ModuleEngine";
-import { AuthToken } from "./util/Token";
 import Cookies from "js-cookie";
 
 const Environment = {
@@ -20,7 +19,8 @@ export const NetworkModule = new NetworkModuleEngine({
     GAME_SERVICE_API: Environment.GAME_SERVICE_API,
     ENV: Environment.ENV,
     authTokenHandler: () => {
-        return AuthToken;
+        const authToken = Cookies.get("jwt_token");
+        return authToken || "";
     },
     networkErrorHandler: (httpCode) => {
         if (httpCode === 403) {
