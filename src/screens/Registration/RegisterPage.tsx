@@ -58,7 +58,7 @@ function RegisterPage() {
             },
             success: (obj) => {
                 document.cookie = "auth_check=true";
-                document.cookie = `jwt_token=${obj.token}; HttpOnly; Secure; SameSite=None`;
+                document.cookie = `jwt_token=${obj.token}`;
                 window.location.pathname = `${UserRoutes.TournamentRules}/1`;
             },
         });
