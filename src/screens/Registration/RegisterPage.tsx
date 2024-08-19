@@ -41,7 +41,7 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    window.location.pathname = UserRoutes.TournamentRules;
+                    window.location.pathname = `${UserRoutes.TournamentRules}/1`;
                 },
             }
         );
@@ -56,8 +56,9 @@ function RegisterPage() {
             errorCallBack: (_, error) => {
                 setError(error);
             },
-            success: () => {
+            success: (obj) => {
                 document.cookie = "auth_check=true";
+                document.cookie = `jwt_token=${obj.token}`;
                 window.location.pathname = `${UserRoutes.TournamentRules}/1`;
             },
         });
