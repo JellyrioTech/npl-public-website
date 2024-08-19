@@ -17,7 +17,7 @@ const TournamentPaymentPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
     const [payment, setPayment] = useState<Partial<PaymentResponse>>({});
     const [paymentDoc, setPaymentDoc] = useState("");
-    const [error, setError] = useState("");
+    const [_, setError] = useState("");
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
@@ -25,14 +25,14 @@ const TournamentPaymentPage: React.FC = () => {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },
-            errorCallBack: (code, error) => {},
+            errorCallBack: () => {},
             success: (obj) => {
                 setPayment(obj);
             },
         });
         TournamentPaymentVM.getPaymentDoc({
             loaderCallback: () => {},
-            errorCallBack: (code, error) => {},
+            errorCallBack: () => {},
             success: (obj) => {
                 setPaymentDoc(obj.link);
             },

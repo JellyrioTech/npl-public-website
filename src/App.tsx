@@ -21,7 +21,7 @@ import UserMainRouteGuard from "./guards/UserMainRouteGuard";
 import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPaymentPage";
 import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/TournamentPaymentSuccessPage";
 import TournamentPaymentErrorPage from "./screens/User/TournamentPayment/TournamentPaymentError";
-import LoaderProvider, { useLoader } from "./components/LoaderProvider";
+import LoaderProvider from "./components/LoaderProvider";
 
 function App() {
     return (

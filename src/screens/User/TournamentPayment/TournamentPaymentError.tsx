@@ -1,6 +1,4 @@
 import BaseContent from "../../../components/BaseContent";
-import appstoreDownload from "../../../assets/App Store download.png";
-import amazonAppStore from "../../../assets/amazon_appstore.png";
 
 const TournamentPaymentErrorPage: React.FC = () => {
     return (

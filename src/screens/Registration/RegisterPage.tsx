@@ -53,7 +53,7 @@ function RegisterPage() {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },
-            errorCallBack: (code, error) => {
+            errorCallBack: (_, error) => {
                 setError(error);
             },
             success: () => {
@@ -74,7 +74,7 @@ function RegisterPage() {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },
-            errorCallBack: (code, error) => {
+            errorCallBack: (_, error) => {
                 setError(error);
             },
             success: (obj) => {

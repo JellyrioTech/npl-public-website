@@ -75,7 +75,7 @@ const PaymentForm: React.FC<{
                     loaderCallback: (loader) => {
                         loader ? showLoader() : hideLoader();
                     },
-                    errorCallBack: (code, error) => {
+                    errorCallBack: () => {
                         window.location.pathname = `${UserRoutes.TournamentPaymentError}`;
                         return;
                     },

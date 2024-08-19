@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { TournamentRulesVM } from "./TournamentRulesVM";
 import { TournamentRegisterTypes, TournamentTypes } from "npl-service-module";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
@@ -63,7 +63,7 @@ const TournamentRulesPage: React.FC = () => {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },
-            errorCallBack: (code, errorMsg) => {
+            errorCallBack: (_, errorMsg) => {
                 setError(errorMsg || "");
             },
             success: () => {

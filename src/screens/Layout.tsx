@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import LoaderProvider, { useLoader } from "../components/LoaderProvider";
+import { useLoader } from "../components/LoaderProvider";
 import NavBar from "../components/NavBar";
 import { Outlet } from "react-router-dom";
 

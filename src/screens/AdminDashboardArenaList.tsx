@@ -21,7 +21,7 @@ function AdminDashboardArenaList() {
 
     useEffect(() => {
         AdminDashboardVM.getArenas({
-            loaderCallback: (showLoader) => {},
+            loaderCallback: () => {},
             errorCallBack: () => {},
             success: (obj) => {
                 setArenas(obj.arenas);
@@ -47,7 +47,7 @@ function AdminDashboardArenaList() {
             arenaState,
             arenaZipcode,
             {
-                loaderCallback: (showLoader) => {},
+                loaderCallback: () => {},
                 errorCallBack: () => {
                     closeCreateArenaModal();
                 },

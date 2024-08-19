@@ -7,7 +7,7 @@ import TableHeader from "../../components/TableHeader";
 
 type adminArenaDetailsProps = {};
 
-const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = (props) => {
+const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
     const { arenaId } = useParams<{ arenaId: string }>();
     const id = parseInt(arenaId!);
     const [arena, setArena] =
@@ -15,7 +15,7 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = (props) => {
     const [tournaments, setTournaments] = useState<
         Partial<TournamentServiceResponse.SearchTournamentRspObj>[]
     >([]);
-    const [loader, setLoader] = useState(false);
+    const [_, setLoader] = useState(false);
 
     useEffect(() => {
         AdminArenaDetailsVM.getArenaDetails(id, {

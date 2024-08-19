@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 type InputFieldProps = {
     type: "text" | "password" | "email";

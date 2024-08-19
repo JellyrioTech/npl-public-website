@@ -29,10 +29,4 @@ export namespace RegisterPageVM {
         }
         return cb.success({ screens: "SignIn" });
     }
-
-    export async function optForMarketingEmail() {
-        const resp = await NetworkModule.userService.setPermission({
-            marketing_promotion_email: true,
-        });
-    }
 }

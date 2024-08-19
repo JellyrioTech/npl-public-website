@@ -14,7 +14,7 @@ function LoginPage() {
     const handleSignIn = () => {
         SSORoutes.signinUser(email, password, {
             loaderCallback: () => {},
-            errorCallBack: (code, error) => {
+            errorCallBack: (_, error) => {
                 setError(error);
             },
             success: () => {

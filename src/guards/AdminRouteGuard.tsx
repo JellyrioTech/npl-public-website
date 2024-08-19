@@ -5,7 +5,7 @@ import AdminNavBar from "../components/AdminNavBar";
 
 const AdminRouteGuard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [_, setError] = useState("");
     const [isUserAdmin, setIsUserAdmin] = useState<boolean | null>(null);
 
     useEffect(() => {
