@@ -3,6 +3,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Button from "../../../components/Button";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { UserRoutes } from "../../../util/routes";
+import { useLoader } from "../../../components/LoaderProvider";
 
 const PaymentForm: React.FC<{
     intent: string;
@@ -12,6 +13,7 @@ const PaymentForm: React.FC<{
 }> = ({ intent, errorCb, onSuccess }) => {
     const stripe = useStripe();
     const elements = useElements();
+    const { showLoader, hideLoader } = useLoader();
 
     const cardStyle = {
         style: {
@@ -68,7 +70,9 @@ const PaymentForm: React.FC<{
                 return;
             } else if (paymentIntent?.status === "succeeded") {
                 TournamentPaymentVM.finalizeTournamentPosition(intent, {
-                    loaderCallback: () => {},
+                    loaderCallback: (loader) => {
+                        loader ? showLoader() : hideLoader();
+                    },
                     errorCallBack: (code, error) => {
                         window.location.pathname = `${UserRoutes.TournamentPaymentError}`;
                         return;
@@ -79,7 +83,7 @@ const PaymentForm: React.FC<{
                     },
                 });
             }
-            errorCb(`Something wrong with processing the payment`);
+            errorCb(`Something went wrong with processing the payment`);
             return;
         }
     };

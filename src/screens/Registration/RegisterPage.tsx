@@ -5,6 +5,7 @@ import InputField from "../../components/InputField";
 import { routes, UserRoutes } from "../../util/routes";
 import { RegisterPageVM } from "./RegisterPageVM";
 import { SSORoutes } from "../../apiRoutes/ssoRoutes";
+import { useLoader } from "../../components/LoaderProvider";
 
 function RegisterPage() {
     const [name, setName] = useState("");
@@ -17,6 +18,7 @@ function RegisterPage() {
     const [error, setError] = useState<string | null>();
 
     const navigate = useNavigate();
+    const { showLoader, hideLoader } = useLoader();
 
     const handleRegistrationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,7 +30,9 @@ function RegisterPage() {
             name,
             isUserRecieveEmailUpdates,
             {
-                loaderCallback: () => {},
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
                 errorCallBack: (code, error) => {
                     if (code === 2) {
                         navigate(routes.Error);
@@ -46,7 +50,9 @@ function RegisterPage() {
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
         SSORoutes.signinUser(email, password, {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (code, error) => {
                 setError(error);
             },
@@ -65,7 +71,9 @@ function RegisterPage() {
     const checkEmailExists = () => {
         setError("");
         RegisterPageVM.verifyEmailUnique(email, {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (code, error) => {
                 setError(error);
             },

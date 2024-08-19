@@ -6,6 +6,7 @@ import { TournamentServiceResponse } from "npl-service-module/dist/services/Resp
 import { routes, UserRoutes } from "../../../util/routes";
 import BaseContent from "../../../components/BaseContent";
 import Button from "../../../components/Button";
+import { useLoader } from "../../../components/LoaderProvider";
 
 const TournamentRulesPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
@@ -25,9 +26,12 @@ const TournamentRulesPage: React.FC = () => {
     const [hasConsent, setHasConsent] = useState(false);
     const [error, setError] = useState("");
     const naivgate = useNavigate();
+    const { showLoader, hideLoader } = useLoader();
     useEffect(() => {
         TournamentRulesVM.getTournamentDetails(Number(tournamentId), {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (code: number) => {
                 console.log("Yooo");
                 if (code === 2) {
@@ -56,7 +60,9 @@ const TournamentRulesPage: React.FC = () => {
             return;
         }
         TournamentRulesVM.registerTournament(Number(tournamentId), {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (code, errorMsg) => {
                 setError(errorMsg || "");
             },

@@ -8,6 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./PaymentForm";
 import { UserRoutes } from "../../../util/routes";
+import { useLoader } from "../../../components/LoaderProvider";
 
 const stripePromise = loadStripe(
     "pk_test_51PMrIMRsr5aJLfHYA5IPYVFMXN7wALfhePegD4WTh7SNqoUkixGRiIFuq8lKnRPfz4ZSyS1j7jWnjT0cMS7fOH1C004w6uxnbO"
@@ -18,10 +19,13 @@ const TournamentPaymentPage: React.FC = () => {
     const [payment, setPayment] = useState<Partial<PaymentResponse>>({});
     const [paymentDoc, setPaymentDoc] = useState("");
     const [error, setError] = useState("");
+    const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
         TournamentPaymentVM.getPaymentIntent(Number(tournamentId), {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (code, error) => {},
             success: (obj) => {
                 setPayment(obj);

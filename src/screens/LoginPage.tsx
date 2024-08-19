@@ -3,9 +3,6 @@ import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
-import { NetworkModule } from "../NetworkEngine";
-import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
-import { AuthToken, setAuthToken } from "../util/Token";
 import { SSORoutes } from "../apiRoutes/ssoRoutes";
 
 function LoginPage() {
