@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://emotions-respected-net-researcher.trycloudflare.com",
+                              target: "https://immediate-tested-ethernet-resident.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://emotions-respected-net-researcher.trycloudflare.com",
+                              target: "https://immediate-tested-ethernet-resident.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

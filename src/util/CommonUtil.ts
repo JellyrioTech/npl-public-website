@@ -5,4 +5,31 @@ export namespace CommonUtil {
             return dollars.toFixed(2);
         }
     }
+
+    export namespace DateHelper {
+        // March 25, 2022
+        export function formatDateToMonthDayYear(dateString: string): string {
+            const date = new Date(dateString);
+            const options: Intl.DateTimeFormatOptions = {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZone: "UTC", // Ensuring the timezone is set to UTC to avoid local timezone offsets
+            };
+
+            return date.toLocaleDateString("en-US", options);
+        }
+
+        export function formatTimeToHourMin(dateString: string): string {
+            const date = new Date(dateString);
+            const options: Intl.DateTimeFormatOptions = {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true, // Set to true for AM/PM format
+                timeZone: "UTC",
+            };
+
+            return date.toLocaleTimeString("en-US", options);
+        }
+    }
 }

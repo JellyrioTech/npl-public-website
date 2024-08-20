@@ -10,9 +10,31 @@ import medal from "../../public/Medal.png";
 import arenaClearoneLogo from "../../public/Arena Clearone Logo.png";
 import { routes } from "../util/routes";
 import Button from "../components/Button";
+import { useEffect, useState } from "react";
+import { TournamentAPI } from "../apiRoutes/TournamentAPI";
+import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
+import { useLoader } from "../components/LoaderProvider";
+import { CommonUtil } from "../util/CommonUtil";
 
 function TournamentInfoPage() {
     const navigator = useNavigate();
+    const [tournament, setTournament] = useState<
+        Partial<TournamentServiceResponse.GetPublicTournamentInfoStruct>
+    >({});
+    const { showLoader, hideLoader } = useLoader();
+
+    useEffect(() => {
+        const tournamentId = 1;
+        TournamentAPI.getPublicTournamentInfo(tournamentId, {
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
+            errorCallBack: () => {},
+            success: (obj) => {
+                setTournament(obj);
+            },
+        });
+    }, []);
 
     return (
         <div className="w-full bg-primary-900 flex flex-col items-center py-10 gap-5">
@@ -21,12 +43,18 @@ function TournamentInfoPage() {
                     <img src={crossedSwords} className="w-[100px] h-[100px]" />
                     <p className="font-roboto text-sm mt-5">Learn More About</p>
                     <p className="font-roboto text-xl font-bold md:text-2xl mt-2">
-                        Arena Battle Series
+                        {tournament.name}
                     </p>
                     <p className="font-roboto mt-1">
                         on{" "}
                         <span className="text-primary-500 text-lg md:text-2xl font-bold">
-                            September 13, 2024 at 5:00pm EST
+                            {CommonUtil.DateHelper.formatDateToMonthDayYear(
+                                tournament.startDate?.toString() || ""
+                            )}{" "}
+                            at{" "}
+                            {CommonUtil.DateHelper.formatTimeToHourMin(
+                                tournament.startDate?.toString() || ""
+                            )}
                         </span>
                     </p>
                 </div>
@@ -40,6 +68,14 @@ function TournamentInfoPage() {
                         where player face off in a series of challenging games,
                         creating their own legacy.
                     </p>
+                    <div className="p-2 border-secondary-700 border-4 rounded-md flex gap-1  flex-col items-center">
+                        <p className="font-bold font-roboto text-secondary-700">
+                            Total Registered
+                        </p>
+                        <p className="font-oswald font-bold text-lg text-neutral-800">
+                            {`${tournament.totalRegistered}/${tournament.capacity}`}
+                        </p>
+                    </div>
                     <div className="flex w-3/4 justify-center items-center border-4 border-secondary-300 rounded px-5 py-2 shadow-inner bg-secondary-100">
                         <p className="text-sm">
                             This is more than just earning a medal. Its an honor
@@ -47,6 +83,7 @@ function TournamentInfoPage() {
                         </p>
                         <img src={medal} className="w-[70px] h-[70px]" />
                     </div>
+
                     <Button
                         onClick={() => navigator(routes.Register)}
                         text={"Register Now"}
@@ -60,11 +97,14 @@ function TournamentInfoPage() {
                 </p>
                 <div>
                     <p className="mt-5">
-                        <b>Location:</b> 7059 S Orange Blossom Trl, Orlando, FL
-                        32809
+                        <b>Location:</b>{" "}
+                        {`${tournament.location?.address} ${tournament.location?.city} ${tournament.location?.state} ${tournament.location?.zipCode}`}
                     </p>
                     <p>
                         <b>Game Type:</b> Doubles Round Robin
+                    </p>
+                    <p>
+                        <b>Entry Fee:</b> ${tournament.entryFee}
                     </p>
                     <p className="mt-8 mb-4 p-2 text-xl text-secondary-700 font-bold uppercase bg-secondary-100 text-center">
                         Prizes
@@ -370,7 +410,7 @@ function TournamentInfoPage() {
                     Are your ready to see your true potential and write your own
                     legacy?
                 </p>
-                <div className="md:basis-1/3 mx-auto">
+                <div className="md:basis-1/3 mx-auto pt-5">
                     <Button
                         onClick={() => navigator(routes.Download)}
                         text={"Register Now"}
