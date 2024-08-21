@@ -34,6 +34,9 @@ function App() {
                     <Route path={routes.Register} element={<Layout />}>
                         <Route index element={<RegisterPage />} />
                     </Route>
+                    <Route path={routes.Login} element={<Layout />}>
+                        <Route index element={<LoginPage />} />
+                    </Route>
                     <Route path={routes.About} element={<Layout />}>
                         <Route index element={<AboutUsPage />} />
                     </Route>
@@ -52,9 +55,6 @@ function App() {
                     </Route>
                     <Route path={routes.Home} element={<Layout />}>
                         <Route index element={<HomePage />} />
-                    </Route>
-                    <Route path={routes.Login} element={<Layout />}>
-                        <Route index element={<LoginPage />} />
                     </Route>
                     <Route path={routes.Error} element={<Layout />}>
                         <Route index element={<ErrorPage />} />

@@ -2,24 +2,31 @@ import { useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../util/routes";
+import { admin_routes, routes } from "../util/routes";
 import { SSORoutes } from "../apiRoutes/ssoRoutes";
+import { useLoader } from "../components/LoaderProvider";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>();
     const navigate = useNavigate();
+    const { showLoader, hideLoader } = useLoader();
 
-    const handleSignIn = () => {
+    const handleSignIn = async (e: React.FormEvent) => {
+        e.preventDefault();
         SSORoutes.signinUser(email, password, {
-            loaderCallback: () => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (_, error) => {
                 setError(error);
             },
-            success: () => {
-                // TODO: - Navigiation
-                console.log("success signing");
+            success: (obj) => {
+                console.log("success login");
+                document.cookie = "auth_check=true";
+                document.cookie = `jwt_token=${obj.token}`;
+                window.location.pathname = `${admin_routes.dashboard}`;
             },
         });
     };
@@ -36,6 +43,7 @@ function LoginPage() {
                     )}
                     <form
                         onSubmit={handleSignIn}
+                        method="POST"
                         className="space-y-4 md:space-y-5"
                     >
                         <div className="space-y-4">

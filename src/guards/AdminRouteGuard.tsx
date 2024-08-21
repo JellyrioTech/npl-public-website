@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AdminRouteGuardVM } from "./AdminRouteGuardVM";
 import AdminNavBar from "../components/AdminNavBar";
+import { routes } from "../util/routes";
 
 const AdminRouteGuard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +29,7 @@ const AdminRouteGuard: React.FC = () => {
         return <div>Loading...</div>;
     }
     if (isUserAdmin !== null && !isUserAdmin) {
-        return <Navigate to={"/login"} />;
+        return <Navigate to={routes.Login} />;
     }
 
     if (isUserAdmin !== null && isUserAdmin) {
