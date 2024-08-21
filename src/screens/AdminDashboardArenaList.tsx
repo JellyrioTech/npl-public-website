@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { useNavigate } from "react-router-dom";
-import { admin_routes } from "../util/routes";
+import { AdminRoutes } from "../util/routes";
 import CardHeader from "../components/CardHeader";
 
 function AdminDashboardArenaList() {
@@ -60,7 +60,7 @@ function AdminDashboardArenaList() {
     };
 
     const handleArenaClick = (id: number) => {
-        navigate(admin_routes.arenaDetails(id));
+        navigate(AdminRoutes.arenaDetails(id));
     };
 
     return (

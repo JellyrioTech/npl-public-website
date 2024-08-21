@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useEffect, useState } from "react";
 import { AdminArenaDetailsVM } from "./AdminArenaDetailsVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import TableHeader from "../../components/TableHeader";
+import { AdminRoutes } from "../../util/routes";
+import { StatusColor } from "../../util/Types";
+import { CommonUtil } from "../../util/CommonUtil";
 
 type adminArenaDetailsProps = {};
 
@@ -16,6 +19,7 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
         Partial<TournamentServiceResponse.SearchTournamentRspObj>[]
     >([]);
     const [_, setLoader] = useState(false);
+    const naviagte = useNavigate();
 
     useEffect(() => {
         AdminArenaDetailsVM.getArenaDetails(id, {
@@ -39,19 +43,11 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
         });
     }, []);
 
-    const tournamentStatusColor = (status: string | undefined): string => {
-        switch (status) {
-            case "in-progress":
-                return "bg-primary-500 font-bold";
-                break;
-            case "closed":
-                return "bg-red-300 font-bold";
-                break;
-            case "open":
-                return "bg-sky-300 font-bold";
-            default:
-                return "font-bold";
-        }
+    const tournamentStatusColor = (
+        status: keyof typeof StatusColor | undefined
+    ): string => {
+        if (status === undefined) return "bg-neutral-500";
+        return StatusColor[status];
     };
 
     const formatString = (text: string): string => {
@@ -63,6 +59,10 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
             .join(" "); // Join words back together
 
         return cleanedString;
+    };
+
+    const handleTournamentClick = (id: number) => {
+        naviagte(AdminRoutes.tournamentDetails(id));
     };
 
     return (
@@ -97,45 +97,48 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
                                     ]}
                                 ></TableHeader>
                                 <tbody className="border-b border-primary-700">
-                                    {tournaments.map((tournament) => {
-                                        return (
-                                            <tr className="text-black border-b text-center border-primary-700 cursor-pointer hover:bg-primary-100">
-                                                <th
-                                                    className="whitespace-nowrap font-semibold
-                                                    uppercase px-4 py-1 md:px-6 md:py-4"
-                                                    scope="row"
-                                                >
-                                                    {tournament.name}
-                                                </th>
-                                                <td className="px-6 py-4">
-                                                    {formatString(
-                                                        tournament.type || ""
-                                                    )}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    {
-                                                        tournament.registeredPlayer
-                                                    }{" "}
-                                                    / {tournament.totalCapacity}
-                                                </td>
-                                                <td
-                                                    className={`px-6 py-4 ${tournamentStatusColor(
-                                                        tournament.status
-                                                    )}`}
-                                                >
-                                                    {formatString(
-                                                        tournament.status || ""
-                                                    )}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    {tournament.startDate}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    {tournament.endDate}
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
+                                    {tournaments.map((tournament) => (
+                                        <tr
+                                            className="text-black border-b text-center border-primary-700 cursor-pointer hover:bg-primary-100"
+                                            onClick={() =>
+                                                handleTournamentClick(
+                                                    tournament.id!
+                                                )
+                                            }
+                                            key={tournament.id}
+                                        >
+                                            <th
+                                                className="text-left font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                                scope="row"
+                                            >
+                                                {tournament.name}
+                                            </th>
+                                            <td className="px-6 py-4">
+                                                {formatString(
+                                                    tournament.type || ""
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {tournament.registeredPlayer} /{" "}
+                                                {tournament.totalCapacity}
+                                            </td>
+                                            <td
+                                                className={`px-6 py-4 font-bold ${CommonUtil.getStatusColor(
+                                                    tournament.status
+                                                )}`}
+                                            >
+                                                {formatString(
+                                                    tournament.status || ""
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {tournament.startDate}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {tournament.endDate}
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

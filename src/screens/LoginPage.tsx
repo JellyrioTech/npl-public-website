@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
-import { admin_routes, routes } from "../util/routes";
+import { AdminRoutes, routes } from "../util/routes";
 import { SSORoutes } from "../apiRoutes/ssoRoutes";
 import { useLoader } from "../components/LoaderProvider";
 
@@ -26,7 +26,7 @@ function LoginPage() {
                 console.log("success login");
                 document.cookie = "auth_check=true";
                 document.cookie = `jwt_token=${obj.token}`;
-                window.location.pathname = `${admin_routes.dashboard}`;
+                window.location.pathname = `${AdminRoutes.dashboard}`;
             },
         });
     };

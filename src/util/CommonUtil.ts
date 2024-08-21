@@ -1,3 +1,5 @@
+import { StatusColor } from "./Types";
+
 export namespace CommonUtil {
     export namespace CurrencyHelper {
         export function convertCentsToDollars(cents: number): string {
@@ -31,5 +33,12 @@ export namespace CommonUtil {
 
             return date.toLocaleTimeString("en-US", options);
         }
+    }
+
+    export function getStatusColor(
+        status: keyof typeof StatusColor | undefined
+    ): string {
+        if (status === undefined) return "bg-neutral-500";
+        return StatusColor[status];
     }
 }

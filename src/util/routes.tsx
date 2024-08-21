@@ -20,9 +20,11 @@ export const UserRoutes = {
     TournamentPaymentError: `${routes.User}/paymentError`,
 };
 
-export const admin_routes = {
+export const AdminRoutes = {
     dashboard: `${routes.Admin}/`,
     userList: `${routes.Admin}/users`,
     arenaDetails: (id: number) => `${routes.Admin}/arena/${id}`,
     arenaDetailsPath: `${routes.Admin}/arena/:arenaId`,
+    tournamentDetails: (id: number) => `${routes.Admin}/tournament/${id}`,
+    tournamentDetailsPath: `${routes.Admin}/tournament/:tournamentId`,
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "/App_logo_white.png";
-import { admin_routes, routes } from "../util/routes";
+import { AdminRoutes, routes } from "../util/routes";
 
 const AdminNavBar: React.FC = () => {
     const navigator = useNavigate();
@@ -62,7 +62,7 @@ const AdminNavBar: React.FC = () => {
                             </li>
                             <li
                                 className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => navigator(admin_routes.userList)}
+                                onClick={() => navigator(AdminRoutes.userList)}
                             >
                                 Users
                             </li>

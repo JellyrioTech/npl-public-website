@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./screens/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
-import { routes, admin_routes, UserRoutes } from "./util/routes";
+import { AdminRoutes, routes, UserRoutes } from "./util/routes";
 import RegisterPage from "./screens/Registration/RegisterPage";
 import Layout from "./screens/Layout";
 import DownloadPage from "./screens/DownloadPage";
@@ -22,6 +22,7 @@ import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPa
 import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/TournamentPaymentSuccessPage";
 import TournamentPaymentErrorPage from "./screens/User/TournamentPayment/TournamentPaymentError";
 import LoaderProvider from "./components/LoaderProvider";
+import TournamentDetailsPage from "./screens/TournamentDetails/TournamentDetailsPage";
 
 function App() {
     return (
@@ -66,13 +67,13 @@ function App() {
                         <Route index element={<AdminArenaDetailsPage />} />
                     </Route>
                     <Route
-                        path={admin_routes.arenaDetailsPath}
+                        path={AdminRoutes.arenaDetailsPath}
                         element={<AdminRouteGuard />}
                     >
                         <Route index element={<AdminArenaDetailsPage />} />
                     </Route>
                     <Route
-                        path={admin_routes.userList}
+                        path={AdminRoutes.userList}
                         element={<AdminRouteGuard />}
                     >
                         <Route index element={<UserListAdminPage />} />
@@ -103,6 +104,12 @@ function App() {
                         element={<UserMainRouteGuard />}
                     >
                         <Route index element={<TournamentPaymentErrorPage />} />
+                    </Route>
+                    <Route
+                        path={AdminRoutes.tournamentDetailsPath}
+                        element={<AdminRouteGuard />}
+                    >
+                        <Route index element={<TournamentDetailsPage />} />
                     </Route>
                 </Routes>
             </Router>
