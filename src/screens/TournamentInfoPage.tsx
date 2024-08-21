@@ -63,7 +63,7 @@ function TournamentInfoPage() {
                         Ever wondered what it takes to be the best? Join us in
                         the{" "}
                         <span className="font-semibold text-secondary-500">
-                            Arena Battle Series
+                            {tournament.name || ""}
                         </span>{" "}
                         where player face off in a series of challenging games,
                         creating their own legacy.
@@ -73,7 +73,9 @@ function TournamentInfoPage() {
                             Total Registered
                         </p>
                         <p className="font-oswald font-bold text-lg text-neutral-800">
-                            {`${tournament.totalRegistered}/${tournament.capacity}`}
+                            {`${tournament.totalRegistered || 0}/${
+                                tournament.capacity || 0
+                            }`}
                         </p>
                     </div>
                     <div className="flex w-3/4 justify-center items-center border-4 border-secondary-300 rounded px-5 py-2 shadow-inner bg-secondary-100">
@@ -98,13 +100,17 @@ function TournamentInfoPage() {
                 <div>
                     <p className="mt-5">
                         <b>Location:</b>{" "}
-                        {`${tournament.location?.address} ${tournament.location?.city} ${tournament.location?.state} ${tournament.location?.zipCode}`}
+                        {`${tournament.location?.address || ""} ${
+                            tournament.location?.city || ""
+                        } ${tournament.location?.state || ""} ${
+                            tournament.location?.zipCode || ""
+                        }`}
                     </p>
                     <p>
                         <b>Game Type:</b> Doubles Round Robin
                     </p>
                     <p>
-                        <b>Entry Fee:</b> ${tournament.entryFee}
+                        <b>Entry Fee:</b> ${tournament.entryFee || "Invalid"}
                     </p>
                     <p className="mt-8 mb-4 p-2 text-xl text-secondary-700 font-bold uppercase bg-secondary-100 text-center">
                         Prizes
