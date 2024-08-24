@@ -20,13 +20,16 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
     >([]);
     const [_, setLoader] = useState(false);
     const naviagte = useNavigate();
+    const [error, setError] = useState<string | null>();
 
     useEffect(() => {
         AdminArenaDetailsVM.getArenaDetails(id, {
             loaderCallback: (showLoader) => {
                 setLoader(showLoader);
             },
-            errorCallBack: () => {},
+            errorCallBack: (_, error) => {
+                setError(error);
+            },
             success: (obj) => {
                 setArena(obj);
             },
@@ -84,6 +87,9 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
                             header="Current Tournaments"
                             type="h2"
                         ></CardHeader>
+                        {error && (
+                            <p className="text-red-600 mb-8 text-sm">{error}</p>
+                        )}
                         <div className="relative overflow-x-auto rounded-lg md:mx-10">
                             <table className="w-full text-sm text-left rtl:text-right">
                                 <TableHeader

@@ -22,4 +22,24 @@ export namespace TournamentDetailsVM {
         }
         cb.success(resp.result!);
     }
+
+    export async function getRegisteredPlayers(
+        tournamentId: number,
+        cb: AsyncResponseCallback<
+            TournamentServiceResponse.RegisteredPlayers_Struct[],
+            {}
+        >
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.getAllRegisteredPlayerForTournament(
+                tournamentId
+            );
+        cb.loaderCallback(false);
+
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success(resp.result!.registeredPlayers || []);
+    }
 }
