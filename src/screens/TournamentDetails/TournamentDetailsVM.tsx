@@ -1,4 +1,4 @@
-import { AsyncResponseCallback } from "npl-service-module";
+import { AsyncResponseCallback, TournamentTypes } from "npl-service-module";
 import { NetworkModule } from "../../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
@@ -51,5 +51,25 @@ export namespace TournamentDetailsVM {
         return cb.success({
             result: `Player ${tournamentRegisteredId} has been deleted`,
         });
+    }
+
+    export async function startTournament(
+        tournamentId: number | undefined,
+        status: TournamentTypes.Status,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        if (tournamentId === undefined) return;
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.setTournamentStateFromOpen(
+                tournamentId,
+                status
+            );
+        cb.loaderCallback(false);
+
+        if (resp instanceof ErrorResponse) {
+            cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
     }
 }
