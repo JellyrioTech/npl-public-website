@@ -7,6 +7,7 @@ import { CommonUtil } from "../../util/CommonUtil";
 import InfoCard from "../../components/InfoCard";
 import TableHeader from "../../components/TableHeader";
 import Avatar from "../../components/Avatar";
+import ModalWithBackdrop from "../../components/ModalWithBackdrop";
 
 type TournamemntDetailsProps = {};
 
@@ -24,7 +25,9 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     const id = parseInt(tournamentId!);
     const [_, setLoader] = useState(false);
     const [error, setError] = useState<string | null>();
-    const [playerToDelete, setPlayerToDelete] = useState<number | undefined>();
+    const [playerToDelete, setPlayerToDelete] =
+        useState<TournamentServiceResponse.RegisteredPlayers_Struct>();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         TournamentDetailsVM.getTournamentDetails(id, {
@@ -48,25 +51,40 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 setRegisteredPlayers(obj);
             },
         });
-
-        TournamentDetailsVM.removePlayerFromTournament(playerToDelete, {
-            loaderCallback: (showloader) => {},
-            errorCallBack: (_, error) => {},
-            success: (obj) => {
-                setError(obj.result);
-            },
-        });
     }, []);
 
-    const showDeleteModal = () => {
-        return (
-            <div className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full">
-                <div className="relative p-4 w-full">
-                    <div className="relative shadow rounded-lg">
-                        <p>{`Are you sure you want to remove player ${playerToDelete}?`}</p>
-                    </div>
-                </div>
-            </div>
+    const handleDeleteClick = (
+        e: React.MouseEvent,
+        player: TournamentServiceResponse.RegisteredPlayers_Struct
+    ) => {
+        e.preventDefault();
+        console.log("clicked delete");
+        setShowDeleteModal(true);
+        setPlayerToDelete(player);
+    };
+
+    const handleDeleteConfirm = () => {
+        removePlayer();
+        setShowDeleteModal(false);
+    };
+
+    const handleDeleteCancel = () => {
+        setShowDeleteModal(false);
+    };
+
+    const removePlayer = () => {
+        console.log(`{deleting ${playerToDelete?.tournamentRegisterId}}`);
+        TournamentDetailsVM.removePlayerFromTournament(
+            playerToDelete?.tournamentRegisterId,
+            {
+                loaderCallback: (showLoader) => {},
+                errorCallBack: (_, error) => {
+                    setError(error);
+                },
+                success: (obj) => {
+                    alert(obj.result);
+                },
+            }
         );
     };
 
@@ -156,7 +174,12 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                             {player.status}
                                         </td>
                                         <td className="border-x border-black mx-auto">
-                                            <a className="cursor-pointer">
+                                            <a
+                                                className="hover:cursor-pointer"
+                                                onClick={(e) =>
+                                                    handleDeleteClick(e, player)
+                                                }
+                                            >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     x="0px"
@@ -176,6 +199,15 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         </table>
                     </div>
                 </div>
+
+                {showDeleteModal && (
+                    <ModalWithBackdrop
+                        onCancel={handleDeleteCancel}
+                        onConfirm={handleDeleteConfirm}
+                    >
+                        <h2>{`Are you sure you want to remove player: ${playerToDelete?.name}`}</h2>
+                    </ModalWithBackdrop>
+                )}
             </section>
         </>
     );
