@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://composed-savings-velocity-tip.trycloudflare.com",
+                              target: "https://profits-toll-lp-arcade.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://composed-savings-velocity-tip.trycloudflare.com",
+                              target: "https://profits-toll-lp-arcade.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

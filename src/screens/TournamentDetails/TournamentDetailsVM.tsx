@@ -42,4 +42,14 @@ export namespace TournamentDetailsVM {
         }
         cb.success(resp.result!.registeredPlayers || []);
     }
+
+    export async function removePlayerFromTournament(
+        tournamentRegisteredId: number | undefined,
+        cb: AsyncResponseCallback<{ result: string }, {}>
+    ) {
+        if (tournamentRegisteredId === undefined) return;
+        return cb.success({
+            result: `Player ${tournamentRegisteredId} has been deleted`,
+        });
+    }
 }

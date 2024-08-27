@@ -24,6 +24,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     const id = parseInt(tournamentId!);
     const [_, setLoader] = useState(false);
     const [error, setError] = useState<string | null>();
+    const [playerToDelete, setPlayerToDelete] = useState<number | undefined>();
 
     useEffect(() => {
         TournamentDetailsVM.getTournamentDetails(id, {
@@ -47,7 +48,27 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 setRegisteredPlayers(obj);
             },
         });
+
+        TournamentDetailsVM.removePlayerFromTournament(playerToDelete, {
+            loaderCallback: (showloader) => {},
+            errorCallBack: (_, error) => {},
+            success: (obj) => {
+                setError(obj.result);
+            },
+        });
     }, []);
+
+    const showDeleteModal = () => {
+        return (
+            <div className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full">
+                <div className="relative p-4 w-full">
+                    <div className="relative shadow rounded-lg">
+                        <p>{`Are you sure you want to remove player ${playerToDelete}?`}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <>
@@ -102,7 +123,13 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
                         <table className="w-full text-sm text-left rtl:text-right">
                             <TableHeader
-                                headerNames={["ID", "Name", "Rank", "Status"]}
+                                headerNames={[
+                                    "ID",
+                                    "Name",
+                                    "Rank",
+                                    "Status",
+                                    "",
+                                ]}
                             ></TableHeader>
                             <tbody className="text-left border-b border-primary-700">
                                 {registeredPlayers.map((player) => (
@@ -111,7 +138,8 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                             className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
                                             scope="row"
                                         >
-                                            {player.userSSOId}
+                                            {player.userSSOId} (
+                                            {player.tournamentRegisterId})
                                         </th>
                                         <td className="px-6 py-4">
                                             <div className="w-full flex items-center gap-3">
@@ -126,6 +154,21 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                         </td>
                                         <td className="px-6 py-4">
                                             {player.status}
+                                        </td>
+                                        <td className="border-x border-black mx-auto">
+                                            <a className="cursor-pointer">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    x="0px"
+                                                    y="0px"
+                                                    width="20"
+                                                    height="20"
+                                                    viewBox="0 0 30 30"
+                                                    className="mx-auto"
+                                                >
+                                                    <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z"></path>
+                                                </svg>
+                                            </a>
                                         </td>
                                     </tr>
                                 ))}
