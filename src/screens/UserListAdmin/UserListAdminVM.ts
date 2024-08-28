@@ -8,6 +8,8 @@ export namespace UserListAdminVM {
         params: { limit: number; offSet: number },
         cb: AsyncResponseCallback<UserServiceResponse.GetUserInfo[], {}>
     ) {
+        console.log(params.offSet);
+
         cb.loaderCallback(true);
         const resp = await NetworkModule.userService.getAllUser({
             limit: params.limit,

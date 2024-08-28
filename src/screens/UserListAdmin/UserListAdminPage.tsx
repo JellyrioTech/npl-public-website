@@ -3,15 +3,19 @@ import CardHeader from "../../components/CardHeader";
 import TableHeader from "../../components/TableHeader";
 import { UserListAdminVM } from "./UserListAdminVM";
 import { UserServiceResponse } from "npl-service-module/dist/services/Response/UserService.response";
+import Button from "../../components/Button";
 
 const UserListAdminPage: React.FC = () => {
     const [users, setUsers] = useState<
         UserServiceResponse.GetUserInfo[] | undefined
     >(undefined);
+    const [refresh, setRefresh] = useState<string>("");
+    const limit = 10;
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         UserListAdminVM.getAllUsers(
-            { limit: 10, offSet: 0 },
+            { limit: limit, offSet: offset },
             {
                 loaderCallback: () => {},
                 errorCallBack: () => {
@@ -23,7 +27,7 @@ const UserListAdminPage: React.FC = () => {
                 },
             }
         );
-    }, []);
+    }, [refresh]);
 
     return (
         <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
@@ -38,6 +42,10 @@ const UserListAdminPage: React.FC = () => {
                             "State",
                             "address",
                             "Can Host Tournament",
+                            "Marketing Email",
+                            "Push notification",
+                            "Cookie Tracking",
+                            "Date Registered",
                         ]}
                     />
                     <tbody className="border-b border-primary-700">
@@ -64,13 +72,82 @@ const UserListAdminPage: React.FC = () => {
                                         {user.zipCode || "-"}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {user.canHostTournament}
+                                        {(user.canHostTournament as any as number) ===
+                                        0 ? (
+                                            <span className="bg-secondary-700 text-white p-2 rounded-lg">
+                                                No
+                                            </span>
+                                        ) : (
+                                            <span className="bg-primary-700 text-white p-2 rounded-lg">
+                                                Yes
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {(user.permissions
+                                            .marketingEmail as any as number) ===
+                                        0 ? (
+                                            <span className="bg-secondary-700 text-white p-2 rounded-lg">
+                                                No
+                                            </span>
+                                        ) : (
+                                            <span className="bg-primary-700 text-white p-2 rounded-lg">
+                                                Yes
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {(user.permissions
+                                            .pushNotification as any as number) ===
+                                        0 ? (
+                                            <span className="bg-secondary-700 text-white p-2 rounded-lg">
+                                                No
+                                            </span>
+                                        ) : (
+                                            <span className="bg-primary-700 text-white p-2 rounded-lg">
+                                                Yes
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {(user.permissions
+                                            .cookieTracking as any as number) ===
+                                        0 ? (
+                                            <span className="bg-secondary-700 text-white p-2 rounded-lg">
+                                                No
+                                            </span>
+                                        ) : (
+                                            <span className="bg-primary-700 text-white p-2 rounded-lg">
+                                                Yes
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {user.dateCreated}
                                     </td>
                                 </tr>
                             );
                         })}
                     </tbody>
                 </table>
+                <div className="w-full flex justify-center pt-5">
+                    <Button
+                        text="Back"
+                        classes=""
+                        onClick={() => {
+                            setOffset(offset - limit);
+                            setRefresh(new Date().toString());
+                        }}
+                    />
+                    <Button
+                        text="Next"
+                        classes=""
+                        onClick={() => {
+                            setOffset(offset + limit);
+                            setRefresh(new Date().toString());
+                        }}
+                    />
+                </div>
             </div>
         </section>
     );
