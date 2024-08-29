@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useEffect, useState } from "react";
 import { TournamentDetailsVM } from "./TournamentDetailsVM";
@@ -11,6 +11,7 @@ import ModalWithBackdrop from "../../components/ModalWithBackdrop";
 import Button from "../../components/Button";
 import { useLoader } from "../../components/LoaderProvider";
 import InputField from "../../components/InputField";
+import { AdminRoutes } from "../../util/routes";
 
 type TournamemntDetailsProps = {};
 
@@ -39,6 +40,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     const [groupName, setGroupName] = useState("");
     const [groupError, setGroupError] = useState("");
     const [refresh, setRefresh] = useState("");
+    const navigator = useNavigate();
 
     useEffect(() => {
         TournamentDetailsVM.getTournamentDetails(id, {
@@ -288,7 +290,26 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                                     </span>
                                                 )}
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <p
+                                                    className="font-bold underline"
+                                                    onClick={() =>
+                                                        navigator(
+                                                            AdminRoutes.groupDetails(
+                                                                group.id
+                                                            ),
+                                                            {
+                                                                state: {
+                                                                    players:
+                                                                        registeredPlayers,
+                                                                },
+                                                            }
+                                                        )
+                                                    }
+                                                >
+                                                    View
+                                                </p>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

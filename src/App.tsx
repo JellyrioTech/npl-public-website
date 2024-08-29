@@ -23,6 +23,7 @@ import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/Tourn
 import TournamentPaymentErrorPage from "./screens/User/TournamentPayment/TournamentPaymentError";
 import LoaderProvider from "./components/LoaderProvider";
 import TournamentDetailsPage from "./screens/TournamentDetails/TournamentDetailsPage";
+import GroupDetailPage from "./screens/GroupDetail/GroupDetailPage";
 
 function App() {
     return (
@@ -110,6 +111,12 @@ function App() {
                         element={<AdminRouteGuard />}
                     >
                         <Route index element={<TournamentDetailsPage />} />
+                    </Route>
+                    <Route
+                        path={AdminRoutes.groupDetailsPath}
+                        element={<AdminRouteGuard />}
+                    >
+                        <Route index element={<GroupDetailPage />} />
                     </Route>
                 </Routes>
             </Router>
