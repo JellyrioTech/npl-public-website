@@ -9,6 +9,8 @@ import TableHeader from "../../components/TableHeader";
 import Avatar from "../../components/Avatar";
 import ModalWithBackdrop from "../../components/ModalWithBackdrop";
 import Button from "../../components/Button";
+import { useLoader } from "../../components/LoaderProvider";
+import InputField from "../../components/InputField";
 
 type TournamemntDetailsProps = {};
 
@@ -25,28 +27,37 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     >([]);
 
     const id = parseInt(tournamentId!);
-    const [_, setLoader] = useState(false);
+    const { showLoader, hideLoader } = useLoader();
     const [error, setError] = useState<string | null>();
     const [playerToDelete, setPlayerToDelete] =
         useState<TournamentServiceResponse.RegisteredPlayers_Struct>();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [groups, setGroups] = useState<
+        TournamentServiceResponse.AdminGetGroups[]
+    >([]);
+    const [showGroupModal, setShowGroupModal] = useState(false);
+    const [groupName, setGroupName] = useState("");
+    const [groupError, setGroupError] = useState("");
     const [refresh, setRefresh] = useState("");
 
     useEffect(() => {
         TournamentDetailsVM.getTournamentDetails(id, {
-            loaderCallback: (showLoader) => {
-                setLoader(showLoader);
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
                 setError(error);
             },
             success: (obj) => {
                 setTournament(obj);
+                postTournamentDetailFn();
             },
         });
 
         TournamentDetailsVM.getRegisteredPlayers(id, {
-            loaderCallback: (showloader) => {},
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
             errorCallBack: (_, error) => {
                 setError(error);
             },
@@ -55,6 +66,20 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
             },
         });
     }, [refresh]);
+
+    const postTournamentDetailFn = () => {
+        TournamentDetailsVM.getGroupsForTournament(Number(tournamentId), {
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
+            errorCallBack: (_, error) => {
+                setError(error);
+            },
+            success: (obj) => {
+                setGroups(obj.groups);
+            },
+        });
+    };
 
     const handleDeleteClick = (
         e: React.MouseEvent,
@@ -75,29 +100,47 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
         setShowDeleteModal(false);
     };
 
+    const createGroup = () => {
+        setGroupError("");
+        TournamentDetailsVM.createGroup(Number(tournamentId), groupName, {
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
+            errorCallBack: (_, error) => {
+                setGroupError(error || "");
+            },
+            success: () => {
+                setShowGroupModal(false);
+                setRefresh(new Date().toString());
+            },
+        });
+    };
+
     const handleStartTournament = () => {
-        console.log("start tournament");
-        // TournamentDetailsVM.startTournament(
-        //     tournament?.tournamentId,
-        //     "in-progress",
-        //     {
-        //         loaderCallback: (showloader) => {},
-        //         errorCallBack: (_, error) => {
-        //             setError(error);
-        //         },
-        //         success: () => {
-        //             setRefresh(new Date().toString());
-        //         },
-        //     }
-        // );
+        TournamentDetailsVM.startTournament(
+            tournament?.tournamentId,
+            "in-progress",
+            {
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
+                errorCallBack: (_, error) => {
+                    setError(error);
+                },
+                success: () => {
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
     };
 
     const removePlayer = () => {
-        console.log(`{deleting ${playerToDelete?.tournamentRegisterId}}`);
         TournamentDetailsVM.removePlayerFromTournament(
             playerToDelete?.tournamentRegisterId,
             {
-                loaderCallback: (showLoader) => {},
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
                 errorCallBack: (_, error) => {
                     setError(error);
                 },
@@ -108,8 +151,57 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
         );
     };
 
+    const createGroupModal = (
+        <div className="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4">
+            <div className="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
+                <div className="p-6">
+                    <div className="flex justify-between mb-6">
+                        <div>
+                            <p className="font-bold text-lg text-primary-700">
+                                Create new group
+                            </p>
+                            <hr className="border-2 border-primary-700" />
+                        </div>
+                        <p
+                            className="cursor-pointer px-2 py-1 rounded hover:bg-secondary-300"
+                            onClick={() => setShowGroupModal(false)}
+                        >
+                            X
+                        </p>
+                    </div>
+                    <form
+                        onSubmit={() => {
+                            createGroup();
+                        }}
+                        className="space-y-4 md:space-y-6"
+                    >
+                        <div className="rounded-xl flex flex-col gap-6">
+                            <div className="space-y-4">
+                                {groupError !== "" ? (
+                                    <p className="text-red-700">{groupError}</p>
+                                ) : null}
+                                <InputField
+                                    type={"text"}
+                                    name={"Group Name"}
+                                    value={groupName}
+                                    placeholder="ClearOne Sports Center"
+                                    onChange={(e) => {
+                                        setGroupName(e.target.value);
+                                    }}
+                                    isRequired={true}
+                                ></InputField>
+                            </div>
+                            <Button text={"Create"} type="submit"></Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <>
+            {showGroupModal && createGroupModal}
             <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
                 {tournament?.status === "open" && (
                     <Button
@@ -157,6 +249,54 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         content={`${tournament?.entryFee}`}
                     ></InfoCard>
                 </div>
+                {tournament?.status === "in-progress" ? (
+                    <div className="pt-8 pb-3">
+                        <div className="flex justify-between items-center">
+                            <CardHeader header="Groups" type="h2" />
+                            <Button
+                                text="Create"
+                                onClick={() => setShowGroupModal(true)}
+                            />
+                        </div>
+
+                        <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                            <table className="w-full text-sm text-left rtl:text-right">
+                                <TableHeader
+                                    headerNames={["Id", "Name", "Status", ""]}
+                                ></TableHeader>
+                                <tbody className="text-left border-b border-primary-700">
+                                    {groups.map((group) => (
+                                        <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
+                                            <th
+                                                className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                                scope="row"
+                                            >
+                                                {group.id}
+                                            </th>
+                                            <td className="px-6 py-4">
+                                                {group.name}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {(group.isActive as any as number) ===
+                                                0 ? (
+                                                    <span className="bg-secondary-700 text-white p-2 rounded-lg">
+                                                        In Active
+                                                    </span>
+                                                ) : (
+                                                    <span className="bg-primary-700 text-white p-2 rounded-lg">
+                                                        Active
+                                                    </span>
+                                                )}
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ) : null}
+
                 <div className="mt-8">
                     <CardHeader
                         header="Players Registered"

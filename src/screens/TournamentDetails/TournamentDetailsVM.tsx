@@ -68,7 +68,47 @@ export namespace TournamentDetailsVM {
         cb.loaderCallback(false);
 
         if (resp instanceof ErrorResponse) {
-            cb.errorCallBack(1, resp.errorMessage);
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
+
+    export async function getGroupsForTournament(
+        tournamentId: number,
+        cb: AsyncResponseCallback<
+            { groups: TournamentServiceResponse.AdminGetGroups[] },
+            {}
+        >
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.getGroupsInTournament(
+                tournamentId
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success(resp.result!);
+    }
+
+    export async function createGroup(
+        tournamentId: number,
+        name: string,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        if (name === "") {
+            cb.errorCallBack(1, "Name is empty");
+        }
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.createGroupInsideTournament(
+                tournamentId,
+                name
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
         }
         cb.success({});
     }
