@@ -1,12 +1,13 @@
 import { useLocation, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { GroupDetailPageVM } from "./GroupDetailPageVM";
 import Avatar from "../../components/Avatar";
 import TableHeader from "../../components/TableHeader";
 import Button from "../../components/Button";
+import InputField from "../../components/InputField";
 
 const GroupDetailPage: React.FC = () => {
     const { groupId } = useParams<{ groupId: string }>();
@@ -20,8 +21,19 @@ const GroupDetailPage: React.FC = () => {
         Partial<TournamentServiceResponse.GetGroupFullDetails>
     >({});
     const [error, setError] = useState("");
+    const [addPlayer, setAddPlayer] = useState<
+        { userId: number; point: number }[]
+    >([]);
+    const addPlayerRef = useRef(addPlayer);
+    const [forceTableRender, setForceTableRender] = useState(0);
+    const [realPlayers, setRealPlayers] = useState<
+        TournamentServiceResponse.RegisteredPlayers_Struct[]
+    >([]);
+
+    const [isPlayerAdding, setIsPlayerAdding] = useState(true);
 
     useEffect(() => {
+        setRealPlayers(players);
         setError("");
         if (players.length === 0) {
             return;
@@ -48,6 +60,70 @@ const GroupDetailPage: React.FC = () => {
                 setRefresh(new Date().toString());
             },
         });
+    };
+
+    const getPlayerAddSection = (userId: number) => {
+        let playersCopy = addPlayerRef.current;
+        const index = playersCopy.findIndex(
+            (player) => userId === player.userId
+        );
+        return (
+            <>
+                {index === -1 ? (
+                    <p
+                        className="font-bold underline text-center"
+                        onClick={() => {
+                            console.log("YOO GETTING ADDED");
+                            playersCopy.push({ userId: userId, point: 100 });
+                            setAddPlayer(playersCopy);
+                            setForceTableRender(forceTableRender + 1);
+                        }}
+                    >
+                        Add
+                    </p>
+                ) : null}
+                {index !== -1 ? (
+                    <div className="flex flex-col items-center">
+                        <div className="w-[65px]">
+                            <InputField
+                                type={"text"}
+                                name=""
+                                value={`${playersCopy[index].point}`}
+                                onChange={(e) => {
+                                    playersCopy[index].point = Number(
+                                        e.target.value
+                                    );
+                                    setAddPlayer(playersCopy);
+                                    setForceTableRender(forceTableRender + 1);
+                                }}
+                            />
+                        </div>
+
+                        <p
+                            className="font-bold text-secondary-500 underline my-2"
+                            onClick={() => {
+                                console.log("YOO GETTING DELETED");
+                                setAddPlayer(
+                                    playersCopy.filter(
+                                        (val) => val.userId !== userId
+                                    )
+                                );
+                                setRealPlayers([]);
+                                setRealPlayers(players);
+                                setForceTableRender(forceTableRender + 1);
+                            }}
+                        >
+                            Remove
+                        </p>
+                    </div>
+                ) : null}
+            </>
+        );
+    };
+
+    const handlePlayerAdd = (userId: number) => {
+        console.log("click add:", userId);
+        setIsPlayerAdding(!isPlayerAdding);
     };
 
     return (
@@ -124,7 +200,7 @@ const GroupDetailPage: React.FC = () => {
                             headerNames={["ID", "Name", "Rank", "Status", ""]}
                         />
                         <tbody className="text-left border-b border-primary-700">
-                            {players.map((player) => (
+                            {realPlayers.map((player) => (
                                 <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
                                     <th
                                         className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
@@ -148,15 +224,33 @@ const GroupDetailPage: React.FC = () => {
                                         {player.status}
                                     </td>
                                     <td className="">
+                                        {/* {!groupDetail.players?.find(
+                                            (val) =>
+                                                val.info.ssoId ===
+                                                player.userSSOId
+                                        ) && groupDetail.group?.isActive
+                                            ? getPlayerAddSection(
+                                                  player.userSSOId
+                                              )
+                                            : null} */}
                                         {!groupDetail.players?.find(
                                             (val) =>
                                                 val.info.ssoId ===
                                                 player.userSSOId
-                                        ) && groupDetail.group?.isActive ? (
-                                            <p className="font-bold underline">
-                                                Add
-                                            </p>
-                                        ) : null}
+                                        ) &&
+                                            groupDetail.group?.isActive && (
+                                                <p
+                                                    onClick={() =>
+                                                        handlePlayerAdd(
+                                                            player.userSSOId
+                                                        )
+                                                    }
+                                                >
+                                                    {isPlayerAdding
+                                                        ? "Add"
+                                                        : "Remove"}
+                                                </p>
+                                            )}
                                     </td>
                                 </tr>
                             ))}
