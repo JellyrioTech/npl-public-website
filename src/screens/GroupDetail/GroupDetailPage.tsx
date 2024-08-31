@@ -1,7 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { GroupDetailPageVM } from "./GroupDetailPageVM";
 import Avatar from "../../components/Avatar";
@@ -251,6 +251,151 @@ const GroupDetailPage: React.FC = () => {
                                                         : "Remove"}
                                                 </p>
                                             )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div className="mt-8">
+                <CardHeader header="Games" type="h2" />
+                <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                    <table className="w-full text-sm text-left rtl:text-right">
+                        <TableHeader
+                            headerNames={[
+                                "Game ID",
+                                "Team A",
+                                "Team B",
+                                "status",
+                                "",
+                            ]}
+                        />
+                        <tbody className="text-left border-b border-primary-700">
+                            {groupDetail.matches?.map((match) => (
+                                <tr
+                                    key={match.gameInfo.gameId}
+                                    className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100"
+                                >
+                                    <th
+                                        className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                        scope="row"
+                                    >
+                                        {match.gameInfo.gameCode}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center">
+                                            <div className="flex flex-col gap-3">
+                                                <div className="w-full flex items-center gap-3">
+                                                    <Avatar
+                                                        url={
+                                                            match.players.find(
+                                                                (val) =>
+                                                                    val.position ===
+                                                                    1
+                                                            )?.avatarLink
+                                                        }
+                                                    />
+                                                    <p>{`${
+                                                        match.players.find(
+                                                            (val) =>
+                                                                val.position ===
+                                                                1
+                                                        )?.name
+                                                    }`}</p>
+                                                </div>
+                                                <div className="w-full flex items-center gap-3">
+                                                    <Avatar
+                                                        url={
+                                                            match.players.find(
+                                                                (val) =>
+                                                                    val.position ===
+                                                                    2
+                                                            )?.avatarLink
+                                                        }
+                                                    />
+                                                    <p>{`${
+                                                        match.players.find(
+                                                            (val) =>
+                                                                val.position ===
+                                                                2
+                                                        )?.name
+                                                    }`}</p>
+                                                </div>
+                                            </div>
+                                            <p
+                                                className={`font-bold ${
+                                                    match.teamAScore >
+                                                    match.teamBScore
+                                                        ? "text-primary-700"
+                                                        : "text-secondary-500"
+                                                } font-roboto text-2xl ml-8`}
+                                            >
+                                                {match.teamAScore ?? "-"}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center">
+                                            <div className="flex flex-col gap-3">
+                                                <div className="w-full flex items-center gap-3">
+                                                    <Avatar
+                                                        url={
+                                                            match.players.find(
+                                                                (val) =>
+                                                                    val.position ===
+                                                                    3
+                                                            )?.avatarLink
+                                                        }
+                                                    />
+                                                    <p>{`${
+                                                        match.players.find(
+                                                            (val) =>
+                                                                val.position ===
+                                                                3
+                                                        )?.name
+                                                    }`}</p>
+                                                </div>
+                                                <div className="w-full flex items-center gap-3">
+                                                    <Avatar
+                                                        url={
+                                                            match.players.find(
+                                                                (val) =>
+                                                                    val.position ===
+                                                                    4
+                                                            )?.avatarLink
+                                                        }
+                                                    />
+                                                    <p>{`${
+                                                        match.players.find(
+                                                            (val) =>
+                                                                val.position ===
+                                                                4
+                                                        )?.name
+                                                    }`}</p>
+                                                </div>
+                                            </div>
+                                            <p
+                                                className={`font-bold ${
+                                                    match.teamAScore <
+                                                    match.teamBScore
+                                                        ? "text-primary-700"
+                                                        : "text-secondary-500"
+                                                } font-roboto text-2xl ml-8`}
+                                            >
+                                                {match.teamBScore ?? "-"}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p className="px-6 py-4">
+                                            {match.gameInfo.status}
+                                        </p>
+                                    </td>
+                                    <td className="">
+                                        <p className="font-bold  underline">
+                                            View
+                                        </p>
                                     </td>
                                 </tr>
                             ))}
