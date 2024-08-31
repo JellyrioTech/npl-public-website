@@ -1,13 +1,21 @@
 import { useLocation, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import { useEffect, useRef, useState } from "react";
+import {
+    ChangeEvent,
+    createContext,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { GroupDetailPageVM } from "./GroupDetailPageVM";
 import Avatar from "../../components/Avatar";
 import TableHeader from "../../components/TableHeader";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
+import GroupAddPlayerComp from "./GroupAddPlayerCom";
 
 const GroupDetailPage: React.FC = () => {
     const { groupId } = useParams<{ groupId: string }>();
@@ -21,16 +29,12 @@ const GroupDetailPage: React.FC = () => {
         Partial<TournamentServiceResponse.GetGroupFullDetails>
     >({});
     const [error, setError] = useState("");
-    const [addPlayer, setAddPlayer] = useState<
-        { userId: number; point: number }[]
-    >([]);
-    const addPlayerRef = useRef(addPlayer);
-    const [forceTableRender, setForceTableRender] = useState(0);
     const [realPlayers, setRealPlayers] = useState<
         TournamentServiceResponse.RegisteredPlayers_Struct[]
     >([]);
 
     const [isPlayerAdding, setIsPlayerAdding] = useState(true);
+    const [showAddPlayerModal, setShowAddPlayerModal] = useState(false);
 
     useEffect(() => {
         setRealPlayers(players);
@@ -62,72 +66,21 @@ const GroupDetailPage: React.FC = () => {
         });
     };
 
-    const getPlayerAddSection = (userId: number) => {
-        let playersCopy = addPlayerRef.current;
-        const index = playersCopy.findIndex(
-            (player) => userId === player.userId
-        );
-        return (
-            <>
-                {index === -1 ? (
-                    <p
-                        className="font-bold underline text-center"
-                        onClick={() => {
-                            console.log("YOO GETTING ADDED");
-                            playersCopy.push({ userId: userId, point: 100 });
-                            setAddPlayer(playersCopy);
-                            setForceTableRender(forceTableRender + 1);
-                        }}
-                    >
-                        Add
-                    </p>
-                ) : null}
-                {index !== -1 ? (
-                    <div className="flex flex-col items-center">
-                        <div className="w-[65px]">
-                            <InputField
-                                type={"text"}
-                                name=""
-                                value={`${playersCopy[index].point}`}
-                                onChange={(e) => {
-                                    playersCopy[index].point = Number(
-                                        e.target.value
-                                    );
-                                    setAddPlayer(playersCopy);
-                                    setForceTableRender(forceTableRender + 1);
-                                }}
-                            />
-                        </div>
-
-                        <p
-                            className="font-bold text-secondary-500 underline my-2"
-                            onClick={() => {
-                                console.log("YOO GETTING DELETED");
-                                setAddPlayer(
-                                    playersCopy.filter(
-                                        (val) => val.userId !== userId
-                                    )
-                                );
-                                setRealPlayers([]);
-                                setRealPlayers(players);
-                                setForceTableRender(forceTableRender + 1);
-                            }}
-                        >
-                            Remove
-                        </p>
-                    </div>
-                ) : null}
-            </>
-        );
-    };
-
     const handlePlayerAdd = (userId: number) => {
         console.log("click add:", userId);
         setIsPlayerAdding(!isPlayerAdding);
     };
-
     return (
         <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
+            {showAddPlayerModal && (
+                <GroupAddPlayerComp
+                    players={players.map((player) => ({
+                        ssoId: player.userSSOId,
+                        name: player.name,
+                    }))}
+                    close={() => setShowAddPlayerModal(false)}
+                />
+            )}
             <div className="flex justify-between items-center">
                 <CardHeader header={groupDetail.group?.name} type="h1" />
                 <p
@@ -145,10 +98,16 @@ const GroupDetailPage: React.FC = () => {
             ) : null}
             {groupDetail.group?.isActive ? (
                 <div className="flex flex-col mt-8">
-                    <div>
+                    <div className="flex gap-4">
                         <Button
                             text="Deactivate Group"
                             onClick={deactivateGroup}
+                        />
+                        <Button
+                            text="Add Players"
+                            onClick={() => {
+                                setShowAddPlayerModal(true);
+                            }}
                         />
                     </div>
                 </div>
@@ -388,8 +347,8 @@ const GroupDetailPage: React.FC = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <p className="px-6 py-4">
-                                            {match.gameInfo.status}
+                                        <p className="px-6 py-4 font-bold">
+                                            {match.gameInfo.status.toUpperCase()}
                                         </p>
                                     </td>
                                     <td className="">
