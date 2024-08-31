@@ -60,4 +60,22 @@ export namespace GroupDetailPageVM {
         }
         cb.success({});
     }
+
+    export async function removePlayerFromGroup(
+        groupId: number,
+        userId: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.removeUserFromTournamentGroup(
+                groupId,
+                userId
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }

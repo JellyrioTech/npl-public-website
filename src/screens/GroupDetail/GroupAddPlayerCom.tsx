@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 
+export type GroupAddPlayerinfoUXData = {
+    playerId: number | null;
+    initialPoints: number;
+};
+
 const GroupAddPlayerComp: React.FC<{
     players: { ssoId: number; name: string }[];
     close: () => void;
+    save: (player: GroupAddPlayerinfoUXData[]) => void;
 }> = (props) => {
-    const [fields, setFields] = useState<
-        { playerId: number | null; initialPoints: string }[]
-    >([]);
+    const [fields, setFields] = useState<GroupAddPlayerinfoUXData[]>([]);
 
     const addPlayerField = () => {
-        setFields([...fields, { playerId: null, initialPoints: "100" }]);
+        setFields([...fields, { playerId: null, initialPoints: 100 }]);
     };
 
     const handlePlayerChange = (index: number, value: number) => {
@@ -23,14 +27,13 @@ const GroupAddPlayerComp: React.FC<{
 
     const handlePointsChange = (index: number, value: string) => {
         const updatedFields = fields.map((field, i) =>
-            i === index ? { ...field, initialPoints: value } : field
+            i === index ? { ...field, initialPoints: parseInt(value) } : field
         );
         setFields(updatedFields);
     };
 
     const saveFields = () => {
-        console.log("Saved fields:", fields);
-        // You can now use these values for further processing
+        props.save(fields);
     };
 
     return (
@@ -96,7 +99,7 @@ const GroupAddPlayerComp: React.FC<{
                                         <InputField
                                             type={"text"}
                                             name={"Intital Point"}
-                                            value={field.initialPoints}
+                                            value={`${field.initialPoints}`}
                                             onChange={(e) =>
                                                 handlePointsChange(
                                                     index,

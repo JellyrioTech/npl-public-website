@@ -15,7 +15,9 @@ import Avatar from "../../components/Avatar";
 import TableHeader from "../../components/TableHeader";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
-import GroupAddPlayerComp from "./GroupAddPlayerCom";
+import GroupAddPlayerComp, {
+    GroupAddPlayerinfoUXData,
+} from "./GroupAddPlayerCom";
 
 const GroupDetailPage: React.FC = () => {
     const { groupId } = useParams<{ groupId: string }>();
@@ -66,19 +68,71 @@ const GroupDetailPage: React.FC = () => {
         });
     };
 
-    const handlePlayerAdd = (userId: number) => {
-        console.log("click add:", userId);
-        setIsPlayerAdding(!isPlayerAdding);
+    const savePlayerAction = (players: GroupAddPlayerinfoUXData[]) => {
+        GroupDetailPageVM.addPlayerToGroup(
+            parseInt(groupId || ""),
+            players.map((player) => ({
+                userSSOId: player.playerId || 0,
+                startingScore: player.initialPoints || 0,
+            })),
+            {
+                loaderCallback: (loader) =>
+                    loader ? showLoader() : hideLoader(),
+                errorCallBack: (_, error) => {
+                    setError(error || "");
+                },
+                success: () => {
+                    setShowAddPlayerModal(false);
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
     };
+    const getPlayersForGroup = () => {
+        return players
+            .filter((player) => {
+                return (
+                    groupDetail.players?.find((exisitingGroupPlayer) => {
+                        return (
+                            exisitingGroupPlayer.info.ssoId === player.userSSOId
+                        );
+                    }) === undefined
+                );
+            })
+            .map((player) => {
+                return {
+                    ssoId: player.userSSOId,
+                    name: player.name,
+                };
+            });
+    };
+
+    const removePlayer = (userId: number) => {
+        GroupDetailPageVM.removePlayerFromGroup(
+            parseInt(groupId || "0"),
+            userId,
+            {
+                loaderCallback: (loader) =>
+                    loader ? showLoader() : hideLoader(),
+                errorCallBack: (_, error) => {
+                    setError(error || "");
+                },
+                success: () => {
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
+    };
+
     return (
         <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
             {showAddPlayerModal && (
                 <GroupAddPlayerComp
-                    players={players.map((player) => ({
-                        ssoId: player.userSSOId,
-                        name: player.name,
-                    }))}
+                    players={getPlayersForGroup()}
                     close={() => setShowAddPlayerModal(false)}
+                    save={(player) => {
+                        savePlayerAction(player);
+                    }}
                 />
             )}
             <div className="flex justify-between items-center">
@@ -138,10 +192,15 @@ const GroupDetailPage: React.FC = () => {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
-                                        {player.points}
+                                        {player.points || 0}
                                     </td>
                                     <td className="">
-                                        <p className="font-bold text-red-600 underline">
+                                        <p
+                                            className="font-bold text-red-600 underline"
+                                            onClick={() =>
+                                                removePlayer(player.info.ssoId)
+                                            }
+                                        >
                                             Remove
                                         </p>
                                     </td>
@@ -182,35 +241,7 @@ const GroupDetailPage: React.FC = () => {
                                     <td className="px-6 py-4">
                                         {player.status}
                                     </td>
-                                    <td className="">
-                                        {/* {!groupDetail.players?.find(
-                                            (val) =>
-                                                val.info.ssoId ===
-                                                player.userSSOId
-                                        ) && groupDetail.group?.isActive
-                                            ? getPlayerAddSection(
-                                                  player.userSSOId
-                                              )
-                                            : null} */}
-                                        {!groupDetail.players?.find(
-                                            (val) =>
-                                                val.info.ssoId ===
-                                                player.userSSOId
-                                        ) &&
-                                            groupDetail.group?.isActive && (
-                                                <p
-                                                    onClick={() =>
-                                                        handlePlayerAdd(
-                                                            player.userSSOId
-                                                        )
-                                                    }
-                                                >
-                                                    {isPlayerAdding
-                                                        ? "Add"
-                                                        : "Remove"}
-                                                </p>
-                                            )}
-                                    </td>
+                                    <td className=""></td>
                                 </tr>
                             ))}
                         </tbody>
