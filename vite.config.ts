@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://rod-fantasy-shaw-ing.trycloudflare.com",
+                              target: "https://draws-fax-analyze-intention.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://rod-fantasy-shaw-ing.trycloudflare.com",
+                              target: "https://draws-fax-analyze-intention.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

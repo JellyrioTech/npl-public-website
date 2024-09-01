@@ -112,4 +112,31 @@ export namespace TournamentDetailsVM {
         }
         cb.success({});
     }
+
+    export async function getEmailCSF(
+        tournamentId: number,
+        cb: AsyncResponseCallback<
+            {
+                email: string;
+                name: string;
+                TOURNAMENT_NAME: string;
+                TOURNAMENT_DATE: string;
+                TOURNAMENT_TIME: string;
+                CLUB_NAME: string;
+                CLUB_ADDRESS: string;
+            }[],
+            {}
+        >
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.getEmailCSFForTournament(
+                tournamentId
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success(resp);
+    }
 }

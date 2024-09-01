@@ -153,6 +153,20 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
         );
     };
 
+    const getEmailCSF = () => {
+        TournamentDetailsVM.getEmailCSF(parseInt(tournamentId || "0"), {
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
+            errorCallBack: (_, error) => {
+                setError(error);
+            },
+            success: (obj) => {
+                CommonUtil.openJSON(obj);
+            },
+        });
+    };
+
     const createGroupModal = (
         <div className="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4">
             <div className="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
@@ -319,10 +333,14 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 ) : null}
 
                 <div className="mt-8">
-                    <CardHeader
-                        header="Players Registered"
-                        type="h2"
-                    ></CardHeader>
+                    <div className="flex justify-between items-center">
+                        <CardHeader header="Players Registered" type="h2" />
+                        <Button
+                            text="Get Email CSF"
+                            onClick={() => getEmailCSF()}
+                        />
+                    </div>
+
                     {error && (
                         <p className="text-red-600 mb-8 text-sm">{error}</p>
                     )}

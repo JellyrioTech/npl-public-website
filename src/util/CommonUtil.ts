@@ -8,6 +8,15 @@ export namespace CommonUtil {
         }
     }
 
+    export function openJSON(data: any) {
+        const jsonString = JSON.stringify(data, null, 2); // Format with indentation
+        const newWindow = window.open("", "_blank");
+        if (newWindow) {
+            newWindow.document.write("<pre>" + jsonString + "</pre>");
+            newWindow.document.close();
+        }
+    }
+
     export namespace DateHelper {
         // March 25, 2022
         export function formatDateToMonthDayYear(dateString: string): string {
