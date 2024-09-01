@@ -5,7 +5,6 @@ import { AdminArenaDetailsVM } from "./AdminArenaDetailsVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import TableHeader from "../../components/TableHeader";
 import { AdminRoutes } from "../../util/routes";
-import { StatusColor } from "../../util/Types";
 import { CommonUtil } from "../../util/CommonUtil";
 
 type adminArenaDetailsProps = {};
@@ -45,13 +44,6 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
             },
         });
     }, []);
-
-    const tournamentStatusColor = (
-        status: keyof typeof StatusColor | undefined
-    ): string => {
-        if (status === undefined) return "bg-neutral-500";
-        return StatusColor[status];
-    };
 
     const formatString = (text: string): string => {
         const cleanedString = text

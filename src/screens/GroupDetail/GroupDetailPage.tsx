@@ -1,20 +1,12 @@
 import { useLocation, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import {
-    ChangeEvent,
-    createContext,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { GroupDetailPageVM } from "./GroupDetailPageVM";
 import Avatar from "../../components/Avatar";
 import TableHeader from "../../components/TableHeader";
 import Button from "../../components/Button";
-import InputField from "../../components/InputField";
 import GroupAddPlayerComp, {
     GroupAddPlayerinfoUXData,
 } from "./GroupAddPlayerCom";
@@ -35,7 +27,6 @@ const GroupDetailPage: React.FC = () => {
         TournamentServiceResponse.RegisteredPlayers_Struct[]
     >([]);
 
-    const [isPlayerAdding, setIsPlayerAdding] = useState(true);
     const [showAddPlayerModal, setShowAddPlayerModal] = useState(false);
 
     useEffect(() => {

@@ -16,7 +16,7 @@ import { AdminRoutes } from "../../util/routes";
 type TournamemntDetailsProps = {};
 
 const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
-    props: TournamemntDetailsProps
+    _: TournamemntDetailsProps
 ) => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
     const [tournament, setTournament] =
