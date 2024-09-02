@@ -12,10 +12,13 @@ function HomePage() {
 
     return (
         <section
-            className="w-full min-h-screen bg-no-repeat bg-cover"
+            className="relative w-full min-h-screen bg-no-repeat bg-cover"
             style={{ backgroundImage: `url(${landingBG})` }}
         >
-            <div className="pt-[70px] flex flex-col items-center gap-4">
+            {/* Dark Overlay */}
+            <div className="absolute -z-0 inset-0 bg-black opacity-70"></div>
+
+            <div className="relative pt-[70px] flex flex-col items-center gap-4">
                 <p className="font-oswald font-bold text-4xl md:text-5xl">
                     Arena Battle Series
                 </p>

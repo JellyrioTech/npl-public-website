@@ -11,7 +11,7 @@ function DownloadPage() {
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
             <div className="flex items-center justify-center px-4 py-6 md:ml-4">
-                <div className="bg-white p-8 rounded-xl max-w-[800px] w-full pb-[700px] shadow-[inset_0px_1px_15px_1px_#22543d] md:pb-0">
+                <div className="bg-white p-8 rounded-xl max-w-[1200px] w-full pb-[700px] shadow-[inset_0px_1px_15px_1px_#22543d] md:pb-0">
                     <div className="flex space-x-4 items-center mb-4">
                         <div className="relative w-16 h-16 drop-shadow-md">
                             <img

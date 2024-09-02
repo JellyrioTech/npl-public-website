@@ -1,11 +1,17 @@
 import { useState } from "react";
 import logo from "../../public/App_logo_white.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
 
 function NavBar() {
     const navigator = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
+    const isLandingPage = location.pathname === routes.Home;
+
+    const hoverColorClasses = isLandingPage
+        ? "hover:underline"
+        : "hover:bg-tertiary-300 focus:bg-tertiary-300";
 
     function onToggleMenu() {
         setMenuOpen(!menuOpen);
@@ -30,8 +36,12 @@ function NavBar() {
     }
 
     return (
-        <nav className="absolute w-full flex justify-center top-0 z-50">
-            <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center p-2">
+        <nav
+            className={`absolute w-full flex justify-center top-0 z-30 px-2 ${
+                !isLandingPage && "bg-neutral-100"
+            }`}
+        >
+            <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center py-3">
                 <div className="flex items-center">
                     <img
                         src={logo}
@@ -40,9 +50,6 @@ function NavBar() {
                         className="cursor-pointer"
                         onClick={() => onClickNavigation("home")}
                     />
-                    <span className="text-base font-bold ml-2">
-                        Nesterin Pickleball League
-                    </span>
                 </div>
 
                 <button
@@ -71,21 +78,25 @@ function NavBar() {
                         ${menuOpen ? "block" : "hidden"} 
                         md:block md:w-auto`}
                 >
-                    <ul className="flex flex-col justify-center items-center text-neutral-100 rounded-lg md:text-neutral-900 md:flex-row md:gap-6">
+                    <ul
+                        className={`flex flex-col justify-center items-center rounded-lg md:flex-row md:gap-6 ${
+                            isLandingPage ? "text-neutral-100" : "text-black"
+                        }`}
+                    >
                         <li
-                            className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
                             onClick={() => onClickNavigation("home")}
                         >
                             Home
                         </li>
                         <li
-                            className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
                             onClick={() => onClickNavigation("about")}
                         >
                             About Us
                         </li>
                         <li
-                            className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
                             onClick={() => onClickNavigation("contact")}
                         >
                             Contact Us
