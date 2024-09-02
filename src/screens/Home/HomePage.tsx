@@ -16,19 +16,24 @@ function HomePage() {
             style={{ backgroundImage: `url(${landingBG})` }}
         >
             {/* Dark Overlay */}
-            <div className="absolute -z-0 inset-0 bg-black opacity-70"></div>
+            <div className="absolute inset-0 bg-black opacity-60"></div>
 
-            <div className="relative pt-[70px] flex flex-col items-center gap-4">
-                <p className="font-oswald font-bold text-4xl md:text-5xl">
+            <div className="w-[80%] max-w-[1200px] mx-auto min-h-screen relative flex flex-col items-start justify-center">
+                <p className="text-secondary-300 font-roboto font-light text-lg">
+                    Upcoming tournament
+                </p>
+                <p className="font-oswald font-bold text-4xl md:text-5xl text-neutral-100">
                     Arena Battle Series
                 </p>
-                <p className="py-2 md:px-5 bg-neutral-100 font-roboto text-[18px] md:text-[20px]">
-                    Test your skills and write your own legacy
+                <p className="text-neutral-100 font-roboto text-xl md:text-2xl pt-1">
+                    September 23 at 5:00 pm
                 </p>
-                <Button
-                    onClick={handleLearnMoreButton}
-                    text={"Learn More"}
-                ></Button>
+                <div className="mt-4">
+                    <Button
+                        onClick={handleLearnMoreButton}
+                        text={"Learn More"}
+                    ></Button>
+                </div>
             </div>
         </section>
     );
