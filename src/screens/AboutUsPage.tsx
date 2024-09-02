@@ -6,7 +6,7 @@ const AboutUsPage = () => {
                     About Us
                 </p>
             </section>
-            <section className="w-[80%] md:max-w-[800px] flex flex-col justify-center items-center">
+            <section className="w-[80%] md:max-w-[1200px] flex flex-col justify-center items-center">
                 <div className="space-y-4 font-roboto">
                     <p>
                         Nesterin Pickleball League was established in 2024 in

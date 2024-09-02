@@ -38,7 +38,7 @@ function TournamentInfoPage() {
 
     return (
         <div className="w-full bg-primary-900 flex flex-col items-center py-10 gap-5">
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col gap-8 md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col gap-8 md:max-w-[1200px]">
                 <div className="flex flex-col items-center">
                     <img src={crossedSwords} className="w-[100px] h-[100px]" />
                     <p className="font-roboto text-sm mt-5">Learn More About</p>
@@ -93,7 +93,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg md:max-w-[1200px]">
                 <p className="font-roboto text-xl font-bold">
                     Tournament Details
                 </p>
@@ -230,7 +230,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[1200px]">
                 <p className="font-roboto text-xl font-bold">What is Arena?</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:basis-2/3">
@@ -269,7 +269,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px] gap-5">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[1200px] gap-5">
                 <p className="font-roboto text-xl font-bold">Champions</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:basis-2/3">
@@ -307,7 +307,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[1200px]">
                 <p className="font-roboto text-xl font-bold">Defenders</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 pr-2 md:basis-2/3">
@@ -349,7 +349,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[1200px]">
                 <p className="font-roboto text-xl font-bold">
                     How the series work?
                 </p>
@@ -377,7 +377,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[800px] gap-5">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col md:max-w-[1200px] gap-5">
                 <p className="font-roboto text-xl font-bold">Prizes</p>
                 <div className="flex gap-5 items-center md:gap-7 md:justify-around">
                     <div className="flex flex-col gap-1 md:gap-3 md:basis-2/3">
@@ -406,7 +406,7 @@ function TournamentInfoPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col justify-center items-center md:max-w-[800px]">
+            <div className="bg-neutral-100 w-[80%] p-7 rounded-lg flex flex-col justify-center items-center md:max-w-[1200px]">
                 <p className="text-balance text-center">
                     Your achievements will the recorded in our legacy book, and
                     all active champions and defenders will be proudly displayed
