@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./screens/HomePage";
+import HomePage from "./screens/Home/HomePage";
 import TournamentInfoPage from "./screens/TournamentInfoPage";
 import { AdminRoutes, routes, UserRoutes } from "./util/routes";
 import RegisterPage from "./screens/Registration/RegisterPage";
-import Layout from "./screens/Layout";
+import ContentLayout from "./screens/Layouts/ContentLayout";
 import DownloadPage from "./screens/DownloadPage";
 import PrivacyPolicyPage from "./screens/PrivacyPolicyPage";
 import TermsAndConditionPage from "./screens/TermsAndConditionPage";
@@ -24,41 +24,49 @@ import TournamentPaymentErrorPage from "./screens/User/TournamentPayment/Tournam
 import LoaderProvider from "./components/LoaderProvider";
 import TournamentDetailsPage from "./screens/TournamentDetails/TournamentDetailsPage";
 import GroupDetailPage from "./screens/GroupDetail/GroupDetailPage";
+import HomePageLayout from "./screens/Layouts/HomePageLayout";
 
 function App() {
     return (
         <LoaderProvider>
             <Router>
                 <Routes>
-                    <Route path={routes.LearnMore} element={<Layout />}>
+                    <Route path={routes.Home} element={<HomePageLayout />}>
+                        <Route index element={<HomePage />} />
+                    </Route>
+
+                    <Route path={routes.LearnMore} element={<ContentLayout />}>
                         <Route index element={<TournamentInfoPage />} />
                     </Route>
-                    <Route path={routes.Register} element={<Layout />}>
+                    <Route path={routes.Register} element={<ContentLayout />}>
                         <Route index element={<RegisterPage />} />
                     </Route>
-                    <Route path={routes.Login} element={<Layout />}>
+                    <Route path={routes.Login} element={<ContentLayout />}>
                         <Route index element={<LoginPage />} />
                     </Route>
-                    <Route path={routes.About} element={<Layout />}>
+                    <Route path={routes.About} element={<ContentLayout />}>
                         <Route index element={<AboutUsPage />} />
                     </Route>
-                    <Route path={routes.Download} element={<Layout />}>
+                    <Route path={routes.Download} element={<ContentLayout />}>
                         <Route index element={<DownloadPage />} />
                     </Route>
-                    <Route path={routes.Contact} element={<Layout />}>
+                    <Route path={routes.Contact} element={<ContentLayout />}>
                         <Route index element={<ContactUsPage />} />
                     </Route>
 
-                    <Route path={routes.PrivacyPolicy} element={<Layout />}>
+                    <Route
+                        path={routes.PrivacyPolicy}
+                        element={<ContentLayout />}
+                    >
                         <Route index element={<PrivacyPolicyPage />} />
                     </Route>
-                    <Route path={routes.TermsAndCondition} element={<Layout />}>
+                    <Route
+                        path={routes.TermsAndCondition}
+                        element={<ContentLayout />}
+                    >
                         <Route index element={<TermsAndConditionPage />} />
                     </Route>
-                    <Route path={routes.Home} element={<Layout />}>
-                        <Route index element={<HomePage />} />
-                    </Route>
-                    <Route path={routes.Error} element={<Layout />}>
+                    <Route path={routes.Error} element={<ContentLayout />}>
                         <Route index element={<ErrorPage />} />
                     </Route>
                     <Route path={routes.Admin} element={<AdminRouteGuard />}>

@@ -30,72 +30,70 @@ function NavBar() {
     }
 
     return (
-        <>
-            <nav className="w-full flex justify-center sticky top-0 z-50 bg-neutral-100">
-                <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center p-2">
-                    <div className="flex items-center">
-                        <img
-                            src={logo}
-                            width={60}
-                            height={60}
-                            className="cursor-pointer"
-                            onClick={() => onClickNavigation("home")}
-                        />
-                        <span className="text-base font-bold ml-2">
-                            Nesterin Pickleball League
-                        </span>
-                    </div>
+        <nav className="absolute w-full flex justify-center top-0 z-50">
+            <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center p-2">
+                <div className="flex items-center">
+                    <img
+                        src={logo}
+                        width={60}
+                        height={60}
+                        className="cursor-pointer"
+                        onClick={() => onClickNavigation("home")}
+                    />
+                    <span className="text-base font-bold ml-2">
+                        Nesterin Pickleball League
+                    </span>
+                </div>
 
-                    <button
-                        className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg md:hidden"
-                        onClick={onToggleMenu}
+                <button
+                    className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg md:hidden"
+                    onClick={onToggleMenu}
+                >
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
                     >
-                        <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 17 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15"
-                            />
-                        </svg>
-                    </button>
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
+                    </svg>
+                </button>
 
-                    <div
-                        className={`w-full 
+                <div
+                    className={`w-full 
                         ${menuOpen ? "block" : "hidden"} 
                         md:block md:w-auto`}
-                    >
-                        <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
-                            <li
-                                className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("home")}
-                            >
-                                Home
-                            </li>
-                            <li
-                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("about")}
-                            >
-                                About Us
-                            </li>
-                            <li
-                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
-                                onClick={() => onClickNavigation("contact")}
-                            >
-                                Contact Us
-                            </li>
-                        </ul>
-                    </div>
+                >
+                    <ul className="flex flex-col justify-center items-center text-neutral-100 rounded-lg md:text-neutral-900 md:flex-row md:gap-6">
+                        <li
+                            className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            onClick={() => onClickNavigation("home")}
+                        >
+                            Home
+                        </li>
+                        <li
+                            className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            onClick={() => onClickNavigation("about")}
+                        >
+                            About Us
+                        </li>
+                        <li
+                            className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                            onClick={() => onClickNavigation("contact")}
+                        >
+                            Contact Us
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </>
+            </div>
+        </nav>
     );
 }
 
