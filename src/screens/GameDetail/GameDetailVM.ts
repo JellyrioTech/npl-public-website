@@ -21,4 +21,22 @@ export namespace GameDetailVM {
         }
         cb.success(resp.result!);
     }
+
+    export async function finalizeGame(
+        gameId: number,
+        scoreid: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.finalizeTournamentGame(
+                gameId,
+                scoreid
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }

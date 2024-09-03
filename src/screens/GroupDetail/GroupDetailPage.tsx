@@ -396,9 +396,16 @@ const GroupDetailPage: React.FC = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <p className="px-6 py-4 font-bold">
-                                            {match.gameInfo.status.toUpperCase()}
-                                        </p>
+                                        {match.teamAScore === null &&
+                                        match.gameInfo.status === "closed" ? (
+                                            <p className="px-6 py-4 font-bold inline-block bg-red-600 text-white p-1 rounded-lg text-center">
+                                                Need Attention!
+                                            </p>
+                                        ) : (
+                                            <p className="px-6 py-4 font-bold">
+                                                {match.gameInfo.status}
+                                            </p>
+                                        )}
                                     </td>
                                     <td className="">
                                         <p

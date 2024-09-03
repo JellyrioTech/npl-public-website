@@ -4,6 +4,7 @@ import { useLoader } from "../../components/LoaderProvider";
 import { useEffect, useState } from "react";
 import { GameDetailVM } from "./GameDetailVM";
 import { GameServiceResponse } from "npl-service-module/dist/services/Response/GameService.response";
+import Button from "../../components/Button";
 
 const GameDetailPage: React.FC = () => {
     const { gameId } = useParams<{ gameId: string }>();
@@ -11,6 +12,7 @@ const GameDetailPage: React.FC = () => {
     const [error, setError] = useState("");
     const [gameDetail, setGameDetail] =
         useState<Partial<GameServiceResponse.GameFullDetailInfo>>();
+    const [refresh, setRefresh] = useState("");
 
     useEffect(() => {
         setError("");
@@ -19,7 +21,16 @@ const GameDetailPage: React.FC = () => {
             errorCallBack: (_, error) => setError(error || ""),
             success: (obj) => setGameDetail(obj),
         });
-    }, []);
+    }, [refresh]);
+
+    const finalizeGame = (score: number) => {
+        setError("");
+        GameDetailVM.finalizeGame(parseInt(gameId || "0"), score, {
+            loaderCallback: (loader) => (loader ? showLoader() : hideLoader()),
+            errorCallBack: (_, error) => setError(error || ""),
+            success: () => setRefresh(new Date().toString()),
+        });
+    };
 
     return (
         <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
@@ -136,6 +147,32 @@ const GameDetailPage: React.FC = () => {
             </div>
             <div className="mt-8">
                 <CardHeader type="h2" header="Reported Scores" />
+                <div className="flex mt-3 gap-3">
+                    {gameDetail?.reportedScores?.map((score) => (
+                        <div className="flex border-2 rounded-lg border-tertiary-700 p-5 flex-col items-center flex-wrap">
+                            <p className="font-bold mb-3 text-xl">
+                                {score.reportedBy.name}
+                            </p>
+                            <p className="font-bold">
+                                Team A: {score.teamAScore}
+                            </p>
+                            <p className="font-bold">
+                                Team B: {score.teamBscore}
+                            </p>
+                            {gameDetail.status === "closed" &&
+                            gameDetail.matchResult?.teamAScore === null ? (
+                                <div className="mb-3">
+                                    <Button
+                                        text="Finalize Game"
+                                        onClick={() =>
+                                            finalizeGame(score.scoreId)
+                                        }
+                                    />
+                                </div>
+                            ) : null}
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
