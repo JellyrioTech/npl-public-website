@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { GameDetailVM } from "./GameDetailVM";
 import { GameServiceResponse } from "npl-service-module/dist/services/Response/GameService.response";
 import Button from "../../components/Button";
+import InputField from "../../components/InputField";
 
 const GameDetailPage: React.FC = () => {
     const { gameId } = useParams<{ gameId: string }>();
@@ -13,19 +14,31 @@ const GameDetailPage: React.FC = () => {
     const [gameDetail, setGameDetail] =
         useState<Partial<GameServiceResponse.GameFullDetailInfo>>();
     const [refresh, setRefresh] = useState("");
+    const [matchLink, setMatchlink] = useState("");
 
     useEffect(() => {
         setError("");
         GameDetailVM.getGameDetailInfo(parseInt(gameId || "0"), {
             loaderCallback: (loader) => (loader ? showLoader() : hideLoader()),
             errorCallBack: (_, error) => setError(error || ""),
-            success: (obj) => setGameDetail(obj),
+            success: (obj) => {
+                setMatchlink(obj.gameLink || "");
+                setGameDetail(obj);
+            },
         });
     }, [refresh]);
 
     const finalizeGame = (score: number) => {
         setError("");
         GameDetailVM.finalizeGame(parseInt(gameId || "0"), score, {
+            loaderCallback: (loader) => (loader ? showLoader() : hideLoader()),
+            errorCallBack: (_, error) => setError(error || ""),
+            success: () => setRefresh(new Date().toString()),
+        });
+    };
+
+    const saveMatchLink = () => {
+        GameDetailVM.setGameLink(parseInt(gameId || "0"), matchLink, {
             loaderCallback: (loader) => (loader ? showLoader() : hideLoader()),
             errorCallBack: (_, error) => setError(error || ""),
             success: () => setRefresh(new Date().toString()),
@@ -173,6 +186,23 @@ const GameDetailPage: React.FC = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="mt-8">
+                <CardHeader type="h2" header="Match Link" />
+                <div>
+                    <div className="inline-block">
+                        <InputField
+                            type={"text"}
+                            name={"Set a new Match Link"}
+                            value={matchLink}
+                            onChange={(e) => {
+                                setMatchlink(e.target.value);
+                            }}
+                        />
+                    </div>
+                </div>
+
+                <Button text="Save" onClick={saveMatchLink} />
             </div>
         </section>
     );

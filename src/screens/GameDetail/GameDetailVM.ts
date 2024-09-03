@@ -39,4 +39,18 @@ export namespace GameDetailVM {
         }
         cb.success({});
     }
+
+    export async function setGameLink(
+        gameId: number,
+        link: string,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp = await NetworkModule.gameService.setGameLink(link, gameId);
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }
