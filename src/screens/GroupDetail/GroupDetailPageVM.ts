@@ -78,4 +78,36 @@ export namespace GroupDetailPageVM {
         }
         cb.success({});
     }
+
+    export async function createGame(
+        groupId: number,
+        pos1: number,
+        pos2: number,
+        pos3: number,
+        pos4: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        if ((pos1 <= 0 && pos2 <= 0) || (pos3 <= 0 && pos4 <= 0)) {
+            return cb.errorCallBack(
+                1,
+                "Wrong formating. Please form the correct formation: PS12"
+            );
+        }
+        cb.loaderCallback(true);
+        const resp =
+            await NetworkModule.tournamentService.createGroupGamesInsideTournament(
+                groupId,
+                [
+                    {
+                        teamA: { playerOneSSOId: pos1, playerTwoSSOId: pos2 },
+                        teamB: { playerOneSSOId: pos3, playerTwoSSOId: pos4 },
+                    },
+                ]
+            );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }

@@ -296,7 +296,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                                 {(group.isActive as any as number) ===
                                                 0 ? (
                                                     <span className="bg-secondary-700 text-white p-2 rounded-lg">
-                                                        In Active
+                                                        Inactive
                                                     </span>
                                                 ) : (
                                                     <span className="bg-primary-700 text-white p-2 rounded-lg">

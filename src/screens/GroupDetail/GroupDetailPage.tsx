@@ -28,6 +28,10 @@ const GroupDetailPage: React.FC = () => {
     >([]);
 
     const [showAddPlayerModal, setShowAddPlayerModal] = useState(false);
+    const [pos1, setPos1] = useState(0);
+    const [pos2, setPos2] = useState(0);
+    const [pos3, setPos3] = useState(0);
+    const [pos4, setPos4] = useState(0);
 
     useEffect(() => {
         setRealPlayers(players);
@@ -102,6 +106,27 @@ const GroupDetailPage: React.FC = () => {
         GroupDetailPageVM.removePlayerFromGroup(
             parseInt(groupId || "0"),
             userId,
+            {
+                loaderCallback: (loader) =>
+                    loader ? showLoader() : hideLoader(),
+                errorCallBack: (_, error) => {
+                    setError(error || "");
+                },
+                success: () => {
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
+    };
+
+    const createGame = () => {
+        setError("");
+        GroupDetailPageVM.createGame(
+            parseInt(groupId || "0"),
+            pos1,
+            pos2,
+            pos3,
+            pos4,
             {
                 loaderCallback: (loader) =>
                     loader ? showLoader() : hideLoader(),
@@ -384,6 +409,92 @@ const GroupDetailPage: React.FC = () => {
                     </table>
                 </div>
             </div>
+            {groupDetail.group?.isActive ? (
+                <div className="mt-8">
+                    <CardHeader type="h2" header="Create Game" />
+                    <table className="w-full text-sm text-left rtl:text-right mt-4">
+                        <TableHeader headerNames={["Team A", "Team B", ""]} />
+                        <tr>
+                            <td className="py-5">
+                                <div className="flex gap-5">
+                                    <select
+                                        className="border-2 border-primary-900 w-[200px] h-[50px]"
+                                        onChange={(e) => {
+                                            setPos1(parseInt(e.target.value));
+                                        }}
+                                    >
+                                        <option value="-1">
+                                            Select a player
+                                        </option>
+                                        {groupDetail.players?.map((player) => (
+                                            <option value={player.info.ssoId}>
+                                                {player.info.ssoId}.{" "}
+                                                {player.info.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <select
+                                        className="border-2 border-primary-900 w-[200px] h-[50px]"
+                                        onChange={(e) => {
+                                            setPos2(parseInt(e.target.value));
+                                        }}
+                                    >
+                                        <option value="-1">No Player</option>
+                                        {groupDetail.players?.map((player) => (
+                                            <option value={player.info.ssoId}>
+                                                {player.info.ssoId}.{" "}
+                                                {player.info.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </td>
+                            <td className="py-5">
+                                <div className="flex gap-5">
+                                    <select
+                                        className="border-2 border-primary-900 w-[200px] h-[50px]"
+                                        onChange={(e) => {
+                                            setPos3(parseInt(e.target.value));
+                                        }}
+                                    >
+                                        <option value="-1">
+                                            Select a player
+                                        </option>
+                                        {groupDetail.players?.map((player) => (
+                                            <option value={player.info.ssoId}>
+                                                {player.info.ssoId}.{" "}
+                                                {player.info.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <select
+                                        className="border-2 border-primary-900 w-[200px] h-[50px]"
+                                        onChange={(e) => {
+                                            setPos4(parseInt(e.target.value));
+                                        }}
+                                    >
+                                        <option value="-1">No Player</option>
+                                        {groupDetail.players?.map((player) => (
+                                            <option value={player.info.ssoId}>
+                                                {player.info.ssoId}.{" "}
+                                                {player.info.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <p
+                                    className="bg-secondary-500 p-5 rounded-md cursor-pointer text-center text-white font-bold"
+                                    onClick={createGame}
+                                >
+                                    Create Match
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            ) : null}
         </section>
     );
 };
