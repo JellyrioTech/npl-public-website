@@ -29,4 +29,6 @@ export const AdminRoutes = {
     tournamentDetailsPath: `${routes.Admin}/tournament/:tournamentId`,
     groupDetails: (id: number) => `${routes.Admin}/group/${id}`,
     groupDetailsPath: `${routes.Admin}/group/:groupId`,
+    gameDetails: (id: number) => `${routes.Admin}/game/${id}`,
+    gameDetailsPath: `${routes.Admin}/game/:gameId`,
 };

@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import Button from "../../components/Button";
 import GroupAddPlayerComp, {
     GroupAddPlayerinfoUXData,
 } from "./GroupAddPlayerCom";
+import { AdminRoutes, routes } from "../../util/routes";
 
 const GroupDetailPage: React.FC = () => {
     const { groupId } = useParams<{ groupId: string }>();
@@ -32,6 +33,7 @@ const GroupDetailPage: React.FC = () => {
     const [pos2, setPos2] = useState(0);
     const [pos3, setPos3] = useState(0);
     const [pos4, setPos4] = useState(0);
+    const naivgate = useNavigate();
 
     useEffect(() => {
         setRealPlayers(players);
@@ -399,7 +401,16 @@ const GroupDetailPage: React.FC = () => {
                                         </p>
                                     </td>
                                     <td className="">
-                                        <p className="font-bold  underline">
+                                        <p
+                                            className="font-bold  underline"
+                                            onClick={() => {
+                                                naivgate(
+                                                    AdminRoutes.gameDetails(
+                                                        match.gameInfo.gameId
+                                                    )
+                                                );
+                                            }}
+                                        >
                                             View
                                         </p>
                                     </td>

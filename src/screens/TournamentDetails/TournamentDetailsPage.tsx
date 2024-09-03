@@ -265,14 +265,16 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         content={`${tournament?.entryFee}`}
                     ></InfoCard>
                 </div>
-                {tournament?.status === "in-progress" ? (
+                {tournament?.status !== "open" ? (
                     <div className="pt-8 pb-3">
                         <div className="flex justify-between items-center">
                             <CardHeader header="Groups" type="h2" />
-                            <Button
-                                text="Create"
-                                onClick={() => setShowGroupModal(true)}
-                            />
+                            {tournament?.status === "in-progress" ? (
+                                <Button
+                                    text="Create"
+                                    onClick={() => setShowGroupModal(true)}
+                                />
+                            ) : null}
                         </div>
 
                         <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
