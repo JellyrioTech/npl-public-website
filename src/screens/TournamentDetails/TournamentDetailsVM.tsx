@@ -40,7 +40,11 @@ export namespace TournamentDetailsVM {
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
         }
-        cb.success(resp.result!.registeredPlayers || []);
+        cb.success(
+            resp.result!.registeredPlayers?.sort((a, b) => {
+                return a.position - b.position;
+            }) || []
+        );
     }
 
     export async function removePlayerFromTournament(

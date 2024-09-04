@@ -417,7 +417,6 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                                         {player.position}
                                                     </p>
                                                     <select
-                                                        value={player.position}
                                                         onChange={(e) =>
                                                             onChangeRank(
                                                                 parseInt(
