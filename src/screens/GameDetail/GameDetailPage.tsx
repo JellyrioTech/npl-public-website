@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import CardHeader from "../../components/CardHeader";
 import { useLoader } from "../../components/LoaderProvider";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GameDetailVM } from "./GameDetailVM";
 import { GameServiceResponse } from "npl-service-module/dist/services/Response/GameService.response";
 import Button from "../../components/Button";

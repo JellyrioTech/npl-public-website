@@ -139,4 +139,27 @@ export namespace TournamentDetailsVM {
         }
         cb.success(resp);
     }
+
+    export async function rankPlayers(
+        players: { rank: number; ssoId: number }[],
+        tournamentId: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        if (players.length === 0) {
+            return cb.errorCallBack(1, "No players found for ranking");
+        }
+        cb.loaderCallback(true);
+        const resp = await NetworkModule.tournamentService.updatePlayerPosition(
+            tournamentId,
+            players.map((player) => ({
+                userSSOId: player.ssoId,
+                position: player.rank,
+            }))
+        );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
 }

@@ -41,6 +41,9 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     const [groupError, setGroupError] = useState("");
     const [refresh, setRefresh] = useState("");
     const navigator = useNavigate();
+    const [newRanks, setNewRanks] = useState<{ rank: number; ssoId: number }[]>(
+        []
+    );
 
     useEffect(() => {
         TournamentDetailsVM.getTournamentDetails(id, {
@@ -165,6 +168,31 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 CommonUtil.openJSON(obj);
             },
         });
+    };
+
+    const onChangeRank = (rank: number, ssoId: number) => {
+        const newRanksCopy = newRanks.filter((val) => val.ssoId !== ssoId);
+        newRanksCopy.push({ rank, ssoId });
+        console.log(newRanksCopy);
+        setNewRanks(newRanksCopy);
+    };
+
+    const saveRank = () => {
+        TournamentDetailsVM.rankPlayers(
+            newRanks,
+            parseInt(tournamentId || "0"),
+            {
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
+                errorCallBack: (_, error) => {
+                    setError(error);
+                },
+                success: () => {
+                    setRefresh(new Date().toString());
+                },
+            }
+        );
     };
 
     const createGroupModal = (
@@ -337,10 +365,16 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
                         <CardHeader header="Players Registered" type="h2" />
-                        <Button
-                            text="Get Email CSF"
-                            onClick={() => getEmailCSF()}
-                        />
+                        <div className="flex gap-3">
+                            <Button
+                                text="Get Email CSF"
+                                onClick={() => getEmailCSF()}
+                            />
+                            <Button
+                                text="Save Rank"
+                                onClick={() => saveRank()}
+                            />
+                        </div>
                     </div>
 
                     {error && (
@@ -376,10 +410,47 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
-                                            {player.position}
+                                            {tournament?.status ===
+                                            "in-progress" ? (
+                                                <div>
+                                                    <p className="mb-3 font-bold">
+                                                        {player.position}
+                                                    </p>
+                                                    <select
+                                                        value={player.position}
+                                                        onChange={(e) =>
+                                                            onChangeRank(
+                                                                parseInt(
+                                                                    e.target
+                                                                        .value
+                                                                ),
+                                                                player.userSSOId
+                                                            )
+                                                        }
+                                                    >
+                                                        <option value={-1}>
+                                                            Choose a rank
+                                                        </option>
+                                                        {registeredPlayers.map(
+                                                            (_, index) => (
+                                                                <option
+                                                                    value={
+                                                                        index +
+                                                                        1
+                                                                    }
+                                                                >
+                                                                    {index + 1}
+                                                                </option>
+                                                            )
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            ) : (
+                                                <p>{player.position}</p>
+                                            )}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {player.status}
+                                            <p>{player.status}</p>
                                         </td>
                                         <td className="border-x border-black mx-auto">
                                             {tournament?.status === "open" && (
