@@ -1,17 +1,70 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../public/App_logo_white.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
+import { MenuList } from "../routes/MenuList";
 
 function NavBar() {
     const navigator = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isMobileDisplay, setIsMobileDisplay] = useState(false);
+
     const location = useLocation();
     const isLandingPage = location.pathname === routes.Home;
 
-    const hoverColorClasses = isLandingPage
-        ? "hover:underline"
-        : "hover:bg-tertiary-300 focus:bg-tertiary-300";
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileDisplay(window.innerWidth < 768);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const mobileMenuUI = (
+        <div className="absolute top-0 left-0 z-50 w-full h-screen bg-white p-5">
+            <div
+                className="flex justify-end"
+                onClick={() => {
+                    setMenuOpen(false);
+                }}
+            >
+                <svg
+                    className="w-12 h-12 cursor-pointer"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                            d="M19 5L4.99998 19M5.00001 5L19 19"
+                            stroke="#335145"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></path>{" "}
+                    </g>
+                </svg>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-6 text-lg pt-10 cursor-pointer">
+                {MenuList.map((item) => {
+                    return (
+                        <a
+                            className="hover:underline"
+                            onClick={() => {
+                                onToggleMenu();
+                                navigator(item.route);
+                            }}
+                        >
+                            {item.name}
+                        </a>
+                    );
+                })}
+            </div>
+        </div>
+    );
 
     function onToggleMenu() {
         setMenuOpen(!menuOpen);
@@ -41,12 +94,13 @@ function NavBar() {
                 !isLandingPage && "bg-neutral-100"
             }`}
         >
-            <div className="max-w-[1200px] flex-1 flex flex-wrap justify-between items-center py-3">
-                <div className="flex items-center">
+            {menuOpen && mobileMenuUI}
+            <div className="w-full py-3 max-w-[1200px] flex-1 flex flex-wrap justify-between items-center">
+                <div className="flex items-center pl-5 md:pl-0">
                     <img
                         src={logo}
-                        width={60}
-                        height={60}
+                        width={80}
+                        height={80}
                         className="cursor-pointer"
                         onClick={() => onClickNavigation("home")}
                     />
@@ -73,36 +127,25 @@ function NavBar() {
                     </svg>
                 </button>
 
-                <div
-                    className={`w-full 
-                        ${menuOpen ? "block" : "hidden"} 
-                        md:block md:w-auto`}
-                >
-                    <ul
-                        className={`flex flex-col justify-center items-center rounded-lg md:flex-row md:gap-6 ${
-                            isLandingPage ? "text-neutral-100" : "text-black"
-                        }`}
-                    >
-                        <li
-                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
-                            onClick={() => onClickNavigation("home")}
-                        >
-                            Home
-                        </li>
-                        <li
-                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
-                            onClick={() => onClickNavigation("about")}
-                        >
-                            About Us
-                        </li>
-                        <li
-                            className={`w-full text-center md:w-auto py-3 px-2 cursor-pointer rounded-lg ${hoverColorClasses}`}
-                            onClick={() => onClickNavigation("contact")}
-                        >
-                            Contact Us
-                        </li>
-                    </ul>
-                </div>
+                {!isMobileDisplay && (
+                    <div className={`flex gap-6 cursor-pointer`}>
+                        {MenuList.map((item) => {
+                            return (
+                                <a
+                                    className={`text-neutral-100  hover:underline ${
+                                        !isLandingPage
+                                            ? "text-tertiary-500"
+                                            : item.name === "Home" &&
+                                              "underline font-semibold"
+                                    } `}
+                                    onClick={() => navigator(item.route)}
+                                >
+                                    {item.name}
+                                </a>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
         </nav>
     );
