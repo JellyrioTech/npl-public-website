@@ -90,7 +90,7 @@ function NavBar() {
 
     return (
         <nav
-            className={`absolute w-full flex justify-center top-0 z-30 px-2 ${
+            className={`absolute w-full flex justify-center top-0 z-30 px-2 h-30 ${
                 !isLandingPage && "bg-neutral-100"
             }`}
         >
@@ -133,10 +133,10 @@ function NavBar() {
                             return (
                                 <a
                                     className={`text-neutral-100  hover:underline ${
-                                        !isLandingPage
-                                            ? "text-tertiary-500"
-                                            : item.name === "Home" &&
-                                              "underline font-semibold"
+                                        !isLandingPage && "text-tertiary-500"
+                                    } ${
+                                        item.route === location.pathname &&
+                                        "font-bold"
                                     } `}
                                     onClick={() => navigator(item.route)}
                                 >
