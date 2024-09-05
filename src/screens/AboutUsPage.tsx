@@ -17,7 +17,7 @@ const AboutUsPage = () => {
             </div>
 
             <div className="parent-container border-b-[1px] border-tertiary-100">
-                <div className="w-full md:max-w-[1200px] flex flex-col justify-center items-center">
+                <div className="w-full md:max-w-[1200px] px-8 md:px-0 flex flex-col justify-center items-center">
                     <div className="space-y-4 font-roboto leading-loose">
                         <p>
                             I've loved playing various sports since I was a kid.
@@ -57,7 +57,7 @@ const AboutUsPage = () => {
 
             <div className="parent-container">
                 <div className="bg-neutral-200 p-8 rounded-lg flex flex-col justify-center items-center space-y-5 md:max-w-[800px]">
-                    <p className="font-oswald text-lg md:text-4xl text-tertiary-500 pb-10">
+                    <p className="font-oswald text-4xl text-tertiary-500 pb-6 md:pb-10">
                         Our Team
                     </p>
                     <div className="flex flex-col gap-5 justify-center items-center md:flex-row ">
