@@ -1,8 +1,8 @@
 const ContactUsPage = () => {
     return (
-        <div className="parent-container pt-4">
+        <div className="parent-container">
             <div className="w-full md:max-w-[1200px] px-10 md:px-0 flex flex-col justify-center items-center">
-                <p className="font-oswald text-5xl md:text-7xl text-tertiary-500 py-14">
+                <p className="font-oswald text-5xl md:text-7xl text-tertiary-500 pb-14">
                     Contact Us
                 </p>
                 <p>
