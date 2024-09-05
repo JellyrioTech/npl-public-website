@@ -2,11 +2,11 @@ const AboutUsPage = () => {
     return (
         <>
             <div className="parent-container border-b-[1px] border-tertiary-100">
-                <div className="font-oswald flex flex-col items-center justify-center">
-                    <p className="text-5xl md:text-7xl text-tertiary-500 py-14">
+                <div className="flex flex-col items-center justify-center">
+                    <p className="font-oswald text-5xl md:text-7xl text-tertiary-500 pb-14">
                         About Us
                     </p>
-                    <p className="w-2/3 md:w-1/3 text-center text-xl md:text-[25px] font-light md:font-extralight leading-[40px]">
+                    <p className="w-full md:w-1/3 px-10 md:px-0 text-center text-xl md:text-[20px] font-light md:font-extralight leading-[40px]">
                         Nesterin Pickleball League was established in 2024 in
                         Orlando, Florida, by me (Shubroto Debnath Shuvo) and my
                         wife (Brototi Biswas). My passion for Pickleball led me
@@ -17,7 +17,7 @@ const AboutUsPage = () => {
             </div>
 
             <div className="parent-container border-b-[1px] border-tertiary-100">
-                <div className="w-full md:px-0 md:max-w-[1200px] flex flex-col justify-center items-center">
+                <div className="w-full md:max-w-[1200px] flex flex-col justify-center items-center">
                     <div className="space-y-4 font-roboto leading-loose">
                         <p>
                             I've loved playing various sports since I was a kid.

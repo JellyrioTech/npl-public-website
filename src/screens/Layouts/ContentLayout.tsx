@@ -7,15 +7,17 @@ import { Outlet } from "react-router-dom";
 const ContentLayout: React.FC = () => {
     const { loading } = useLoader();
     return (
-        <div className="relative min-h-screen">
+        <div className="bg-neutral-100 flex flex-col relative min-h-screen">
             {loading && <Loader />}
             <NavBar />
-            <main className="pt-32 bg-neutral-100 w-full">
+            <main className="pt-32 w-full">
                 <div className="relative z-20">
                     <Outlet />
                 </div>
             </main>
-            <Footer />
+            <div className="mt-auto">
+                <Footer />
+            </div>
         </div>
     );
 };
