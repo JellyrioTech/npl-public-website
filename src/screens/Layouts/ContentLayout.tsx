@@ -10,7 +10,7 @@ const ContentLayout: React.FC = () => {
         <div className="relative min-h-screen">
             {loading && <Loader />}
             <NavBar />
-            <main className="pt-[70px]">
+            <main className="pt-32 bg-neutral-100 w-full">
                 <div className="relative z-20">
                     <Outlet />
                 </div>
