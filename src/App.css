@@ -4,6 +4,6 @@
 
 @layer components {
     .parent-container {
-        @apply relative w-full flex flex-col items-center py-16;
+        @apply relative w-full flex flex-col items-center py-10;
     }
 }
