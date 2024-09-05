@@ -23,6 +23,21 @@ export namespace TournamentDetailsVM {
         cb.success(resp.result!);
     }
 
+    export async function closeTournament(
+        tournamentId: number,
+        cb: AsyncResponseCallback<{}, {}>
+    ) {
+        cb.loaderCallback(true);
+        const resp = await NetworkModule.tournamentService.closeTournament(
+            tournamentId
+        );
+        cb.loaderCallback(false);
+        if (resp instanceof ErrorResponse) {
+            return cb.errorCallBack(1, resp.errorMessage);
+        }
+        cb.success({});
+    }
+
     export async function getRegisteredPlayers(
         tournamentId: number,
         cb: AsyncResponseCallback<

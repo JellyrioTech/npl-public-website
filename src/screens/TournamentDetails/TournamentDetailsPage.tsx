@@ -12,6 +12,7 @@ import Button from "../../components/Button";
 import { useLoader } from "../../components/LoaderProvider";
 import InputField from "../../components/InputField";
 import { AdminRoutes } from "../../util/routes";
+import { toast } from "react-toastify";
 
 type TournamemntDetailsProps = {};
 
@@ -51,7 +52,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
-                setError(error);
+                toast.error(error);
             },
             success: (obj) => {
                 setTournament(obj);
@@ -64,7 +65,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
-                setError(error);
+                toast.error(error);
             },
             success: (obj) => {
                 setRegisteredPlayers(obj);
@@ -78,7 +79,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
-                setError(error);
+                toast.error(error);
             },
             success: (obj) => {
                 setGroups(obj.groups);
@@ -112,7 +113,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
-                setGroupError(error || "");
+                toast.error(error);
             },
             success: () => {
                 setShowGroupModal(false);
@@ -130,7 +131,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     loader ? showLoader() : hideLoader();
                 },
                 errorCallBack: (_, error) => {
-                    setError(error);
+                    toast.error(error);
                 },
                 success: () => {
                     setRefresh(new Date().toString());
@@ -147,7 +148,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     loader ? showLoader() : hideLoader();
                 },
                 errorCallBack: (_, error) => {
-                    setError(error);
+                    toast.error(error);
                 },
                 success: (obj) => {
                     alert(obj.result);
@@ -162,7 +163,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                 loader ? showLoader() : hideLoader();
             },
             errorCallBack: (_, error) => {
-                setError(error);
+                toast.error(error);
             },
             success: (obj) => {
                 CommonUtil.openJSON(obj);
@@ -186,13 +187,27 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     loader ? showLoader() : hideLoader();
                 },
                 errorCallBack: (_, error) => {
-                    setError(error);
+                    toast.error(error);
                 },
                 success: () => {
                     setRefresh(new Date().toString());
                 },
             }
         );
+    };
+
+    const endTournament = () => {
+        TournamentDetailsVM.closeTournament(parseInt(tournamentId || "0"), {
+            loaderCallback: (loader) => {
+                loader ? showLoader() : hideLoader();
+            },
+            errorCallBack: (_, error) => {
+                toast.error(error);
+            },
+            success: () => {
+                setRefresh(new Date().toString());
+            },
+        });
     };
 
     const createGroupModal = (
@@ -253,6 +268,13 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         classes="mb-4"
                         onClick={handleStartTournament}
                     ></Button>
+                )}
+                {tournament?.status === "in-progress" && (
+                    <Button
+                        text="End tournament"
+                        classes="mb-4"
+                        onClick={endTournament}
+                    />
                 )}
                 <div className="flex justify-between">
                     <CardHeader

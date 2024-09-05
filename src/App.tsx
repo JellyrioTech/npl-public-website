@@ -25,10 +25,23 @@ import LoaderProvider from "./components/LoaderProvider";
 import TournamentDetailsPage from "./screens/TournamentDetails/TournamentDetailsPage";
 import GroupDetailPage from "./screens/GroupDetail/GroupDetailPage";
 import GameDetailPage from "./screens/GameDetail/GameDetailPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     return (
         <LoaderProvider>
+            <ToastContainer
+                position="top-center" // Set to top-right or top-center
+                autoClose={5000} // Auto close after 5 seconds
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <Router>
                 <Routes>
                     <Route path={routes.LearnMore} element={<Layout />}>
