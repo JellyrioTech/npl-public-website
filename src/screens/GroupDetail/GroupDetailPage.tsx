@@ -10,7 +10,7 @@ import Button from "../../components/Button";
 import GroupAddPlayerComp, {
     GroupAddPlayerinfoUXData,
 } from "./GroupAddPlayerCom";
-import { AdminRoutes, routes } from "../../util/routes";
+import { AdminRoutes } from "../../util/routes";
 
 const GroupDetailPage: React.FC = () => {
     const { groupId } = useParams<{ groupId: string }>();

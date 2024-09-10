@@ -30,7 +30,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
 
     const id = parseInt(tournamentId!);
     const { showLoader, hideLoader } = useLoader();
-    const [error, setError] = useState<string | null>();
+    const [error] = useState<string | null>();
     const [playerToDelete, setPlayerToDelete] =
         useState<TournamentServiceResponse.RegisteredPlayers_Struct>();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
