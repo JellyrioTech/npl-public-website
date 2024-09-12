@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://shower-virtue-pounds-requested.trycloudflare.com",
+                              target: "https://hotmail-disks-movement-attend.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://shower-virtue-pounds-requested.trycloudflare.com",
+                              target: "https://hotmail-disks-movement-attend.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

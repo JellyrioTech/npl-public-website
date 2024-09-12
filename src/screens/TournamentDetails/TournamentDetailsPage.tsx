@@ -245,6 +245,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                     value={groupName}
                                     placeholder="ClearOne Sports Center"
                                     onChange={(e) => {
+                                        e.preventDefault();
                                         setGroupName(e.target.value);
                                     }}
                                     isRequired={true}
