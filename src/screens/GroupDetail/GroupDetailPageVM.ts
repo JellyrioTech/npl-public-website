@@ -18,7 +18,7 @@ export namespace GroupDetailPageVM {
             return cb.errorCallBack(1, resp.errorMessage);
         }
         const players = resp.result?.players?.sort((a, b) => {
-            return a.points - b.points;
+            return b.points - a.points;
         });
         let copyResp = resp.result!;
         copyResp.players = players;
