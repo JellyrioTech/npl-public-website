@@ -17,7 +17,12 @@ export namespace GroupDetailPageVM {
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
         }
-        cb.success(resp.result!);
+        const players = resp.result?.players?.sort((a, b) => {
+            return a.points - b.points;
+        });
+        let copyResp = resp.result!;
+        copyResp.players = players;
+        cb.success(copyResp);
     }
 
     export async function addPlayerToGroup(
