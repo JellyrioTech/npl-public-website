@@ -5,7 +5,7 @@ function Footer() {
     return (
         <footer className="block bg-tertiary-700">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6">
-                <div className="items-center justify-center md:flex md:justify-between">
+                <div className="items-center justify-center lg:flex lg:justify-between">
                     <div className="flex items-center justify-start">
                         <img src={logo} width={100} height={100} />
                         <span className="text-base font-bold text-neutral-100 ml-3">
@@ -13,7 +13,7 @@ function Footer() {
                         </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-1 md:gap-6 md:grid-cols-3 mt-6">
+                    <div className="grid grid-cols-2 gap-1 lg:gap-6 lg:grid-cols-3 mt-6">
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-neutral-100 uppercase">
                                 Follow us
@@ -70,7 +70,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <hr className="my-6 border-neutral-500 mx-auto md:my-8" />
+                <hr className="my-6 border-neutral-500 mx-auto lg:my-8" />
                 <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500 text-center">
                         © 2024{" "}

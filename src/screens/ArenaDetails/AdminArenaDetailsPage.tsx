@@ -82,7 +82,7 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
                         {error && (
                             <p className="text-red-600 mb-8 text-sm">{error}</p>
                         )}
-                        <div className="relative overflow-x-auto rounded-lg md:mx-10">
+                        <div className="relative overflow-x-auto rounded-lg lg:mx-10">
                             <table className="w-full text-sm text-left rtl:text-right">
                                 <TableHeader
                                     headerNames={[
@@ -106,7 +106,7 @@ const AdminArenaDetailsPage: React.FC<adminArenaDetailsProps> = () => {
                                             key={tournament.id}
                                         >
                                             <th
-                                                className="text-left font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                                className="text-left font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                                 scope="row"
                                             >
                                                 {tournament.name}

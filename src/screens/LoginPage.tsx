@@ -34,7 +34,7 @@ function LoginPage() {
     return (
         <div className="w-full min-h-screen py-10 bg-primary-900">
             <div className="flex flex-col items-center justify-center px-8 mx-auto rounded-lg">
-                <p className="text-xl md:text-2xl font-bold text-secondary-300 py-6">
+                <p className="text-xl lg:text-2xl font-bold text-secondary-300 py-6">
                     Welcome!
                 </p>
                 <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
@@ -44,7 +44,7 @@ function LoginPage() {
                     <form
                         onSubmit={handleSignIn}
                         method="POST"
-                        className="space-y-4 md:space-y-5"
+                        className="space-y-4 lg:space-y-5"
                     >
                         <div className="space-y-4">
                             <InputField

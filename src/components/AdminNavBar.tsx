@@ -28,7 +28,7 @@ const AdminNavBar: React.FC = () => {
                     </div>
 
                     <button
-                        className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg md:hidden"
+                        className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg lg:hidden"
                         onClick={onToggleMenu}
                     >
                         <svg
@@ -51,23 +51,23 @@ const AdminNavBar: React.FC = () => {
                     <div
                         className={`w-full 
             ${menuOpen ? "block" : "hidden"} 
-            md:block md:w-auto`}
+            lg:block lg:w-auto`}
                     >
-                        <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg md:bg-neutral-100 md:text-neutral-900 md:flex-row md:gap-6">
+                        <ul className="flex flex-col justify-center items-center bg-primary-900 text-neutral-100 rounded-lg lg:bg-neutral-100 lg:text-neutral-900 lg:flex-row lg:gap-6">
                             <li
-                                className="w-full text-center md:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                className="w-full text-center lg:w-auto py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg lg:hover:bg-tertiary-100"
                                 onClick={() => navigator(routes.Admin)}
                             >
                                 Arena
                             </li>
                             <li
-                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                className="w-full text-center lg:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg lg:hover:bg-tertiary-100"
                                 onClick={() => navigator(AdminRoutes.userList)}
                             >
                                 Users
                             </li>
                             <li
-                                className="w-full text-center md:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg md:hover:bg-tertiary-100"
+                                className="w-full text-center lg:w-auto  py-3 px-2 cursor-pointer hover:bg-tertiary-300 focus:bg-tertiary-300 rounded-lg lg:hover:bg-tertiary-100"
                                 onClick={() => navigator(routes.Admin)}
                             >
                                 App Datas

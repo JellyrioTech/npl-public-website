@@ -18,14 +18,14 @@ function HomePage() {
             {/* Dark Overlay */}
             <div className="absolute inset-0 bg-black opacity-60"></div>
 
-            <div className="w-full md:max-w-[1200px] px-10 md:p-0 min-h-screen relative flex flex-col items-start justify-center gap-2 md:gap-3">
+            <div className="w-full lg:max-w-[1200px] px-10 lg:p-0 min-h-screen relative flex flex-col items-start justify-center gap-2 lg:gap-3">
                 <p className="text-secondary-300 font-roboto font-light text-lg">
                     Upcoming tournament
                 </p>
-                <p className="font-oswald font-bold text-4xl md:text-5xl text-neutral-100">
+                <p className="font-oswald font-bold text-4xl lg:text-5xl text-neutral-100">
                     Arena Battle Series
                 </p>
-                <p className="text-neutral-100 font-roboto text-xl md:text-2xl">
+                <p className="text-neutral-100 font-roboto text-xl lg:text-2xl">
                     October 27 at 12:00 pm
                 </p>
                 <div className="mt-4">

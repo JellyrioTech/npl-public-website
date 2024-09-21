@@ -9,14 +9,14 @@ const TournamentPaymentSuccessPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
     return (
         <BaseContent innerStyle="flex flex-col">
-            <h1 className="font-bold font-roboto text-neutral-50 text-center md:text-4xl text-2xl pt-8">
+            <h1 className="font-bold font-roboto text-neutral-50 text-center lg:text-4xl text-2xl pt-8">
                 Thank you for registering for the Tournament
             </h1>
-            <h2 className="font-oswald text-primary-100 text-center md:text-2xl text-xl pt-3">
+            <h2 className="font-oswald text-primary-100 text-center lg:text-2xl text-xl pt-3">
                 Your payment has been process and your booking is finalized
             </h2>
             <div className="bg-neutral-100 p-8 rounded-xl mt-10 flex flex-col">
-                <h2 className="text-tertiary-500 font-bold font-roboto md:text-2xl text-xl">
+                <h2 className="text-tertiary-500 font-bold font-roboto lg:text-2xl text-xl">
                     What's Next?
                 </h2>
                 <ul className="list-outside list-disc mt-3">

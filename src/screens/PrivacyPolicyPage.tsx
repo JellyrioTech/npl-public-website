@@ -1,6 +1,6 @@
 function PrivacyPolicyPage() {
     return (
-        <div className="w-[80%] md:max-w-[1200px] mx-auto mt-5 leading-6 font-roboto mb-8">
+        <div className="w-[80%] lg:max-w-[1200px] mx-auto mt-5 leading-6 font-roboto mb-8">
             <div className="flex flex-col space-y-4">
                 <p className="text-3xl font-oswald font-bold text-primary-500">
                     Privacy policy

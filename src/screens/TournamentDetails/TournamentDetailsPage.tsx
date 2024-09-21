@@ -232,7 +232,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         onSubmit={() => {
                             createGroup();
                         }}
-                        className="space-y-4 md:space-y-6"
+                        className="space-y-4 lg:space-y-6"
                     >
                         <div className="rounded-xl flex flex-col gap-6">
                             <div className="space-y-4">
@@ -331,7 +331,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                             ) : null}
                         </div>
 
-                        <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                        <div className="mt-4 relative overflow-x-auto rounded-lg lg:mx-10">
                             <table className="w-full text-sm text-left rtl:text-right">
                                 <TableHeader
                                     headerNames={["Id", "Name", "Status", ""]}
@@ -340,7 +340,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                     {groups.map((group) => (
                                         <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
                                             <th
-                                                className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                                className="font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                                 scope="row"
                                             >
                                                 {group.id}
@@ -406,7 +406,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     {error && (
                         <p className="text-red-600 mb-8 text-sm">{error}</p>
                     )}
-                    <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                    <div className="mt-4 relative overflow-x-auto rounded-lg lg:mx-10">
                         <table className="w-full text-sm text-left rtl:text-right">
                             <TableHeader
                                 headerNames={[
@@ -421,7 +421,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                 {registeredPlayers.map((player) => (
                                     <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
                                         <th
-                                            className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                            className="font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                             scope="row"
                                         >
                                             {player.userSSOId} (

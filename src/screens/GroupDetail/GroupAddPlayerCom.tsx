@@ -59,7 +59,7 @@ const GroupAddPlayerComp: React.FC<{
                     </div>
                     <form
                         onSubmit={(e) => e.preventDefault()}
-                        className="space-y-4 md:space-y-6"
+                        className="space-y-4 lg:space-y-6"
                     >
                         <div className="rounded-xl flex flex-col gap-6">
                             {fields.map((field, index) => (

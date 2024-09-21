@@ -10,8 +10,8 @@ function DownloadPage() {
             className="relative w-full min-h-[100vh] bg-center bg-cover"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            <div className="flex items-center justify-center px-4 py-6 md:ml-4">
-                <div className="bg-white p-8 rounded-xl max-w-[1200px] w-full pb-[700px] shadow-[inset_0px_1px_15px_1px_#22543d] md:pb-0">
+            <div className="flex items-center justify-center px-4 py-6 lg:ml-4">
+                <div className="bg-white p-8 rounded-xl max-w-[1200px] w-full pb-[700px] shadow-[inset_0px_1px_15px_1px_#22543d] lg:pb-0">
                     <div className="flex space-x-4 items-center mb-4">
                         <div className="relative w-16 h-16 drop-shadow-md">
                             <img
@@ -20,12 +20,12 @@ function DownloadPage() {
                             />
                         </div>
 
-                        <p className="font-roboto font-bold text-lg text-balance text-primary-500 drop-shadow-sm md:text-xl">
+                        <p className="font-roboto font-bold text-lg text-balance text-primary-500 drop-shadow-sm lg:text-xl">
                             Please continue the next steps on our app
                         </p>
                     </div>
 
-                    <div className="md:flex">
+                    <div className="lg:flex">
                         <div className="flex flex-col">
                             <div className="flex flex-col items-start space-y-2">
                                 <p className="font-semibold">
@@ -141,7 +141,7 @@ function DownloadPage() {
                         <div className="flex justify-center relative">
                             <img
                                 src={phoneScreen}
-                                className="mt-4 w-full h-auto object-contain absolute mb-6 md:relative"
+                                className="mt-4 w-full h-auto object-contain absolute mb-6 lg:relative"
                             />
                         </div>
                     </div>

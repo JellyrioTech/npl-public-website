@@ -14,7 +14,7 @@ function NavBar() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobileDisplay(window.innerWidth < 768);
+            setIsMobileDisplay(window.innerWidth < 1024);
         };
 
         handleResize();
@@ -95,8 +95,8 @@ function NavBar() {
             }`}
         >
             {menuOpen && mobileMenuUI}
-            <div className="w-full py-3 max-w-[1200px] flex-1 flex flex-wrap justify-between items-center">
-                <div className="flex items-center pl-5 md:pl-0">
+            <div className="w-[80%] py-3 max-w-[1200px] flex-1 flex flex-wrap justify-between items-center">
+                <div className="flex items-center pl-5 lg:pl-0">
                     <img
                         src={logo}
                         width={80}
@@ -107,7 +107,7 @@ function NavBar() {
                 </div>
 
                 <button
-                    className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg md:hidden"
+                    className="p-2 bg-secondary-300 focus:border-2 focus:border-secondary-700 rounded-lg lg:hidden"
                     onClick={onToggleMenu}
                 >
                     <svg
@@ -132,7 +132,7 @@ function NavBar() {
                         {MenuList.map((item) => {
                             return (
                                 <a
-                                    className={`text-smBody font-regular text-neutral-100  hover:underline ${
+                                    className={`text-lgbody font-regular text-neutral-100  hover:underline ${
                                         !isLandingPage && "text-tertiary-500"
                                     } ${
                                         item.route === location.pathname &&

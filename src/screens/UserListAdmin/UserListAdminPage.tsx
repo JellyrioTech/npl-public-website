@@ -32,7 +32,7 @@ const UserListAdminPage: React.FC = () => {
     return (
         <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
             <CardHeader header="Users" type="h1" />
-            <div className="relative overflow-x-auto rounded-lg md:mx-10 pt-4">
+            <div className="relative overflow-x-auto rounded-lg lg:mx-10 pt-4">
                 <table className="w-full text-sm text-left rtl:text-right">
                     <TableHeader
                         headerNames={[
@@ -54,7 +54,7 @@ const UserListAdminPage: React.FC = () => {
                                 <tr className="text-black border-b text-center border-primary-700 cursor-pointer hover:bg-primary-100">
                                     <th
                                         className="whitespace-nowrap font-semibold
-                                                    uppercase px-4 py-1 md:px-6 md:py-4"
+                                                    uppercase px-4 py-1 lg:px-6 lg:py-4"
                                         scope="row"
                                     >
                                         {user.userSSOId}

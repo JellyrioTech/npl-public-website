@@ -42,17 +42,17 @@ const TournamentPaymentPage: React.FC = () => {
     return (
         <BaseContent innerStyle="flex flex-col gap-4">
             <div className="bg-neutral-100 p-5 rounded-xl ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Payment
                 </h2>
-                <p className="mt-3 font-roboto text-md md:text-lg">
+                <p className="mt-3 font-roboto text-md lg:text-lg">
                     Perfect! We have hold your reservation. Please complete your
                     payment within the next 24 hour to hold this reservation and
                     finalize your spot
                 </p>
             </div>
             <div className="bg-neutral-100 p-5 rounded-xl flex flex-col gap-0 ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Invoice
                 </h2>
                 <span className="flex pt-5 mb-3 text-lg">
@@ -84,20 +84,20 @@ const TournamentPaymentPage: React.FC = () => {
                 </span>
             </div>
             <div className="bg-neutral-100 p-5 rounded-xl ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Refund Policy
                 </h2>
-                <p className="mt-3 font-roboto text-md md:text-lg">
+                <p className="mt-3 font-roboto text-md lg:text-lg">
                     You are eligible for a full refund only if you cancel your
                     reservation before 2 weeks of starting date of the
                     tournament
                 </p>
             </div>
             <div className="bg-neutral-100 p-5 rounded-xl ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Complete your booking
                 </h2>
-                <p className="mt-3 font-roboto text-md md:text-lg mb-2">
+                <p className="mt-3 font-roboto text-md lg:text-lg mb-2">
                     By completing this transaction, you agree to our{" "}
                     <a
                         href={`https://f004.backblazeb2.com/file/npl-docs-public/${paymentDoc}`}

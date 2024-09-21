@@ -116,7 +116,7 @@ function AdminDashboardArenaList() {
                             </div>
                             <form
                                 onSubmit={handleAddArena}
-                                className="space-y-4 md:space-y-6"
+                                className="space-y-4 lg:space-y-6"
                             >
                                 <div className="rounded-xl flex flex-col gap-6">
                                     <div className="space-y-4">
@@ -140,7 +140,7 @@ function AdminDashboardArenaList() {
                                             }
                                             isRequired={true}
                                         ></InputField>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 ">
+                                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 ">
                                             <InputField
                                                 type={"text"}
                                                 name={"Arena City"}

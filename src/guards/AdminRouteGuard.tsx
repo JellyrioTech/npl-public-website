@@ -40,7 +40,7 @@ const AdminRouteGuard: React.FC = () => {
             <div>
                 {loading && <Loader />}
                 <AdminNavBar />
-                <main className="w-full min-h-screen bg-neutral-100 md:p-10">
+                <main className="w-full min-h-screen bg-neutral-100 lg:p-10">
                     <Outlet />
                 </main>
             </div>

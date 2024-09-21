@@ -74,10 +74,10 @@ const TournamentRulesPage: React.FC = () => {
     return (
         <BaseContent innerStyle="flex flex-col gap-4">
             <div className="bg-neutral-100 p-5 rounded-xl ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Tournament Rules and Guidelines
                 </h2>
-                <p className="mt-3 font-roboto text-md md:text-lg">
+                <p className="mt-3 font-roboto text-md lg:text-lg">
                     Please go through all the rules and Terms and Conditions -
                     it is important to follow the guidelines for safe and best
                     experience for everyone playing in the tournament
@@ -85,10 +85,10 @@ const TournamentRulesPage: React.FC = () => {
             </div>
             {rules.sections?.map((section) => (
                 <div className="bg-neutral-100 p-5 rounded-xl ">
-                    <h2 className="font-oswald font-bold text-xl md:text-2xl text-secondary-500">
+                    <h2 className="font-oswald font-bold text-xl lg:text-2xl text-secondary-500">
                         {section.header}
                     </h2>
-                    <p className="mt-3 font-roboto text-md md:text-lg">
+                    <p className="mt-3 font-roboto text-md lg:text-lg">
                         {section.body}
                     </p>
                     <ul className="list-disc list-inside space-y-2 mt-5 mb- font-roboto">
@@ -99,10 +99,10 @@ const TournamentRulesPage: React.FC = () => {
                 </div>
             ))}
             <div className="bg-neutral-100 p-5 rounded-xl ">
-                <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                     Participant Agreement and Release Document
                 </h2>
-                <p className="mt-3 font-roboto text-md md:text-lg">
+                <p className="mt-3 font-roboto text-md lg:text-lg">
                     Please make sure you go through the{" "}
                     <a
                         href={`https://f004.backblazeb2.com/file/npl-docs-public/${toc}`}
@@ -120,7 +120,7 @@ const TournamentRulesPage: React.FC = () => {
             {(userStatus === "pending" || userStatus === undefined) &&
             tournamentStatus === "open" ? (
                 <div className="bg-neutral-100 p-5 rounded-xl ">
-                    <h2 className="font-oswald font-bold text-xl md:text-2xl ">
+                    <h2 className="font-oswald font-bold text-xl lg:text-2xl ">
                         Are you ready to Register for the Tournament?
                     </h2>
                     {error !== "" ? (
@@ -128,7 +128,7 @@ const TournamentRulesPage: React.FC = () => {
                             {error}
                         </p>
                     ) : null}
-                    <p className="mt-3 font-roboto text-md md:text-lg">
+                    <p className="mt-3 font-roboto text-md lg:text-lg">
                         Please accept and acknowledge all the check boxes below
                         before tapping Register now button
                     </p>

@@ -187,7 +187,7 @@ const GroupDetailPage: React.FC = () => {
 
             <div className="mt-8">
                 <CardHeader header="In Group Players" type="h2" />
-                <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                <div className="mt-4 relative overflow-x-auto rounded-lg lg:mx-10">
                     <table className="w-full text-sm text-left rtl:text-right">
                         <TableHeader
                             headerNames={["ID", "Name", "Points", ""]}
@@ -196,7 +196,7 @@ const GroupDetailPage: React.FC = () => {
                             {groupDetail.players?.map((player) => (
                                 <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
                                     <th
-                                        className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                        className="font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                         scope="row"
                                     >
                                         {player.info.ssoId}
@@ -230,7 +230,7 @@ const GroupDetailPage: React.FC = () => {
             </div>
             <div className="mt-8">
                 <CardHeader header="Players Registered" type="h2" />
-                <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                <div className="mt-4 relative overflow-x-auto rounded-lg lg:mx-10">
                     <table className="w-full text-sm text-left rtl:text-right">
                         <TableHeader
                             headerNames={["ID", "Name", "Rank", "Status", ""]}
@@ -239,7 +239,7 @@ const GroupDetailPage: React.FC = () => {
                             {realPlayers.map((player) => (
                                 <tr className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100">
                                     <th
-                                        className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                        className="font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                         scope="row"
                                     >
                                         {player.userSSOId} (
@@ -268,7 +268,7 @@ const GroupDetailPage: React.FC = () => {
             </div>
             <div className="mt-8">
                 <CardHeader header="Games" type="h2" />
-                <div className="mt-4 relative overflow-x-auto rounded-lg md:mx-10">
+                <div className="mt-4 relative overflow-x-auto rounded-lg lg:mx-10">
                     <table className="w-full text-sm text-left rtl:text-right">
                         <TableHeader
                             headerNames={[
@@ -286,7 +286,7 @@ const GroupDetailPage: React.FC = () => {
                                     className="text-left text-black border-b border-primary-700 cursor-pointer hover:bg-primary-100"
                                 >
                                     <th
-                                        className="font-semibold uppercase px-4 py-1 md:px-6 md:py-4"
+                                        className="font-semibold uppercase px-4 py-1 lg:px-6 lg:py-4"
                                         scope="row"
                                     >
                                         {match.gameInfo.gameCode}
