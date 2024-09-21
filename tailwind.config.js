@@ -23,10 +23,6 @@ export default {
                     700: "#284036",
                 },
             },
-            fontFamily: {
-                oswald: ['"Oswald"', "sans-serif"],
-                roboto: ['"Roboto"', "sans-serif"],
-            },
             neutral: {
                 100: "#FFFFFC",
                 300: "#E1E5DB",
@@ -34,12 +30,48 @@ export default {
                 900: "#020100",
             },
             backgroundImage: {
-                redGradient:
+                "gradient-red":
                     "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
-                greenGradient:
-                    "linear-gradient(to bottom, #1E4B3B, 80%, #121D19)",
+                "gradient-green":
+                    "linear-gradient(to bottom, #121D19, 80%, #1E4B3B)",
+                "gradient-purple":
+                    "linear-gradient(to bottom, #06002D, 17%, #8F1A91)",
+            },
+            fontFamily: {
+                oswald: ['"Oswald"', "sans-serif"],
+                roboto: ['"Roboto"', "sans-serif"],
+                montserrat: ['"Montserrat"', "sans-serif"],
+
+                regular: ['"Montserrat"', "sans-serif"],
+                display: ['"Oswald"', "sans-serif"],
+            },
+            fontSize: {
+                title1: ["20px"],
+                title2: ["24px"],
+                xTitle: ["32px"],
+                xxTitle: ["40px"],
+                xxxTitle: ["48px"],
+                body1: ["16px"],
+                body2: ["14px"],
+                body3: ["12px"],
+            },
+            fontWeight: {
+                light: "300",
+                regular: "400",
+                medium: "500",
+                semibold: "600",
+                bold: "700",
             },
         },
     },
-    plugins: [],
+    plugins: [
+        // function ({ addUtilities, theme }) {
+        //     const newUtilities = {
+        //         xTitleLight: {
+        //             fontSize: theme("fontSize.fontSize"),
+        //         },
+        //     };
+        //     addUtilities(newUtilities);
+        // },
+    ],
 };
