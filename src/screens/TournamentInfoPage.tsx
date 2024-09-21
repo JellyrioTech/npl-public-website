@@ -9,6 +9,7 @@ import { routes } from "../util/routes";
 import Titan_badge from "../../public/Titan_badge.png";
 import Legends_badge from "../../public/Legends_badge.png";
 import Hero_badge from "../../public/Hero_badge_.png";
+import tournamentRegistrationSection3Image from "../../public/tournamentRegistrationSection3Image.png";
 
 function TournamentInfoPage() {
     const navigator = useNavigate();
@@ -426,20 +427,20 @@ function TournamentInfoPage() {
                 {/* SECTION 1 - Registration Date */}
                 <div className="py-14">
                     <div className="flex flex-col justify-center items-center py-2">
-                        <h2 className="uppercase font-regular text-title1 md:text-xTitle font-light">
+                        <h2 className="uppercase font-regular text-regTitle md:text-xlTitle font-light">
                             JOIN THE UPCOMING MONEYBALL
                         </h2>
                         <h1 className="uppercase font-bold text-5xl md:text-[80px] font-display  leading-tight md:leading-none">
                             ARENA BATTLE SERIES
                         </h1>
                         <div className="mt-8 md:mt-14 w-[90%] max-w-[854px] py-12 md:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
-                            <p className="text-secondary-300 text-xTitle md:text-xxxTitle font-bold">
+                            <p className="text-secondary-300 text-xlTitle md:text-3xlTitle font-bold">
                                 October 27, 2024{" "}
-                                <span className="text-title1 md:text-xTitle font-bold">
+                                <span className="text-regTitle md:text-xlTitle font-bold">
                                     at 12pm
                                 </span>
                             </p>
-                            <p className="text-body1 md:text-title1 font-medium text-neutral-100 pt-3 md:pt-5">
+                            <p className="text-smBody md:text-regTitle font-medium text-neutral-100 pt-3 md:pt-5">
                                 Location: ORLANDO RACKET SPORTS
                             </p>
                             <div className="pt-12 md:pt-20">
@@ -455,7 +456,7 @@ function TournamentInfoPage() {
                 {/* SECTION 2 - Prize Pool*/}
                 <div className="py-20 md:py-24">
                     <div className="flex flex-col justify-center items-center">
-                        <p className="text-xTitle md:text-xxxTitle font-bold">
+                        <p className="text-xlTitle md:text-3xlTitle font-bold">
                             More Challenge, Epic Prizes
                         </p>
                         <div className="mt-16 flex flex-col md:flex-row gap-12 md:gap-16">
@@ -467,11 +468,11 @@ function TournamentInfoPage() {
                                     src={Titan_badge}
                                     className="w-[100px] h-[100px] mt-4 mb-6"
                                 />
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 1{" "}
                                     <span className="font-bold">$100</span>
                                 </p>
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 2{" "}
                                     <span className="font-bold">$100</span>
                                 </p>
@@ -484,11 +485,11 @@ function TournamentInfoPage() {
                                     src={Legends_badge}
                                     className="w-[100px] h-[100px] mt-4 mb-6"
                                 />
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 1{" "}
                                     <span className="font-bold">$60</span>
                                 </p>
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 2{" "}
                                     <span className="font-bold">$60</span>
                                 </p>
@@ -501,11 +502,11 @@ function TournamentInfoPage() {
                                     src={Hero_badge}
                                     className="w-[100px] h-[100px] mt-4 mb-6"
                                 />
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 1{" "}
                                     <span className="font-bold">$40</span>
                                 </p>
-                                <p className="text-title1 font-light">
+                                <p className="text-regTitle font-light">
                                     Position 2{" "}
                                     <span className="font-bold">$40</span>
                                 </p>
@@ -513,17 +514,56 @@ function TournamentInfoPage() {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* SECTION 3 - Entry Fee and Players*/}
+            {/* SECTION 3 - Entry Fee and Capacity */}
+            <div className="w-full">
+                <div className="max-w-[1200px] mx-auto">
+                    {/* SECTION 3 - Entry Fee and Players*/}
+                    <div className="py-20 md:py-24">
+                        <div className="flex flex-col md:flex-row justify-between">
+                            <div className="pt-24">
+                                <div className="inline-block border-2 border-black px-2.5 py-2 mb-6">
+                                    <p className="text-2xl font-bold">
+                                        Entry Fee:{" "}
+                                        <span className="text-secondary-700">
+                                            $40
+                                        </span>
+                                    </p>
+                                </div>
+                                <p className="text-regTitle md:text-xlTitle font-medium mb-4">
+                                    Total Warriors Waiting In Arena
+                                </p>
+                                <p className="text-[64px] font-bold text-secondary-700">{`${
+                                    tournament.totalRegistered || 0
+                                }/${tournament.capacity || 0}`}</p>
+                            </div>
+                            <img
+                                src={tournamentRegistrationSection3Image}
+                                className="w-[465px] h-[578px]"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <hr className="border border-500 drop-shadow-lg" />
+            </div>
 
-                {/* SECTION 4 - Rules */}
+            {/* SECTION 4 - Rules */}
+            <div className="w-full max-w-[1200px] mx-auto">
+                <div className="py-16 md:py-20">
+                    <div className="flex flex-col justify-center items-center">
+                        <h2 className="text-3xlTitle font-bold">
+                            Rules and Tournament Formats
+                        </h2>
+                    </div>
+                </div>
             </div>
 
             {/* SECTION 5 - Ending Button */}
             <div className="w-full bg-gradient-green">
                 <div className="pt-20 pb-24 md:pt-24 md:pb-28">
                     <div className="flex flex-col justify-center items-center gap-8 md:gap-12">
-                        <p className="text-neutral-100 text-[26px] md:text-xxTitle font-bold text-center font-display uppercase">
+                        <p className="text-neutral-100 text-[26px] md:text-2xlTitle font-bold text-center font-display uppercase">
                             Are your ready to see your true potential and <br />
                             write your own legacy?
                         </p>
