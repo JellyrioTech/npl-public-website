@@ -34,8 +34,12 @@ export default {
                     "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
                 "gradient-green":
                     "linear-gradient(to bottom, #121D19, 80%, #1E4B3B)",
-                "gradient-purple":
+                "gradient-titan":
                     "linear-gradient(to bottom, #06002D, 17%, #8F1A91)",
+                "gradient-legends":
+                    "linear-gradient(to bottom, #D0461B, 17%, #FFB118)",
+                "gradient-hero":
+                    "linear-gradient(to bottom, #0D4045, 17%, #197D66)",
             },
             fontFamily: {
                 oswald: ['"Oswald"', "sans-serif"],
@@ -44,6 +48,7 @@ export default {
 
                 regular: ['"Montserrat"', "sans-serif"],
                 display: ['"Oswald"', "sans-serif"],
+                special: ["Sarpanch", "sans-serif"],
             },
             fontSize: {
                 title1: ["20px"],
