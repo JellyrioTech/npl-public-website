@@ -421,117 +421,120 @@ function TournamentInfoPage() {
     // );
 
     return (
-        <div className="w-full max-w-[1200px] mx-auto">
-            {/* SECTION 1 - Registration Date */}
-            <div className="py-14">
-                <div className="flex flex-col justify-center items-center py-2">
-                    <h2 className="uppercase font-regular text-title1 md:text-xTitle font-light">
-                        JOIN THE UPCOMING MONEYBALL
-                    </h2>
-                    <h1 className="uppercase font-bold text-5xl md:text-[80px] font-display  leading-tight md:leading-none">
-                        ARENA BATTLE SERIES
-                    </h1>
-                    <div className="mt-8 md:mt-14 w-[90%] max-w-[854px] py-12 md:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
-                        <p className="text-secondary-300 text-xTitle md:text-xxxTitle font-bold">
-                            October 27, 2024{" "}
-                            <span className="text-title1 md:text-xTitle font-bold">
-                                at 12pm
-                            </span>
-                        </p>
-                        <p className="text-body1 md:text-title1 font-medium text-neutral-100 pt-3 md:pt-5">
-                            Location: ORLANDO RACKET SPORTS
-                        </p>
-                        <div className="pt-12 md:pt-20">
-                            <NPLButtonSquare
-                                onClick={() => navigator(routes.Register)}
-                                text={"Register Now"}
-                            ></NPLButtonSquare>
+        <>
+            <div className="w-full max-w-[1200px] mx-auto">
+                {/* SECTION 1 - Registration Date */}
+                <div className="py-14">
+                    <div className="flex flex-col justify-center items-center py-2">
+                        <h2 className="uppercase font-regular text-title1 md:text-xTitle font-light">
+                            JOIN THE UPCOMING MONEYBALL
+                        </h2>
+                        <h1 className="uppercase font-bold text-5xl md:text-[80px] font-display  leading-tight md:leading-none">
+                            ARENA BATTLE SERIES
+                        </h1>
+                        <div className="mt-8 md:mt-14 w-[90%] max-w-[854px] py-12 md:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
+                            <p className="text-secondary-300 text-xTitle md:text-xxxTitle font-bold">
+                                October 27, 2024{" "}
+                                <span className="text-title1 md:text-xTitle font-bold">
+                                    at 12pm
+                                </span>
+                            </p>
+                            <p className="text-body1 md:text-title1 font-medium text-neutral-100 pt-3 md:pt-5">
+                                Location: ORLANDO RACKET SPORTS
+                            </p>
+                            <div className="pt-12 md:pt-20">
+                                <NPLButtonSquare
+                                    onClick={() => navigator(routes.Register)}
+                                    text={"Register Now"}
+                                ></NPLButtonSquare>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* SECTION 2 - Prize Pool*/}
-            <div className="py-20 md:py-24">
-                <div className="flex flex-col justify-center items-center">
-                    <p className="text-xTitle md:text-xxxTitle font-bold">
-                        More Challenge, Epic Prizes
-                    </p>
-                    <div className="mt-16 flex flex-col md:flex-row gap-12 md:gap-16">
-                        <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                            <p className="font-special font-bold text-[48px] uppercase ">
-                                Titans
-                            </p>
-                            <img
-                                src={Titan_badge}
-                                className="w-[100px] h-[100px] mt-4 mb-6"
-                            />
-                            <p className="text-title1 font-light">
-                                Position 1{" "}
-                                <span className="font-bold">$100</span>
-                            </p>
-                            <p className="text-title1 font-light">
-                                Position 2{" "}
-                                <span className="font-bold">$100</span>
-                            </p>
-                        </div>
-                        <div className="w-[318px] rounded-[15px] bg-gradient-legends py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                            <p className="font-special font-bold text-[48px] uppercase ">
-                                Legends
-                            </p>
-                            <img
-                                src={Legends_badge}
-                                className="w-[100px] h-[100px] mt-4 mb-6"
-                            />
-                            <p className="text-title1 font-light">
-                                Position 1{" "}
-                                <span className="font-bold">$60</span>
-                            </p>
-                            <p className="text-title1 font-light">
-                                Position 2{" "}
-                                <span className="font-bold">$60</span>
-                            </p>
-                        </div>
-                        <div className="w-[318px] rounded-[15px] bg-gradient-hero py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                            <p className="font-special font-bold text-[48px] uppercase ">
-                                Hero
-                            </p>
-                            <img
-                                src={Hero_badge}
-                                className="w-[100px] h-[100px] mt-4 mb-6"
-                            />
-                            <p className="text-title1 font-light">
-                                Position 1{" "}
-                                <span className="font-bold">$40</span>
-                            </p>
-                            <p className="text-title1 font-light">
-                                Position 2{" "}
-                                <span className="font-bold">$40</span>
-                            </p>
+                {/* SECTION 2 - Prize Pool*/}
+                <div className="py-20 md:py-24">
+                    <div className="flex flex-col justify-center items-center">
+                        <p className="text-xTitle md:text-xxxTitle font-bold">
+                            More Challenge, Epic Prizes
+                        </p>
+                        <div className="mt-16 flex flex-col md:flex-row gap-12 md:gap-16">
+                            <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
+                                <p className="font-special font-bold text-[48px] uppercase ">
+                                    Titans
+                                </p>
+                                <img
+                                    src={Titan_badge}
+                                    className="w-[100px] h-[100px] mt-4 mb-6"
+                                />
+                                <p className="text-title1 font-light">
+                                    Position 1{" "}
+                                    <span className="font-bold">$100</span>
+                                </p>
+                                <p className="text-title1 font-light">
+                                    Position 2{" "}
+                                    <span className="font-bold">$100</span>
+                                </p>
+                            </div>
+                            <div className="w-[318px] rounded-[15px] bg-gradient-legends py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
+                                <p className="font-special font-bold text-[48px] uppercase ">
+                                    Legends
+                                </p>
+                                <img
+                                    src={Legends_badge}
+                                    className="w-[100px] h-[100px] mt-4 mb-6"
+                                />
+                                <p className="text-title1 font-light">
+                                    Position 1{" "}
+                                    <span className="font-bold">$60</span>
+                                </p>
+                                <p className="text-title1 font-light">
+                                    Position 2{" "}
+                                    <span className="font-bold">$60</span>
+                                </p>
+                            </div>
+                            <div className="w-[318px] rounded-[15px] bg-gradient-hero py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
+                                <p className="font-special font-bold text-[48px] uppercase ">
+                                    Hero
+                                </p>
+                                <img
+                                    src={Hero_badge}
+                                    className="w-[100px] h-[100px] mt-4 mb-6"
+                                />
+                                <p className="text-title1 font-light">
+                                    Position 1{" "}
+                                    <span className="font-bold">$40</span>
+                                </p>
+                                <p className="text-title1 font-light">
+                                    Position 2{" "}
+                                    <span className="font-bold">$40</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                {/* SECTION 3 - Entry Fee and Players*/}
+
+                {/* SECTION 4 - Rules */}
             </div>
-
-            {/* SECTION 3 - Entry Fee and Players*/}
-
-            {/* SECTION 4 - Rules */}
 
             {/* SECTION 5 - Ending Button */}
-            <div className="py-20 md:py-24">
-                <div className="flex flex-col justify-center items-center gap-8 md:gap-12">
-                    <p className="text-[26px] md:text-xxTitle font-bold text-center font-display">
-                        Are your ready to see your true potential and <br />
-                        write your own legacy?
-                    </p>
-                    <NPLButtonSquare
-                        special={true}
-                        onClick={() => navigator(routes.Register)}
-                        text={"REGISTER NOW"}
-                    ></NPLButtonSquare>
+            <div className="w-full bg-gradient-green">
+                <div className="pt-20 pb-24 md:pt-24 md:pb-28">
+                    <div className="flex flex-col justify-center items-center gap-8 md:gap-12">
+                        <p className="text-neutral-100 text-[26px] md:text-xxTitle font-bold text-center font-display uppercase">
+                            Are your ready to see your true potential and <br />
+                            write your own legacy?
+                        </p>
+                        <NPLButtonSquare
+                            onClick={() => navigator(routes.Register)}
+                            text={"REGISTER NOW"}
+                        ></NPLButtonSquare>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
