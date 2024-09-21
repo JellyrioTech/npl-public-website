@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import InputField from "../../components/InputField";
 import { routes, UserRoutes } from "../../util/routes";
 import { RegisterPageVM } from "./RegisterPageVM";
-import { SSORoutes } from "../../apiRoutes/ssoRoutes";
+import { SSORoutesVM } from "../../commonVM/ssoRoutesVM";
 import { useLoader } from "../../components/LoaderProvider";
 
 function RegisterPage() {
@@ -24,7 +24,7 @@ function RegisterPage() {
         e.preventDefault();
         setError("");
 
-        SSORoutes.registerUser(
+        SSORoutesVM.registerUser(
             email,
             password,
             name,
@@ -49,7 +49,7 @@ function RegisterPage() {
 
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
-        SSORoutes.signinUser(email, password, {
+        SSORoutesVM.signinUser(email, password, {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },

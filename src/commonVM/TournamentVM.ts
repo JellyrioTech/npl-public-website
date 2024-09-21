@@ -3,7 +3,7 @@ import { NetworkModule } from "../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 
-export namespace TournamentAPI {
+export namespace TournamentRoutesVM {
     export async function getPublicTournamentInfo(
         tournamentId: number,
         cb: AsyncResponseCallback<

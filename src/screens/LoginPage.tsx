@@ -3,7 +3,7 @@ import NPLButton from "../components/NPLButton";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
 import { AdminRoutes, routes } from "../util/routes";
-import { SSORoutes } from "../apiRoutes/ssoRoutes";
+import { SSORoutesVM } from "../commonVM/ssoRoutesVM";
 import { useLoader } from "../components/LoaderProvider";
 
 function LoginPage() {
@@ -15,7 +15,7 @@ function LoginPage() {
 
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
-        SSORoutes.signinUser(email, password, {
+        SSORoutesVM.signinUser(email, password, {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },

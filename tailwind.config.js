@@ -58,9 +58,9 @@ export default {
                 xlTitle: ["32px"], //xtitle
                 "2xlTitle": ["40px"], //xxtitle
                 "3xlTitle": ["48px"], //xxxtitle
-                smBody: ["16px"], //body1
+                smBody: ["12px"], //body1
                 regBody: ["14px"], //body2
-                lgBody: ["12px"], //body3
+                lgBody: ["16px"], //body3
             },
             fontWeight: {
                 light: "300",
@@ -72,13 +72,19 @@ export default {
         },
     },
     plugins: [
-        // function ({ addUtilities, theme }) {
-        //     const newUtilities = {
-        //         xTitleLight: {
-        //             fontSize: theme("fontSize.fontSize"),
-        //         },
-        //     };
-        //     addUtilities(newUtilities);
-        // },
+        function ({ addUtilities }) {
+            const newUtilities = {
+                ".nspl-list": {
+                    listStyleType: "none",
+                },
+                ".nspl-list li": {
+                    padding: ".5rem 2rem",
+                    backgroundImage: "url('./public/listIcon.png')",
+                    backgroundPosition: "0% 20%",
+                    backgroundRepeat: "no-repeat",
+                },
+            };
+            addUtilities(newUtilities);
+        },
     ],
 };

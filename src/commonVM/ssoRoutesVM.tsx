@@ -3,7 +3,7 @@ import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { NetworkModule } from "../NetworkEngine";
 import { UserServiceResponse } from "npl-service-module/dist/services/Response/UserService.response";
 
-export namespace SSORoutes {
+export namespace SSORoutesVM {
     export async function verifyEmailUnique(
         email: string,
         cb: AsyncResponseCallback<{}, {}>
