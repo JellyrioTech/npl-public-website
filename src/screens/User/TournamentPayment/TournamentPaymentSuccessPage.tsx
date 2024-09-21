@@ -1,7 +1,7 @@
 import BaseContent from "../../../components/BaseContent";
 import appstoreDownload from "../../../assets/App Store download.png";
 import amazonAppStore from "../../../assets/amazon_appstore.png";
-import Button from "../../../components/Button";
+import NPLButton from "../../../components/NPLButton";
 import { useParams } from "react-router-dom";
 import { UserRoutes } from "../../../util/routes";
 
@@ -69,7 +69,7 @@ const TournamentPaymentSuccessPage: React.FC = () => {
                     </li>
                 </ul>
                 <div className="mt-4">
-                    <Button
+                    <NPLButton
                         text="Checkout Rules and Guidelines"
                         onClick={() =>
                             (window.location.pathname = `${UserRoutes.TournamentRules}/${tournamentId}`)

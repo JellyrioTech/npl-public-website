@@ -1,4 +1,4 @@
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import InputField from "../../components/InputField";
@@ -110,11 +110,11 @@ function RegisterPage() {
                     ></InputField>
                 </div>
 
-                <Button
+                <NPLButton
                     text="Next"
                     type="submit"
                     onClick={checkEmailExists}
-                ></Button>
+                ></NPLButton>
             </div>
         );
     };
@@ -145,7 +145,7 @@ function RegisterPage() {
                     ></InputField>
                 </div>
 
-                <Button text="Sign In" type="submit"></Button>
+                <NPLButton text="Sign In" type="submit"></NPLButton>
             </form>
         );
     };
@@ -227,7 +227,7 @@ function RegisterPage() {
                     </div>
                 </div>
 
-                <Button text="Create Account" type="submit"></Button>
+                <NPLButton text="Create Account" type="submit"></NPLButton>
             </form>
         );
     };

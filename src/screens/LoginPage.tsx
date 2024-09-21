@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../components/Button";
+import NPLButton from "../components/NPLButton";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
 import { AdminRoutes, routes } from "../util/routes";
@@ -65,7 +65,7 @@ function LoginPage() {
                             ></InputField>
                         </div>
 
-                        <Button text="Sign In" type="submit"></Button>
+                        <NPLButton text="Sign In" type="submit"></NPLButton>
                     </form>
                 </div>
                 <p className="mt-6 text-neutral-100">

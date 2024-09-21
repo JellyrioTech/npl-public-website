@@ -8,7 +8,7 @@ import InfoCard from "../../components/InfoCard";
 import TableHeader from "../../components/TableHeader";
 import Avatar from "../../components/Avatar";
 import ModalWithBackdrop from "../../components/ModalWithBackdrop";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 import { useLoader } from "../../components/LoaderProvider";
 import InputField from "../../components/InputField";
 import { AdminRoutes } from "../../util/routes";
@@ -251,7 +251,10 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                     isRequired={true}
                                 ></InputField>
                             </div>
-                            <Button text={"Create"} type="submit"></Button>
+                            <NPLButton
+                                text={"Create"}
+                                type="submit"
+                            ></NPLButton>
                         </div>
                     </form>
                 </div>
@@ -264,14 +267,14 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
             {showGroupModal && createGroupModal}
             <section className="w-full max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
                 {tournament?.status === "open" && (
-                    <Button
+                    <NPLButton
                         text="Start tournament"
                         classes="mb-4"
                         onClick={handleStartTournament}
-                    ></Button>
+                    ></NPLButton>
                 )}
                 {tournament?.status === "in-progress" && (
-                    <Button
+                    <NPLButton
                         text="End tournament"
                         classes="mb-4"
                         onClick={endTournament}
@@ -321,7 +324,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                         <div className="flex justify-between items-center">
                             <CardHeader header="Groups" type="h2" />
                             {tournament?.status === "in-progress" ? (
-                                <Button
+                                <NPLButton
                                     text="Create"
                                     onClick={() => setShowGroupModal(true)}
                                 />
@@ -389,11 +392,11 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                     <div className="flex justify-between items-center">
                         <CardHeader header="Players Registered" type="h2" />
                         <div className="flex gap-3">
-                            <Button
+                            <NPLButton
                                 text="Get Email CSF"
                                 onClick={() => getEmailCSF()}
                             />
-                            <Button
+                            <NPLButton
                                 text="Save Rank"
                                 onClick={() => saveRank()}
                             />

@@ -5,6 +5,7 @@ import { TournamentServiceResponse } from "npl-service-module/dist/services/Resp
 import { useLoader } from "../components/LoaderProvider";
 import { CommonUtil } from "../util/CommonUtil";
 import NPLButtonSquare from "../components/NPLButtonSquare";
+import { routes } from "../util/routes";
 
 function TournamentInfoPage() {
     const navigator = useNavigate();

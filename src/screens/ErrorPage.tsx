@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
+import NPLButton from "../components/NPLButton";
 import { routes } from "../util/routes";
 
 type ErrorProps = {
@@ -14,10 +14,10 @@ const ErrorPage: React.FC<ErrorProps> = (props: ErrorProps) => {
             {props.text === undefined
                 ? "Something Is Wrong, please try again later"
                 : props.text}
-            <Button
+            <NPLButton
                 text={"Go To Home"}
                 onClick={() => navigate(routes.Home)}
-            ></Button>
+            ></NPLButton>
         </div>
     );
 };

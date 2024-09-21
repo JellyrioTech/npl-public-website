@@ -1,6 +1,6 @@
 import React from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import Button from "../../../components/Button";
+import NPLButton from "../../../components/NPLButton";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { UserRoutes } from "../../../util/routes";
 import { useLoader } from "../../../components/LoaderProvider";
@@ -96,7 +96,7 @@ const PaymentForm: React.FC<{
                 <CardElement options={cardStyle} />
             </div>
 
-            <Button
+            <NPLButton
                 text="Continue and Complete Payment"
                 type="submit"
                 classes="mt-3"

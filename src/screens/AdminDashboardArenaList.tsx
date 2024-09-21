@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../components/Button";
+import NPLButton from "../components/NPLButton";
 import InputField from "../components/InputField";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
@@ -68,10 +68,10 @@ function AdminDashboardArenaList() {
             <section className="max-w-[1200px] p-8 rounded shadow mx-auto bg-neutral-200">
                 <div className="flex justify-between">
                     <CardHeader header="Create Arena" type="h1"></CardHeader>
-                    <Button
+                    <NPLButton
                         text={"Create Arena"}
                         onClick={openCreateArenaModal}
-                    ></Button>
+                    ></NPLButton>
                 </div>
 
                 <div className="mt-4 space-y-4 mx:auto">
@@ -177,10 +177,10 @@ function AdminDashboardArenaList() {
                                             ></InputField>
                                         </div>
                                     </div>
-                                    <Button
+                                    <NPLButton
                                         text={"Add Arena"}
                                         type="submit"
-                                    ></Button>
+                                    ></NPLButton>
                                 </div>
                             </form>
                         </div>

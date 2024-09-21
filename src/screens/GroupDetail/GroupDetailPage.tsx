@@ -6,7 +6,7 @@ import { TournamentServiceResponse } from "npl-service-module/dist/services/Resp
 import { GroupDetailPageVM } from "./GroupDetailPageVM";
 import Avatar from "../../components/Avatar";
 import TableHeader from "../../components/TableHeader";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 import GroupAddPlayerComp, {
     GroupAddPlayerinfoUXData,
 } from "./GroupAddPlayerCom";
@@ -171,11 +171,11 @@ const GroupDetailPage: React.FC = () => {
             {groupDetail.group?.isActive ? (
                 <div className="flex flex-col mt-8">
                     <div className="flex gap-4">
-                        <Button
+                        <NPLButton
                             text="Deactivate Group"
                             onClick={deactivateGroup}
                         />
-                        <Button
+                        <NPLButton
                             text="Add Players"
                             onClick={() => {
                                 setShowAddPlayerModal(true);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 import InputField from "../../components/InputField";
 
 export type GroupAddPlayerinfoUXData = {
@@ -110,13 +110,13 @@ const GroupAddPlayerComp: React.FC<{
                                     </div>
                                 </div>
                             ))}
-                            <Button
+                            <NPLButton
                                 text={"Add Player"}
                                 type="button"
                                 onClick={addPlayerField}
                             />
                         </div>
-                        <Button
+                        <NPLButton
                             text={"Save"}
                             type="button"
                             onClick={saveFields}

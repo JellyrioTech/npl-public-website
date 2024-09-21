@@ -1,7 +1,7 @@
 import landingBG from "../../../public/landingBG.jpg";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../util/routes";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 
 function HomePage() {
     const navigate = useNavigate();
@@ -29,10 +29,10 @@ function HomePage() {
                     September 23 at 5:00 pm
                 </p>
                 <div className="mt-4">
-                    <Button
+                    <NPLButton
                         onClick={handleLearnMoreButton}
                         text={"Learn More"}
-                    ></Button>
+                    ></NPLButton>
                 </div>
             </div>
         </section>

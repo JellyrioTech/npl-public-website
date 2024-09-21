@@ -3,7 +3,7 @@ import CardHeader from "../../components/CardHeader";
 import TableHeader from "../../components/TableHeader";
 import { UserListAdminVM } from "./UserListAdminVM";
 import { UserServiceResponse } from "npl-service-module/dist/services/Response/UserService.response";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 
 const UserListAdminPage: React.FC = () => {
     const [users, setUsers] = useState<
@@ -131,7 +131,7 @@ const UserListAdminPage: React.FC = () => {
                     </tbody>
                 </table>
                 <div className="w-full flex justify-center pt-5">
-                    <Button
+                    <NPLButton
                         text="Back"
                         classes=""
                         onClick={() => {
@@ -139,7 +139,7 @@ const UserListAdminPage: React.FC = () => {
                             setRefresh(new Date().toString());
                         }}
                     />
-                    <Button
+                    <NPLButton
                         text="Next"
                         classes=""
                         onClick={() => {

@@ -5,7 +5,7 @@ import { TournamentRegisterTypes, TournamentTypes } from "npl-service-module";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { routes, UserRoutes } from "../../../util/routes";
 import BaseContent from "../../../components/BaseContent";
-import Button from "../../../components/Button";
+import NPLButton from "../../../components/NPLButton";
 import { useLoader } from "../../../components/LoaderProvider";
 
 const TournamentRulesPage: React.FC = () => {
@@ -182,7 +182,7 @@ const TournamentRulesPage: React.FC = () => {
                             I have read and agree with all rules
                         </label>
                     </span>
-                    <Button
+                    <NPLButton
                         text="Register and Continue to payment"
                         onClick={registerToTournament}
                     />

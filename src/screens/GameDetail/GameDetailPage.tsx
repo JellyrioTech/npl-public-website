@@ -4,7 +4,7 @@ import { useLoader } from "../../components/LoaderProvider";
 import { useEffect, useState } from "react";
 import { GameDetailVM } from "./GameDetailVM";
 import { GameServiceResponse } from "npl-service-module/dist/services/Response/GameService.response";
-import Button from "../../components/Button";
+import NPLButton from "../../components/NPLButton";
 import InputField from "../../components/InputField";
 
 const GameDetailPage: React.FC = () => {
@@ -175,7 +175,7 @@ const GameDetailPage: React.FC = () => {
                             {gameDetail.status === "closed" &&
                             gameDetail.matchResult?.teamAScore === null ? (
                                 <div className="mb-3">
-                                    <Button
+                                    <NPLButton
                                         text="Finalize Game"
                                         onClick={() =>
                                             finalizeGame(score.scoreId)
@@ -202,7 +202,7 @@ const GameDetailPage: React.FC = () => {
                     </div>
                 </div>
 
-                <Button text="Save" onClick={saveMatchLink} />
+                <NPLButton text="Save" onClick={saveMatchLink} />
             </div>
         </section>
     );
