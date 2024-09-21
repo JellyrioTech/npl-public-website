@@ -128,11 +128,11 @@ function NavBar() {
                 </button>
 
                 {!isMobileDisplay && (
-                    <div className={`flex gap-6 cursor-pointer`}>
+                    <div className={`flex gap-7 cursor-pointer`}>
                         {MenuList.map((item) => {
                             return (
                                 <a
-                                    className={`text-neutral-100  hover:underline ${
+                                    className={`text-body1 font-regular text-neutral-100  hover:underline ${
                                         !isLandingPage && "text-tertiary-500"
                                     } ${
                                         item.route === location.pathname &&

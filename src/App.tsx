@@ -49,7 +49,10 @@ function App() {
                         <Route index element={<HomePage />} />
                     </Route>
 
-                    <Route path={routes.LearnMore} element={<ContentLayout />}>
+                    <Route
+                        path={routes.CurrentTournamentRegistration}
+                        element={<ContentLayout />}
+                    >
                         <Route index element={<TournamentInfoPage />} />
                     </Route>
                     <Route path={routes.Register} element={<ContentLayout />}>

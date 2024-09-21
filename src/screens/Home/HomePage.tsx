@@ -1,13 +1,13 @@
 import landingBG from "../../../public/landingBG.jpg";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../util/routes";
-import NPLButton from "../../components/NPLButton";
+import NPLButtonSquare from "../../components/NPLButtonSquare";
 
 function HomePage() {
     const navigate = useNavigate();
 
-    const handleLearnMoreButton = () => {
-        navigate(routes.LearnMore);
+    const handleRegisterForCurrentTournamentButton = () => {
+        navigate(routes.CurrentTournamentRegistration);
     };
 
     return (
@@ -26,13 +26,13 @@ function HomePage() {
                     Arena Battle Series
                 </p>
                 <p className="text-neutral-100 font-roboto text-xl md:text-2xl">
-                    September 23 at 5:00 pm
+                    October 27 at 12:00 pm
                 </p>
                 <div className="mt-4">
-                    <NPLButton
-                        onClick={handleLearnMoreButton}
-                        text={"Learn More"}
-                    ></NPLButton>
+                    <NPLButtonSquare
+                        onClick={handleRegisterForCurrentTournamentButton}
+                        text={"Register Now"}
+                    ></NPLButtonSquare>
                 </div>
             </div>
         </section>
