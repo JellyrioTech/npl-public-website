@@ -132,7 +132,7 @@ function NavBar() {
                         {MenuList.map((item) => {
                             return (
                                 <a
-                                    className={`text-body1 font-regular text-neutral-100  hover:underline ${
+                                    className={`text-smBody font-regular text-neutral-100  hover:underline ${
                                         !isLandingPage && "text-tertiary-500"
                                     } ${
                                         item.route === location.pathname &&

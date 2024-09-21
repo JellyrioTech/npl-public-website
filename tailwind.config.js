@@ -22,13 +22,15 @@ export default {
                     500: "#335145",
                     700: "#284036",
                 },
+                black: "#121D19",
+                neutral: {
+                    100: "#FFFFFC",
+                    300: "#E1E5DB",
+                    500: "#AEB1AA",
+                    900: "#020100",
+                },
             },
-            neutral: {
-                100: "#FFFFFC",
-                300: "#E1E5DB",
-                500: "#AEB1AA",
-                900: "#020100",
-            },
+
             backgroundImage: {
                 "gradient-red":
                     "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
@@ -51,14 +53,14 @@ export default {
                 special: ["Sarpanch", "sans-serif"],
             },
             fontSize: {
-                title1: ["20px"],
-                title2: ["24px"],
-                xTitle: ["32px"],
-                xxTitle: ["40px"],
-                xxxTitle: ["48px"],
-                body1: ["16px"],
-                body2: ["14px"],
-                body3: ["12px"],
+                regTitle: ["20px"], //title1
+                lgTitle: ["24px"], // title2
+                xlTitle: ["32px"], //xtitle
+                "2xlTitle": ["40px"], //xxtitle
+                "3xlTitle": ["48px"], //xxxtitle
+                smBody: ["16px"], //body1
+                regBody: ["14px"], //body2
+                lgBody: ["12px"], //body3
             },
             fontWeight: {
                 light: "300",
