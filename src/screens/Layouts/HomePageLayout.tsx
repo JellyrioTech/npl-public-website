@@ -10,7 +10,7 @@ const HomePageLayout: React.FC = () => {
         <div className="relative min-h-screen">
             {loading && <Loader />}
             <NavBar />
-            <main>
+            <main className="font-regular">
                 <Outlet />
             </main>
             <Footer />

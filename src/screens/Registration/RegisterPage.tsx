@@ -1,4 +1,3 @@
-import NPLButton from "../../components/NPLButton";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import NSPLInputField from "../../components/NSPLInputField";
@@ -8,14 +7,14 @@ import { SSORoutesVM } from "../../commonVM/ssoRoutesVM";
 import { useLoader } from "../../components/LoaderProvider";
 import logo from "../../../public/App_logo_white.png";
 import arrowLeft from "../../../public/arrowLeft.png";
-import NPLButtonSquare from "../../components/NPLButtonSquare";
+import NSPLButtonSquare from "../../components/NPLButtonSquare";
 
 function RegisterPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [screen, setScreen] = useState<RegisterPageVM.Screens>("EmailCheck");
+    const [screen, setScreen] = useState<RegisterPageVM.Screens>("SignIn");
     const [isUserRecieveEmailUpdates, setIsUserRecieveEmailUpdates] =
         useState(true);
     const [error, setError] = useState<string | null>();
@@ -101,7 +100,7 @@ function RegisterPage() {
 
     const EmailCheckForm = () => {
         return (
-            <div className="flex flex-col gap-9">
+            <div className="flex flex-col gap-7 lg:gap-9">
                 <NSPLInputField
                     type={"email"}
                     name={"Email Address"}
@@ -110,67 +109,61 @@ function RegisterPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     isRequired={true}
                 ></NSPLInputField>
-                <NPLButtonSquare
+                <NSPLButtonSquare
                     text={"Continue"}
                     type="submit"
                     onClick={checkEmailExists}
-                ></NPLButtonSquare>
+                ></NSPLButtonSquare>
             </div>
         );
     };
 
     const SignInForm = () => {
         return (
-            <form
-                onSubmit={handleSignIn}
-                method="POST"
-                className="space-y-4 lg:space-y-5"
-            >
-                <div className="space-y-4">
+            <form onSubmit={handleSignIn} method="POST">
+                <div className="flex flex-col gap-7 lg:gap-9">
                     <NSPLInputField
                         type={"email"}
-                        name={"Enter Your Email"}
+                        name={"Email Address"}
                         value={email}
-                        placeholder="eg: henry@example.com"
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="name@email.com"
+                        onChange={() => {}}
                         isDisabled={true}
                     ></NSPLInputField>
                     <NSPLInputField
                         type={"password"}
                         name={"password"}
                         value={password}
-                        placeholder="******"
+                        placeholder="********"
                         onChange={(e) => setPassword(e.target.value)}
                         isRequired={true}
                     ></NSPLInputField>
+                    <NSPLButtonSquare
+                        text={"Login"}
+                        type="submit"
+                    ></NSPLButtonSquare>
                 </div>
-
-                <NPLButton text="Sign In" type="submit"></NPLButton>
             </form>
         );
     };
 
     const RegisterForm = () => {
         return (
-            <form
-                onSubmit={handleRegistrationSubmit}
-                className="space-y-4 lg:space-y-5"
-                method="POST"
-            >
-                <div className="space-y-4">
+            <form onSubmit={handleRegistrationSubmit} method="POST">
+                <div className="flex flex-col gap-7 lg:gap-9">
                     <NSPLInputField
                         type={"email"}
-                        name={"Enter Your Email"}
+                        name={"Email Address"}
                         value={email}
-                        placeholder="eg: henry@example.com"
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="name@email.com"
+                        onChange={() => {}}
                         isDisabled={true}
                     ></NSPLInputField>
                     <NSPLInputField
                         type={"text"}
                         name={"name"}
                         value={name}
-                        placeholder="Henry Jones"
+                        placeholder="John Doe"
                         onChange={(e) => setName(e.target.value)}
                         isRequired={true}
                     ></NSPLInputField>
@@ -178,28 +171,31 @@ function RegisterPage() {
                         type={"password"}
                         name={"password"}
                         value={password}
-                        placeholder="******"
+                        placeholder="********"
                         onChange={(e) => setPassword(e.target.value)}
                         isRequired={true}
                     ></NSPLInputField>
+                </div>
 
-                    <div className="pr-10 flex items-center pt-1 space-x-4">
+                <div className="flex flex-col my-4 lg:mt-6 gap-6 lg:gap-8">
+                    <div className="flex gap-3">
                         <input
                             type="checkbox"
                             onChange={handleRecieveEmailUpdates}
                             checked={isUserRecieveEmailUpdates}
-                            className="w-4 h-4 focus:ring-2 text-secondary-300 focus:ring-secondary-300 bg-secondary-300 rounded"
+                            className="w-6 h-6 accent-secondary-300"
                         />
-                        <label className="text-sm text-neutral-600">
+                        <label className="text-smBody text-neutral-700">
                             I would like to receive email updates about new
                             tournaments and promotions
                         </label>
                     </div>
-
-                    <div className="pt-6 text-sm text-neutral-500 space-y-1">
+                    <div className="text-smBody text-neutral-700">
                         <p>
                             By clicking on{" "}
-                            <span className="font-bold">Create Account</span>{" "}
+                            <span className="font-semibold">
+                                Create Account
+                            </span>{" "}
                             you are agreeing to the following:
                         </p>
                         <ol className="list-decimal list-inside">
@@ -208,7 +204,7 @@ function RegisterPage() {
                                 <a
                                     href={routes.TermsAndCondition}
                                     target="_blank"
-                                    className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                    className="text-secondary-500 underline cursor-pointer hover:font-semibold"
                                 >
                                     Terms of Service
                                 </a>
@@ -218,7 +214,7 @@ function RegisterPage() {
                                 <a
                                     href={routes.PrivacyPolicy}
                                     target="_blank"
-                                    className="text-secondary-500 font-semibold cursor-pointer hover:underline"
+                                    className="text-secondary-500 underline cursor-pointer hover:font-semibold"
                                 >
                                     Privacy Policy
                                 </a>
@@ -227,15 +223,18 @@ function RegisterPage() {
                     </div>
                 </div>
 
-                <NPLButton text="Create Account" type="submit"></NPLButton>
+                <NSPLButtonSquare
+                    text={"Create Account"}
+                    type="submit"
+                ></NSPLButtonSquare>
             </form>
         );
     };
 
     return (
-        <div className="w-full max-w-[1200px] mx-auto py-20">
+        <div className="w-full max-w-[1200px] mx-auto py-10">
             <button
-                className="flex gap-2 items-center mb-8 hover:scale-105"
+                className="ml-4 lg:ml-0 flex gap-2 items-center mb-8 hover:scale-105"
                 onClick={() => navigate(routes.CurrentTournamentRegistration)}
             >
                 <img src={arrowLeft} className="w-4 h-4" />
@@ -243,12 +242,20 @@ function RegisterPage() {
             </button>
             <div className="flex flex-col justify-center items-center">
                 <div className="flex flex-col justify-center items-center gap-6 mb-14">
-                    <img src={logo} className="w-[80px] h-[80px]" />
+                    <img
+                        src={logo}
+                        className="w-[80px] h-[80px] cursor-pointer hover:scale-105"
+                        onClick={() => navigate(routes.Home)}
+                    />
                     <h1 className="text-lgTitle font-medium">
-                        Let's Get Started
+                        {(screen === "EmailCheck" && "Let's Get Started!") ||
+                            (screen === "Register" &&
+                                "Let's Create An Account") ||
+                            (screen === "SignIn" && "Welcome Back!")}
                     </h1>
                 </div>
-                <div className="w-[90%] mx-auto lg:w-[380px] flex flex-col">
+
+                <div className="w-[90%] md:w-[50%] mx-auto lg:w-[400px] flex flex-col">
                     {error && (
                         <p className="text-red-600 mb-5 text-sm">{error}</p>
                     )}
@@ -256,6 +263,14 @@ function RegisterPage() {
                         (screen === "SignIn" && SignInForm()) ||
                         (screen === "Register" && RegisterForm())}
                 </div>
+
+                <span className="mt-4 text-smBody text-gray-500 text-center">
+                    © 2024{" "}
+                    <a href="https://flowbite.com/" className="hover:underline">
+                        Nesterin LLC
+                    </a>
+                    . All Rights Reserved.
+                </span>
             </div>
         </div>
     );

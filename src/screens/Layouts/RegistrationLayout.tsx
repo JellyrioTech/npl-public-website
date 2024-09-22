@@ -8,7 +8,7 @@ const RegistrationLayout: React.FC = () => {
     return (
         <div className="relative min-h-screen">
             {loading && <Loader />}
-            <main>
+            <main className="font-regular">
                 <Outlet />
             </main>
         </div>

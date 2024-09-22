@@ -4,7 +4,7 @@ import { TournamentRoutesVM } from "../../commonVM/TournamentVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { useLoader } from "../../components/LoaderProvider";
 import { CommonUtil } from "../../util/CommonUtil";
-import NPLButtonSquare from "../../components/NPLButtonSquare";
+import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import { routes } from "../../util/routes";
 import Titan_badge from "../../../public/Titan_badge.png";
 import Legends_badge from "../../../public/Legends_badge.png";
@@ -109,10 +109,10 @@ function CurrentTournamentDetailsPage() {
                                 </span>
                             </p>
                             <div className="pt-12 lg:pt-20">
-                                <NPLButtonSquare
+                                <NSPLButtonSquare
                                     onClick={() => navigator(routes.Register)}
                                     text={"Register Now"}
-                                ></NPLButtonSquare>
+                                ></NSPLButtonSquare>
                             </div>
                         </div>
                     </div>
@@ -233,17 +233,17 @@ function CurrentTournamentDetailsPage() {
             </div>
 
             {/* SECTION 5 - Ending Button */}
-            <div className="w-full bg-gradient-green">
+            <div className="w-full bg-gradient-green-flip">
                 <div className="pt-20 pb-24 lg:pt-24 lg:pb-28">
                     <div className="flex flex-col justify-center items-center gap-8 lg:gap-12">
                         <p className="text-neutral-100 text-[26px] lg:text-2xlTitle font-bold text-center font-display uppercase">
                             Are your ready to see your true potential and <br />
                             write your own legacy?
                         </p>
-                        <NPLButtonSquare
+                        <NSPLButtonSquare
                             onClick={() => navigator(routes.Register)}
                             text={"REGISTER NOW"}
-                        ></NPLButtonSquare>
+                        ></NSPLButtonSquare>
                     </div>
                 </div>
             </div>

@@ -4,10 +4,10 @@ type ButtonProps = {
     type?: "submit" | "button";
 };
 
-const NPLButtonSquare: React.FC<ButtonProps> = (props) => {
+const NSPLButtonSquare: React.FC<ButtonProps> = (props) => {
     return (
         <button
-            className={`text-neutral-100 font-medium text-regTitle px-10 py-3 bg-secondary-500 hover:bg-secondary-300 focus:bg-secondary-300 lg:px-20 lg:py-3`}
+            className={`w-full text-neutral-100 font-medium text-smTitle lg:text-regTitle px-10 py-3 bg-secondary-500 hover:bg-secondary-300 focus:bg-secondary-300 lg:px-20 lg:py-3`}
             onClick={props.onClick}
             type={props.type}
         >
@@ -16,4 +16,4 @@ const NPLButtonSquare: React.FC<ButtonProps> = (props) => {
     );
 };
 
-export default NPLButtonSquare;
+export default NSPLButtonSquare;

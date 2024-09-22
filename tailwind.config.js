@@ -37,6 +37,8 @@ export default {
                     "linear-gradient(to bottom, #890E24, 80%, #E2710F)",
                 "gradient-green":
                     "linear-gradient(to bottom, #121D19, 80%, #1E4B3B)",
+                "gradient-green-flip":
+                    "linear-gradient(to top, #121D19, 75%, #1E4B3B)",
                 "gradient-titan":
                     "linear-gradient(to bottom, #06002D, 17%, #8F1A91)",
                 "gradient-legends":
@@ -54,14 +56,16 @@ export default {
                 special: ["Sarpanch", "sans-serif"],
             },
             fontSize: {
-                regTitle: ["20px"], //title1
-                lgTitle: ["24px"], // title2
-                xlTitle: ["32px"], //xtitle
-                "2xlTitle": ["40px"], //xxtitle
-                "3xlTitle": ["48px"], //xxxtitle
-                smBody: ["12px"], //body1
-                regBody: ["14px"], //body2
-                lgBody: ["16px"], //body3
+                smTitle: ["18px"],
+                regTitle: ["20px"],
+                lgTitle: ["24px"],
+                xlTitle: ["32px"],
+                "2xlTitle": ["40px"],
+                "3xlTitle": ["48px"],
+
+                smBody: ["12px"],
+                regBody: ["14px"],
+                lgBody: ["16px"],
             },
             fontWeight: {
                 light: "300",
