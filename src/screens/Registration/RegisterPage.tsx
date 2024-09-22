@@ -1,11 +1,14 @@
 import NPLButton from "../../components/NPLButton";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import InputField from "../../components/InputField";
+import NSPLInputField from "../../components/NSPLInputField";
 import { routes, UserRoutes } from "../../util/routes";
 import { RegisterPageVM } from "./RegisterPageVM";
 import { SSORoutesVM } from "../../commonVM/ssoRoutesVM";
 import { useLoader } from "../../components/LoaderProvider";
+import logo from "../../../public/App_logo_white.png";
+import arrowLeft from "../../../public/arrowLeft.png";
+import NPLButtonSquare from "../../components/NPLButtonSquare";
 
 function RegisterPage() {
     const [name, setName] = useState("");
@@ -98,23 +101,20 @@ function RegisterPage() {
 
     const EmailCheckForm = () => {
         return (
-            <div className="space-y-4 lg:space-y-5">
-                <div className="space-y-4">
-                    <InputField
-                        type={"email"}
-                        name={"Enter Your Email"}
-                        value={email}
-                        placeholder="eg: henry@example.com"
-                        onChange={(e) => setEmail(e.target.value)}
-                        isRequired={true}
-                    ></InputField>
-                </div>
-
-                <NPLButton
-                    text="Next"
+            <div className="flex flex-col gap-9">
+                <NSPLInputField
+                    type={"email"}
+                    name={"Email Address"}
+                    value={email}
+                    placeholder="name@email.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    isRequired={true}
+                ></NSPLInputField>
+                <NPLButtonSquare
+                    text={"Continue"}
                     type="submit"
                     onClick={checkEmailExists}
-                ></NPLButton>
+                ></NPLButtonSquare>
             </div>
         );
     };
@@ -127,22 +127,22 @@ function RegisterPage() {
                 className="space-y-4 lg:space-y-5"
             >
                 <div className="space-y-4">
-                    <InputField
+                    <NSPLInputField
                         type={"email"}
                         name={"Enter Your Email"}
                         value={email}
                         placeholder="eg: henry@example.com"
                         onChange={(e) => setEmail(e.target.value)}
                         isDisabled={true}
-                    ></InputField>
-                    <InputField
+                    ></NSPLInputField>
+                    <NSPLInputField
                         type={"password"}
                         name={"password"}
                         value={password}
                         placeholder="******"
                         onChange={(e) => setPassword(e.target.value)}
                         isRequired={true}
-                    ></InputField>
+                    ></NSPLInputField>
                 </div>
 
                 <NPLButton text="Sign In" type="submit"></NPLButton>
@@ -158,30 +158,30 @@ function RegisterPage() {
                 method="POST"
             >
                 <div className="space-y-4">
-                    <InputField
+                    <NSPLInputField
                         type={"email"}
                         name={"Enter Your Email"}
                         value={email}
                         placeholder="eg: henry@example.com"
                         onChange={(e) => setEmail(e.target.value)}
                         isDisabled={true}
-                    ></InputField>
-                    <InputField
+                    ></NSPLInputField>
+                    <NSPLInputField
                         type={"text"}
                         name={"name"}
                         value={name}
                         placeholder="Henry Jones"
                         onChange={(e) => setName(e.target.value)}
                         isRequired={true}
-                    ></InputField>
-                    <InputField
+                    ></NSPLInputField>
+                    <NSPLInputField
                         type={"password"}
                         name={"password"}
                         value={password}
                         placeholder="******"
                         onChange={(e) => setPassword(e.target.value)}
                         isRequired={true}
-                    ></InputField>
+                    ></NSPLInputField>
 
                     <div className="pr-10 flex items-center pt-1 space-x-4">
                         <input
@@ -233,14 +233,24 @@ function RegisterPage() {
     };
 
     return (
-        <div className="w-full min-h-screen py-10 bg-primary-900">
-            <div className="flex flex-col items-center justify-center px-8 mx-auto rounded-lg">
-                <p className="text-xl lg:text-2xl font-bold text-secondary-300 py-6">
-                    {getFormTitle()}
-                </p>
-                <div className="w-lg max-w-[500px] bg-neutral-100 py-8 px-10 rounded-lg">
+        <div className="w-full max-w-[1200px] mx-auto py-20">
+            <button
+                className="flex gap-2 items-center mb-8 hover:scale-105"
+                onClick={() => navigate(routes.CurrentTournamentRegistration)}
+            >
+                <img src={arrowLeft} className="w-4 h-4" />
+                <p className="text-regBody font-bold">Go Back</p>
+            </button>
+            <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center gap-6 mb-14">
+                    <img src={logo} className="w-[80px] h-[80px]" />
+                    <h1 className="text-lgTitle font-medium">
+                        Let's Get Started
+                    </h1>
+                </div>
+                <div className="w-[90%] mx-auto lg:w-[380px] flex flex-col">
                     {error && (
-                        <p className="text-red-600 mb-8 text-sm">{error}</p>
+                        <p className="text-red-600 mb-5 text-sm">{error}</p>
                     )}
                     {(screen === "EmailCheck" && EmailCheckForm()) ||
                         (screen === "SignIn" && SignInForm()) ||

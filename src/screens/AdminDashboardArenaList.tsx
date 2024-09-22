@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NPLButton from "../components/NPLButton";
-import InputField from "../components/InputField";
+import NSPLInputField from "../components/NSPLInputField";
 import { AdminDashboardVM } from "./AdminDashboardVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { useNavigate } from "react-router-dom";
@@ -120,7 +120,7 @@ function AdminDashboardArenaList() {
                             >
                                 <div className="rounded-xl flex flex-col gap-6">
                                     <div className="space-y-4">
-                                        <InputField
+                                        <NSPLInputField
                                             type={"text"}
                                             name={"Arena Name"}
                                             value={arenaName}
@@ -129,8 +129,8 @@ function AdminDashboardArenaList() {
                                                 setArenaName(e.target.value)
                                             }
                                             isRequired={true}
-                                        ></InputField>
-                                        <InputField
+                                        ></NSPLInputField>
+                                        <NSPLInputField
                                             type={"text"}
                                             name={"Arena Address"}
                                             value={arenaAddress}
@@ -139,9 +139,9 @@ function AdminDashboardArenaList() {
                                                 setArenaAddress(e.target.value)
                                             }
                                             isRequired={true}
-                                        ></InputField>
+                                        ></NSPLInputField>
                                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 ">
-                                            <InputField
+                                            <NSPLInputField
                                                 type={"text"}
                                                 name={"Arena City"}
                                                 value={arenaCity}
@@ -150,8 +150,8 @@ function AdminDashboardArenaList() {
                                                     setArenaCity(e.target.value)
                                                 }
                                                 isRequired={true}
-                                            ></InputField>
-                                            <InputField
+                                            ></NSPLInputField>
+                                            <NSPLInputField
                                                 type={"text"}
                                                 name={"Arena State"}
                                                 value={arenaState}
@@ -162,8 +162,8 @@ function AdminDashboardArenaList() {
                                                     )
                                                 }
                                                 isRequired={true}
-                                            ></InputField>
-                                            <InputField
+                                            ></NSPLInputField>
+                                            <NSPLInputField
                                                 type={"text"}
                                                 name={"Arena Zipcode"}
                                                 value={arenaZipcode}
@@ -174,7 +174,7 @@ function AdminDashboardArenaList() {
                                                     )
                                                 }
                                                 isRequired={true}
-                                            ></InputField>
+                                            ></NSPLInputField>
                                         </div>
                                     </div>
                                     <NPLButton

@@ -10,7 +10,7 @@ import Avatar from "../../components/Avatar";
 import ModalWithBackdrop from "../../components/ModalWithBackdrop";
 import NPLButton from "../../components/NPLButton";
 import { useLoader } from "../../components/LoaderProvider";
-import InputField from "../../components/InputField";
+import NSPLInputField from "../../components/NSPLInputField";
 import { AdminRoutes } from "../../util/routes";
 import { toast } from "react-toastify";
 
@@ -239,7 +239,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                 {groupError !== "" ? (
                                     <p className="text-red-700">{groupError}</p>
                                 ) : null}
-                                <InputField
+                                <NSPLInputField
                                     type={"text"}
                                     name={"Group Name"}
                                     value={groupName}
@@ -249,7 +249,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
                                         setGroupName(e.target.value);
                                     }}
                                     isRequired={true}
-                                ></InputField>
+                                ></NSPLInputField>
                             </div>
                             <NPLButton
                                 text={"Create"}

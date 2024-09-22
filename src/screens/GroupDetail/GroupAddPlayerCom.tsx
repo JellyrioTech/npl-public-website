@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NPLButton from "../../components/NPLButton";
-import InputField from "../../components/InputField";
+import NSPLInputField from "../../components/NSPLInputField";
 
 export type GroupAddPlayerinfoUXData = {
     playerId: number | null;
@@ -96,7 +96,7 @@ const GroupAddPlayerComp: React.FC<{
                                         </select>
                                     </div>
                                     <div className="space-y-4">
-                                        <InputField
+                                        <NSPLInputField
                                             type={"text"}
                                             name={"Intital Point"}
                                             value={`${field.initialPoints}`}

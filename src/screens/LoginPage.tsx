@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NPLButton from "../components/NPLButton";
-import InputField from "../components/InputField";
+import NSPLInputField from "../components/NSPLInputField";
 import { useNavigate } from "react-router-dom";
 import { AdminRoutes, routes } from "../util/routes";
 import { SSORoutesVM } from "../commonVM/ssoRoutesVM";
@@ -47,22 +47,22 @@ function LoginPage() {
                         className="space-y-4 lg:space-y-5"
                     >
                         <div className="space-y-4">
-                            <InputField
+                            <NSPLInputField
                                 type={"email"}
                                 name={"Enter Your Email"}
                                 value={email}
                                 placeholder="eg: henry@example.com"
                                 onChange={(e) => setEmail(e.target.value)}
                                 isRequired={true}
-                            ></InputField>
-                            <InputField
+                            ></NSPLInputField>
+                            <NSPLInputField
                                 type={"password"}
                                 name={"password"}
                                 value={password}
                                 placeholder="******"
                                 onChange={(e) => setPassword(e.target.value)}
                                 isRequired={true}
-                            ></InputField>
+                            ></NSPLInputField>
                         </div>
 
                         <NPLButton text="Sign In" type="submit"></NPLButton>

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { GameDetailVM } from "./GameDetailVM";
 import { GameServiceResponse } from "npl-service-module/dist/services/Response/GameService.response";
 import NPLButton from "../../components/NPLButton";
-import InputField from "../../components/InputField";
+import NSPLInputField from "../../components/NSPLInputField";
 
 const GameDetailPage: React.FC = () => {
     const { gameId } = useParams<{ gameId: string }>();
@@ -191,7 +191,7 @@ const GameDetailPage: React.FC = () => {
                 <CardHeader type="h2" header="Match Link" />
                 <div>
                     <div className="inline-block">
-                        <InputField
+                        <NSPLInputField
                             type={"text"}
                             name={"Set a new Match Link"}
                             value={matchLink}

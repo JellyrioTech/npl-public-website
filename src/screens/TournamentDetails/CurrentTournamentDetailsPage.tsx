@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { TournamentRoutesVM } from "../commonVM/TournamentVM";
+import { TournamentRoutesVM } from "../../commonVM/TournamentVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
-import { useLoader } from "../components/LoaderProvider";
-import { CommonUtil } from "../util/CommonUtil";
-import NPLButtonSquare from "../components/NPLButtonSquare";
-import { routes } from "../util/routes";
-import Titan_badge from "../../public/Titan_badge.png";
-import Legends_badge from "../../public/Legends_badge.png";
-import Hero_badge from "../../public/Hero_badge_.png";
-import tournamentRegistrationSection3Image from "../../public/tournamentRegistrationSection3Image.png";
-import ruleBook from "../../public/rule_book.png";
+import { useLoader } from "../../components/LoaderProvider";
+import { CommonUtil } from "../../util/CommonUtil";
+import NPLButtonSquare from "../../components/NPLButtonSquare";
+import { routes } from "../../util/routes";
+import Titan_badge from "../../../public/Titan_badge.png";
+import Legends_badge from "../../../public/Legends_badge.png";
+import Hero_badge from "../../../public/Hero_badge_.png";
+import tournamentRegistrationSection3Image from "../../../public/tournamentRegistrationSection3Image.png";
+import ruleBook from "../../../public/rule_book.png";
 
-function TournamentInfoPage() {
+function CurrentTournamentDetailsPage() {
     const navigator = useNavigate();
     const [tournament, setTournament] = useState<
         Partial<TournamentServiceResponse.GetPublicTournamentInfoStruct>
@@ -305,4 +305,4 @@ function formatRuleByIndex(
     );
 }
 
-export default TournamentInfoPage;
+export default CurrentTournamentDetailsPage;

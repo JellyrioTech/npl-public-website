@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./screens/Home/HomePage";
-import TournamentInfoPage from "./screens/TournamentInfoPage";
+import CurrentTournamentDetailsPage from "./screens/TournamentDetails/CurrentTournamentDetailsPage";
 import { AdminRoutes, routes, UserRoutes } from "./util/routes";
 import RegisterPage from "./screens/Registration/RegisterPage";
 import ContentLayout from "./screens/Layouts/ContentLayout";
@@ -28,6 +28,7 @@ import GameDetailPage from "./screens/GameDetail/GameDetailPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePageLayout from "./screens/Layouts/HomePageLayout";
+import RegistrationLayout from "./screens/Layouts/RegistrationLayout";
 
 function App() {
     return (
@@ -53,9 +54,15 @@ function App() {
                         path={routes.CurrentTournamentRegistration}
                         element={<ContentLayout />}
                     >
-                        <Route index element={<TournamentInfoPage />} />
+                        <Route
+                            index
+                            element={<CurrentTournamentDetailsPage />}
+                        />
                     </Route>
-                    <Route path={routes.Register} element={<ContentLayout />}>
+                    <Route
+                        path={routes.Register}
+                        element={<RegistrationLayout />}
+                    >
                         <Route index element={<RegisterPage />} />
                     </Route>
                     <Route path={routes.Login} element={<ContentLayout />}>
