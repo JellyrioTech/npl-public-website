@@ -14,7 +14,7 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [screen, setScreen] = useState<RegisterPageVM.Screens>("SignIn");
+    const [screen, setScreen] = useState<RegisterPageVM.Screens>("EmailCheck");
     const [isUserRecieveEmailUpdates, setIsUserRecieveEmailUpdates] =
         useState(true);
     const [error, setError] = useState<string | null>();
@@ -248,10 +248,7 @@ function RegisterPage() {
                         onClick={() => navigate(routes.Home)}
                     />
                     <h1 className="text-lgTitle font-medium">
-                        {(screen === "EmailCheck" && "Let's Get Started!") ||
-                            (screen === "Register" &&
-                                "Let's Create An Account") ||
-                            (screen === "SignIn" && "Welcome Back!")}
+                        {getFormTitle()}
                     </h1>
                 </div>
 
