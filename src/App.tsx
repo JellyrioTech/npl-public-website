@@ -16,7 +16,7 @@ import AdminArenaDetailsPage from "./screens/ArenaDetails/AdminArenaDetailsPage"
 import AdminHomePage from "./screens/AdminHomePage";
 import UserListAdminPage from "./screens/UserListAdmin/UserListAdminPage";
 import ErrorPage from "./screens/ErrorPage";
-import TournamentRulesPage from "./screens/User/TournamentRules/TournamentRulesPage";
+import TournamentRegistrationConfirmationPage from "./screens/User/TournamentRegistration/TournamentRegistrationConfirmationPage";
 import UserMainRouteGuard from "./guards/UserMainRouteGuard";
 import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPaymentPage";
 import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/TournamentPaymentSuccessPage";
@@ -112,10 +112,13 @@ function App() {
                         <Route index element={<UserListAdminPage />} />
                     </Route>
                     <Route
-                        path={`${UserRoutes.TournamentRules}/:tournamentId`}
+                        path={`${UserRoutes.TournamentConfirmRegistration}/:tournamentId`}
                         element={<UserMainRouteGuard />}
                     >
-                        <Route index element={<TournamentRulesPage />} />
+                        <Route
+                            index
+                            element={<TournamentRegistrationConfirmationPage />}
+                        />
                     </Route>
                     <Route
                         path={`${UserRoutes.TournamentPayment}/:tournamentId`}

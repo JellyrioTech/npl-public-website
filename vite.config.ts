@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://chairman-prize-mario-assured.trycloudflare.com",
+                              target: "https://informal-objects-task-ps.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://chairman-prize-mario-assured.trycloudflare.com",
+                              target: "https://informal-objects-task-ps.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

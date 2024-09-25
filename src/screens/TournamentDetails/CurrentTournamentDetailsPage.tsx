@@ -20,7 +20,7 @@ function CurrentTournamentDetailsPage() {
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
-        const tournamentId = 3;
+        const tournamentId = 6;
         TournamentRoutesVM.getPublicTournamentInfo(tournamentId, {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
@@ -80,6 +80,34 @@ function CurrentTournamentDetailsPage() {
         );
     }
 
+    function getRankCards(section: {
+        type: string;
+        name: string;
+        amount: number;
+        lists: string[];
+        image: string;
+    }) {
+        return (
+            <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
+                <p className="font-special font-bold text-[48px] uppercase ">
+                    {section.type}
+                </p>
+                <img
+                    src={section.image}
+                    className="w-[100px] h-[100px] mt-4 mb-6"
+                />
+                <p className="text-regTitle font-light">
+                    Position 1{" "}
+                    <span className="font-bold">${section.amount}</span>
+                </p>
+                <p className="text-regTitle font-light">
+                    Position 2{" "}
+                    <span className="font-bold">$${section.amount}</span>
+                </p>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="w-full max-w-[1200px] mx-auto">
@@ -127,7 +155,9 @@ function CurrentTournamentDetailsPage() {
                         <div className="mt-16 flex flex-col lg:flex-row gap-6 lg:gap-16">
                             <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
                                 <p className="font-special font-bold text-[48px] uppercase ">
-                                    Titans
+                                    {tournament.prizes?.sections !==
+                                        undefined &&
+                                        tournament.prizes.sections[0].type}
                                 </p>
                                 <img
                                     src={Titan_badge}
@@ -176,6 +206,11 @@ function CurrentTournamentDetailsPage() {
                                     <span className="font-bold">$40</span>
                                 </p>
                             </div>
+                        </div>
+                        <div>
+                            {tournament.prizes?.sections?.map((section) =>
+                                getRankCards(section)
+                            )}
                         </div>
                     </div>
                 </div>

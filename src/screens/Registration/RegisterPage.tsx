@@ -8,6 +8,8 @@ import { useLoader } from "../../components/LoaderProvider";
 import logo from "../../../public/App_logo_white.png";
 import arrowLeft from "../../../public/arrowLeft.png";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
+import NSPLCheckboxIcon from "../../components/Icons/NSPLCheckboxIcon";
+import NSPLCheckboxField from "../../components/NSPLCheckboxField";
 
 function RegisterPage() {
     const [name, setName] = useState("");
@@ -43,7 +45,7 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    window.location.pathname = `${UserRoutes.TournamentRules}/1`;
+                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/1`;
                 },
             }
         );
@@ -59,9 +61,9 @@ function RegisterPage() {
                 setError(error);
             },
             success: (obj) => {
-                document.cookie = "auth_check=true";
-                document.cookie = `jwt_token=${obj.token}`;
-                window.location.pathname = `${UserRoutes.TournamentRules}/1`;
+                // document.cookie = "auth_check=true";
+                // document.cookie = `jwt_token=${obj.token}`;
+                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/1`;
             },
         });
     };
@@ -178,18 +180,16 @@ function RegisterPage() {
                 </div>
 
                 <div className="flex flex-col my-4 lg:mt-6 gap-6 lg:gap-8">
-                    <div className="flex gap-3">
-                        <input
-                            type="checkbox"
-                            onChange={handleRecieveEmailUpdates}
-                            checked={isUserRecieveEmailUpdates}
-                            className="w-6 h-6 accent-secondary-300"
-                        />
+                    <NSPLCheckboxField
+                        onChange={handleRecieveEmailUpdates}
+                        isChecked={isUserRecieveEmailUpdates}
+                    >
                         <label className="text-smBody text-neutral-700">
                             I would like to receive email updates about new
                             tournaments and promotions
                         </label>
-                    </div>
+                    </NSPLCheckboxField>
+
                     <div className="text-smBody text-neutral-700">
                         <p>
                             By clicking on{" "}

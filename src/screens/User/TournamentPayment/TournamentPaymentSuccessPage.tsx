@@ -72,7 +72,7 @@ const TournamentPaymentSuccessPage: React.FC = () => {
                     <NPLButton
                         text="Checkout Rules and Guidelines"
                         onClick={() =>
-                            (window.location.pathname = `${UserRoutes.TournamentRules}/${tournamentId}`)
+                            (window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/${tournamentId}`)
                         }
                     />
                 </div>

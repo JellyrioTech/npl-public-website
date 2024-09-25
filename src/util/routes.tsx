@@ -14,7 +14,7 @@ export const routes = {
 };
 
 export const UserRoutes = {
-    TournamentRules: `${routes.User}/tournamentRules`,
+    TournamentConfirmRegistration: `${routes.User}/confirmRegistration`,
     TournamentPayment: `${routes.User}/tournamentPayment`,
     TournamentPaymentSuccess: `${routes.User}/paymentSuccesss`,
     TournamentPaymentError: `${routes.User}/paymentError`,
