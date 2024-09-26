@@ -78,7 +78,6 @@ const PaymentForm: React.FC<{
                     },
                 });
             }
-            errorCb(`Something went wrong with processing the payment`);
             return;
         }
     };

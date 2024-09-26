@@ -176,8 +176,7 @@ const TournamentPaymentPage: React.FC = () => {
                         <div className="mt-5">
                             {error && (
                                 <p className="text-red-600 mb-5 text-sm">
-                                    Something went wrong. Please try again
-                                    later.
+                                    {error}
                                 </p>
                             )}
                             <Elements stripe={stripePromise}>
