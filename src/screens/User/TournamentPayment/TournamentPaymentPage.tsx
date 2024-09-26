@@ -184,9 +184,12 @@ const TournamentPaymentPage: React.FC = () => {
                                     intent={payment.intentSecret || ""}
                                     customerId={payment.customerId || ""}
                                     errorCb={setError}
-                                    onSuccess={() => {
-                                        window.location.pathname = `${UserRoutes.TournamentPaymentSuccess}/${tournamentId}`;
-                                    }}
+                                    // onSuccess={() => {
+                                    //     window.location.pathname = `${UserRoutes.TournamentPaymentSuccess}/${tournamentId}`;
+                                    // }}
+                                    onSuccess={() =>
+                                        (window.location.pathname = `${UserRoutes.TournamentPaymentError}`)
+                                    }
                                 />
                             </Elements>
                         </div>
