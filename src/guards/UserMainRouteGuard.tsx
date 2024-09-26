@@ -9,9 +9,9 @@ const UserMainRouteGuard: React.FC = () => {
     const authCheck = Cookies.get("auth_check");
     const { loading } = useLoader();
     console.log(authCheck);
-    // if (authCheck === undefined || authCheck === "false") {
-    //     return <Navigate to={"/register"} />;
-    // }
+    if (authCheck === undefined || authCheck === "false") {
+        return <Navigate to={"/register"} />;
+    }
 
     return (
         <div className="bg-neutral-100 flex flex-col relative min-h-screen">

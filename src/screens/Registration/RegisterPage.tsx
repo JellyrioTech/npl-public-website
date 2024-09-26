@@ -8,7 +8,6 @@ import { useLoader } from "../../components/LoaderProvider";
 import logo from "../../../public/App_logo_white.png";
 import arrowLeft from "../../../public/arrowLeft.png";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
-import NSPLCheckboxIcon from "../../components/Icons/NSPLCheckboxIcon";
 import NSPLCheckboxField from "../../components/NSPLCheckboxField";
 
 function RegisterPage() {
@@ -45,7 +44,7 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/1`;
+                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/6`;
                 },
             }
         );
@@ -61,9 +60,9 @@ function RegisterPage() {
                 setError(error);
             },
             success: (obj) => {
-                // document.cookie = "auth_check=true";
-                // document.cookie = `jwt_token=${obj.token}`;
-                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/1`;
+                document.cookie = "auth_check=true";
+                document.cookie = `jwt_token=${obj.token}`;
+                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/6`;
             },
         });
     };

@@ -1,9 +1,9 @@
 import React from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import NPLButton from "../../../components/NPLButton";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { UserRoutes } from "../../../util/routes";
 import { useLoader } from "../../../components/LoaderProvider";
+import NSPLButtonSquare from "../../../components/NPLButtonSquare";
 
 const PaymentForm: React.FC<{
     intent: string;
@@ -34,13 +34,6 @@ const PaymentForm: React.FC<{
                 color: "#4CAF50", // Green for completed input
             },
         },
-    };
-
-    const cardElementWrapperStyle = {
-        padding: "10px",
-        border: "1px solid #ddd",
-        borderRadius: "4px",
-        backgroundColor: "#f8f9fa",
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -91,15 +84,14 @@ const PaymentForm: React.FC<{
     };
 
     return (
-        <form onSubmit={handleSubmit} className="pt-3">
-            <div style={cardElementWrapperStyle}>
+        <form onSubmit={handleSubmit} className="pt-3 flex flex-col gap-7">
+            <div className="bg-neutral-100 p-3 rounded-lg border border-neutral-500">
                 <CardElement options={cardStyle} />
             </div>
 
-            <NPLButton
-                text="Continue and Complete Payment"
+            <NSPLButtonSquare
+                text={"Continue and Complete Payment"}
                 type="submit"
-                classes="mt-3"
             />
         </form>
     );
