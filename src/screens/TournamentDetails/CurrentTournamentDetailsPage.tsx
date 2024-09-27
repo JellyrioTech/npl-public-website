@@ -6,11 +6,9 @@ import { useLoader } from "../../components/LoaderProvider";
 import { CommonUtil } from "../../util/CommonUtil";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import { routes } from "../../util/routes";
-import Titan_badge from "../../../public/Titan_badge.png";
-import Legends_badge from "../../../public/Legends_badge.png";
-import Hero_badge from "../../../public/Hero_badge_.png";
 import tournamentRegistrationSection3Image from "../../../public/tournamentRegistrationSection3Image.png";
 import ruleBook from "../../../public/rule_book.png";
+import icon from "../../assets/listIcon.png";
 
 function CurrentTournamentDetailsPage() {
     const navigator = useNavigate();
@@ -61,18 +59,19 @@ function CurrentTournamentDetailsPage() {
                             <p className="text-regBody lg:text-lgBody">
                                 {body}
                             </p>
-                            <ul className="nspl-list list-inside mt-2 lg:mt-3">
-                                {lists.map((item, listIndex) => (
-                                    <li
-                                        key={listIndex}
-                                        className={`${
-                                            listIndex === 0 && "mt-1 lg:mt-4"
-                                        } text-regBody lg:text-lgBody`}
-                                    >
-                                        {item}
-                                    </li>
+                            <div className="flex flex-col gap-3 mt-2 lg:mt-3">
+                                {lists.map((item) => (
+                                    <div className="flex gap-3 items-center">
+                                        <img
+                                            src={icon}
+                                            className="w-3 h-3 lg:w-4 lg:h-4 lg:mt-1"
+                                        />
+                                        <div className="text-regBody lg:text-lgBody">
+                                            {item}
+                                        </div>
+                                    </div>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,25 +92,44 @@ function CurrentTournamentDetailsPage() {
             }) || []
         );
 
-        return filteredSection.map((section) => (
-            <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                <p className="font-special font-bold text-[48px] uppercase ">
-                    {section.type}
-                </p>
-                <img
-                    src={section.image}
-                    className="w-[100px] h-[100px] mt-4 mb-6"
-                />
-                <p className="text-regTitle font-light">
-                    Position 1{" "}
-                    <span className="font-bold">${section.amount}</span>
-                </p>
-                <p className="text-regTitle font-light">
-                    Position 2{" "}
-                    <span className="font-bold">$${section.amount}</span>
-                </p>
+        return (
+            <div className="mt-16 flex flex-col lg:flex-row gap-6 lg:gap-16">
+                {filteredSection.map((section) => (
+                    <div
+                        className={`${getPrizeBg(
+                            section.type || ""
+                        )} w-[318px] rounded-[15px] py-14 px-16 text-neutral-100 flex flex-col justify-center items-center`}
+                    >
+                        <p className="font-special font-bold text-[48px] uppercase">
+                            {section.type}
+                        </p>
+                        <img
+                            src={CommonUtil.getImage(section.image || "")}
+                            className="w-[100px] h-[100px] mt-4 mb-6"
+                        />
+                        <p className="text-regTitle font-light">
+                            Position 1{" "}
+                            <span className="font-bold">${section.amount}</span>
+                        </p>
+                        <p className="text-regTitle font-light">
+                            Position 2{" "}
+                            <span className="font-bold">${section.amount}</span>
+                        </p>
+                    </div>
+                ))}
             </div>
-        ));
+        );
+    }
+
+    function getPrizeBg(type: string) {
+        switch (type) {
+            case "TITAN":
+                return "bg-gradient-titan";
+            case "HERO":
+                return "bg-gradient-hero";
+            case "LEGEND":
+                return "bg-gradient-legends";
+        }
     }
 
     function filterRankPrizeByType(
@@ -189,62 +207,7 @@ function CurrentTournamentDetailsPage() {
                         <p className="text-xlTitle lg:text-3xlTitle font-bold">
                             More Challenge, Epic Prizes
                         </p>
-                        {/* <div className="mt-16 flex flex-col lg:flex-row gap-6 lg:gap-16">
-                            <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                                <p className="font-special font-bold text-[48px] uppercase ">
-                                    {tournament.prizes?.sections !==
-                                        undefined &&
-                                        tournament.prizes.sections[0].type}
-                                </p>
-                                <img
-                                    src={Titan_badge}
-                                    className="w-[100px] h-[100px] mt-4 mb-6"
-                                />
-                                <p className="text-regTitle font-light">
-                                    Position 1{" "}
-                                    <span className="font-bold">$100</span>
-                                </p>
-                                <p className="text-regTitle font-light">
-                                    Position 2{" "}
-                                    <span className="font-bold">$100</span>
-                                </p>
-                            </div>
-                            <div className="w-[318px] rounded-[15px] bg-gradient-legends py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                                <p className="font-special font-bold text-[48px] uppercase ">
-                                    Legends
-                                </p>
-                                <img
-                                    src={Legends_badge}
-                                    className="w-[100px] h-[100px] mt-4 mb-6"
-                                />
-                                <p className="text-regTitle font-light">
-                                    Position 1{" "}
-                                    <span className="font-bold">$60</span>
-                                </p>
-                                <p className="text-regTitle font-light">
-                                    Position 2{" "}
-                                    <span className="font-bold">$60</span>
-                                </p>
-                            </div>
-                            <div className="w-[318px] rounded-[15px] bg-gradient-hero py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
-                                <p className="font-special font-bold text-[48px] uppercase ">
-                                    Hero
-                                </p>
-                                <img
-                                    src={Hero_badge}
-                                    className="w-[100px] h-[100px] mt-4 mb-6"
-                                />
-                                <p className="text-regTitle font-light">
-                                    Position 1{" "}
-                                    <span className="font-bold">$40</span>
-                                </p>
-                                <p className="text-regTitle font-light">
-                                    Position 2{" "}
-                                    <span className="font-bold">$40</span>
-                                </p>
-                            </div>
-                        </div> */}
-                        <div>{getRankCards()}</div>
+                        {getRankCards()}
                     </div>
                 </div>
             </div>
@@ -308,10 +271,12 @@ function CurrentTournamentDetailsPage() {
                             Are your ready to see your true potential and <br />
                             write your own legacy?
                         </p>
-                        <NSPLButtonSquare
-                            onClick={() => navigator(routes.Register)}
-                            text={"REGISTER NOW"}
-                        ></NSPLButtonSquare>
+                        <div>
+                            <NSPLButtonSquare
+                                onClick={() => navigator(routes.Register)}
+                                text={"REGISTER NOW"}
+                            ></NSPLButtonSquare>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -50,4 +50,8 @@ export namespace CommonUtil {
         if (status === undefined) return "bg-neutral-500";
         return StatusColor[status];
     }
+
+    export function getImage(imageName: string) {
+        return `https://f004.backblazeb2.com/file/npl-docs-public/${imageName}`;
+    }
 }
