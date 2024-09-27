@@ -10,7 +10,7 @@ type CheckboxProps = {
 
 const NSPLCheckboxField: React.FC<CheckboxProps> = (props: CheckboxProps) => {
     return (
-        <div className="flex gap-3">
+        <div className="flex gap-2 lg:gap-3 items-start">
             <NSPLCheckboxIcon
                 onChange={props.onChange}
                 isChecked={props.isChecked}

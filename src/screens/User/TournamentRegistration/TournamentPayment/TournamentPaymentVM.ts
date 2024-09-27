@@ -1,5 +1,5 @@
 import { AsyncResponseCallback } from "npl-service-module";
-import { NetworkModule } from "../../../NetworkEngine";
+import { NetworkModule } from "../../../../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { PaymentResponse } from "npl-service-module/dist/services/Response/PaymentService.response";
 

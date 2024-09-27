@@ -16,11 +16,11 @@ import AdminArenaDetailsPage from "./screens/ArenaDetails/AdminArenaDetailsPage"
 import AdminHomePage from "./screens/AdminHomePage";
 import UserListAdminPage from "./screens/UserListAdmin/UserListAdminPage";
 import ErrorPage from "./screens/ErrorPage";
-import TournamentRegistrationConfirmationPage from "./screens/User/TournamentRegistration/TournamentRegistrationConfirmationPage";
+import TournamentRegistrationConfirmationPage from "./screens/User/TournamentRegistration/TournamentConfirmation/TournamentRegistrationConfirmationPage";
 import UserMainRouteGuard from "./guards/UserMainRouteGuard";
-import TournamentPaymentPage from "./screens/User/TournamentPayment/TournamentPaymentPage";
-import TournamentPaymentSuccessPage from "./screens/User/TournamentPayment/TournamentPaymentSuccessPage";
-import TournamentPaymentErrorPage from "./screens/User/TournamentPayment/TournamentPaymentError";
+import TournamentPaymentPage from "./screens/User/TournamentRegistration/TournamentPayment/TournamentPaymentPage";
+import TournamentPaymentSuccessPage from "./screens/User/TournamentRegistration/TournamentPayment/TournamentPaymentSuccessPage";
+import TournamentPaymentErrorPage from "./screens/User/TournamentRegistration/TournamentPayment/TournamentPaymentError";
 import LoaderProvider from "./components/LoaderProvider";
 import TournamentDetailsPage from "./screens/TournamentDetails/TournamentDetailsPage";
 import GroupDetailPage from "./screens/GroupDetail/GroupDetailPage";

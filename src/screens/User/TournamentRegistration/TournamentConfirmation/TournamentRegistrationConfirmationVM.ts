@@ -3,7 +3,7 @@ import {
     TournamentRegisterTypes,
     TournamentTypes,
 } from "npl-service-module";
-import { NetworkModule } from "../../../NetworkEngine";
+import { NetworkModule } from "../../../../NetworkEngine";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 

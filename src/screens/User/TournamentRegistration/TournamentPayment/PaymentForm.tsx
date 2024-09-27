@@ -1,9 +1,9 @@
 import React from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
-import { UserRoutes } from "../../../util/routes";
-import { useLoader } from "../../../components/LoaderProvider";
-import NSPLButtonSquare from "../../../components/NPLButtonSquare";
+import { UserRoutes } from "../../../../util/routes";
+import { useLoader } from "../../../../components/LoaderProvider";
+import NSPLButtonSquare from "../../../../components/NPLButtonSquare";
 
 const PaymentForm: React.FC<{
     intent: string;

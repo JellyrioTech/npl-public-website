@@ -14,7 +14,7 @@ const NSPLCheckboxIcon: React.FC<CheckboxFieldProps> = (
             type="checkbox"
             onChange={props.onChange}
             checked={props.isChecked}
-            className="w-6 h-6 accent-secondary-300"
+            className="mt-1 w-4 h-4 lg:w-6 lg:h-6 accent-secondary-300"
             required={props.isRequired}
         />
     );

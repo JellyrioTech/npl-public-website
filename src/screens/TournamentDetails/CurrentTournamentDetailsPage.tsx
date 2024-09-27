@@ -80,14 +80,20 @@ function CurrentTournamentDetailsPage() {
         );
     }
 
-    function getRankCards(section: {
-        type: string;
-        name: string;
-        amount: number;
-        lists: string[];
-        image: string;
-    }) {
-        return (
+    function getRankCards() {
+        const filteredSection = filterRankPrizeByType(
+            tournament.prizes?.sections?.map((section) => {
+                return {
+                    type: section.type,
+                    name: section.name,
+                    amount: section.amount,
+                    lists: section.lists,
+                    image: section.image,
+                };
+            }) || []
+        );
+
+        return filteredSection.map((section) => (
             <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
                 <p className="font-special font-bold text-[48px] uppercase ">
                     {section.type}
@@ -105,7 +111,35 @@ function CurrentTournamentDetailsPage() {
                     <span className="font-bold">$${section.amount}</span>
                 </p>
             </div>
-        );
+        ));
+    }
+
+    function filterRankPrizeByType(
+        sections: Partial<{
+            type: string;
+            name: string;
+            amount: number;
+            lists: string[];
+            image: string;
+        }>[]
+    ) {
+        let titan = 0;
+        let legend = 0;
+        let hero = 0;
+        return sections.filter((section) => {
+            if (section.type === "TITAN" && titan === 0) {
+                titan += 1;
+                return true;
+            }
+            if (section.type === "LEGEND" && legend === 0) {
+                legend += 1;
+                return true;
+            }
+            if (section.type === "HERO" && hero === 0) {
+                hero += 1;
+                return true;
+            }
+        });
     }
 
     return (
@@ -127,16 +161,19 @@ function CurrentTournamentDetailsPage() {
                                 )}
                                 <span className="text-regTitle lg:text-xlTitle font-bold">
                                     {" "}
-                                    at 12pm
+                                    at{" "}
+                                    {CommonUtil.DateHelper.formatTimeToHourMin(
+                                        tournament.startDate?.toString() as string
+                                    )}
                                 </span>
                             </p>
-                            <p className="text-smBody lg:text-regTitle font-medium text-neutral-100 pt-3 lg:pt-5">
+                            <p className="text-regBody lg:text-regTitle font-medium text-neutral-100 pt-3 lg:pt-5">
                                 Location:{" "}
                                 <span className="uppercase">
                                     ORLANDO RACKET SPORTS
                                 </span>
                             </p>
-                            <div className="pt-12 lg:pt-20">
+                            <div className="pt-10 lg:pt-20">
                                 <NSPLButtonSquare
                                     onClick={() => navigator(routes.Register)}
                                     text={"Register Now"}
@@ -152,7 +189,7 @@ function CurrentTournamentDetailsPage() {
                         <p className="text-xlTitle lg:text-3xlTitle font-bold">
                             More Challenge, Epic Prizes
                         </p>
-                        <div className="mt-16 flex flex-col lg:flex-row gap-6 lg:gap-16">
+                        {/* <div className="mt-16 flex flex-col lg:flex-row gap-6 lg:gap-16">
                             <div className="w-[318px] rounded-[15px] bg-gradient-titan py-14 px-16 text-neutral-100 flex flex-col justify-center items-center">
                                 <p className="font-special font-bold text-[48px] uppercase ">
                                     {tournament.prizes?.sections !==
@@ -206,12 +243,8 @@ function CurrentTournamentDetailsPage() {
                                     <span className="font-bold">$40</span>
                                 </p>
                             </div>
-                        </div>
-                        <div>
-                            {tournament.prizes?.sections?.map((section) =>
-                                getRankCards(section)
-                            )}
-                        </div>
+                        </div> */}
+                        <div>{getRankCards()}</div>
                     </div>
                 </div>
             </div>
