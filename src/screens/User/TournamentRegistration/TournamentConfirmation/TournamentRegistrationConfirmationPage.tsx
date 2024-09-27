@@ -11,14 +11,14 @@ import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseCo
 
 const TournamentRegistrationConfirmationPage: React.FC = () => {
     const { tournamentId } = useParams<{ tournamentId: string }>();
-    const [userStatus, setUserStatus] = useState<
+    const [, setUserStatus] = useState<
         TournamentRegisterTypes.status | undefined
     >(undefined);
-    const [rules, setUserRules] = useState<
+    const [, setUserRules] = useState<
         Partial<TournamentServiceResponse.TournamentRules_Struct>
     >({});
     const [toc, setToc] = useState("");
-    const [tournamentStatus, setTournamentStatus] = useState<
+    const [, setTournamentStatus] = useState<
         TournamentTypes.Status | undefined
     >();
     const [hasAgreedToTermsAndCondition, setHasAgreedToTermsAndCondition] =

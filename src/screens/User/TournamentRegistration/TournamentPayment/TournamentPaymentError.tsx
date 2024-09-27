@@ -1,4 +1,3 @@
-import BaseContent from "../../../../components/BaseContent";
 import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseContainer";
 
 const TournamentPaymentErrorPage: React.FC = () => {

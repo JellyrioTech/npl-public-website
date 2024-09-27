@@ -9,7 +9,6 @@ import logo from "../../../public/App_logo_white.png";
 import arrowLeft from "../../../public/arrowLeft.png";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import NSPLCheckboxField from "../../components/NSPLCheckboxField";
-import { useParams } from "react-router-dom";
 
 function RegisterPage() {
     const [name, setName] = useState("");

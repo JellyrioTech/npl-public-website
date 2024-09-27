@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import BaseContent from "../../../../components/BaseContent";
 import { useEffect, useState } from "react";
 import { TournamentPaymentVM } from "./TournamentPaymentVM";
 import { PaymentResponse } from "npl-service-module/dist/services/Response/PaymentService.response";

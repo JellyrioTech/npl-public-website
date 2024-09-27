@@ -1,12 +1,9 @@
 import appstoreDownload from "../../../../assets/App Store download.png";
 import amazonAppStore from "../../../../assets/amazon_appstore.png";
-import { useParams } from "react-router-dom";
 import checkmark from "../../../../../public/checkmarkpng.png";
 import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseContainer";
 
 const TournamentPaymentSuccessPage: React.FC = () => {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
-
     return (
         <TournamentRegistrationBaseContainer>
             <div className="flex flex-col justify-center items-center pb-6 lg:pb-10">
