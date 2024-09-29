@@ -7,7 +7,6 @@ import { CommonUtil } from "../../util/CommonUtil";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import { routes } from "../../util/routes";
 import tournamentRegistrationSection3Image from "../../../public/tournamentRegistrationSection3Image.png";
-import ruleBook from "../../../public/rule_book.png";
 import icon from "../../assets/listIcon.png";
 
 function CurrentTournamentDetailsPage() {
@@ -18,7 +17,7 @@ function CurrentTournamentDetailsPage() {
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
-        const tournamentId = 6;
+        const tournamentId = 3;
         TournamentRoutesVM.getPublicTournamentInfo(tournamentId, {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();

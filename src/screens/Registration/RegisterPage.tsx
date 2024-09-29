@@ -22,6 +22,7 @@ function RegisterPage() {
 
     const navigate = useNavigate();
     const { showLoader, hideLoader } = useLoader();
+    const tournamentId = 3;
 
     const handleRegistrationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -44,7 +45,7 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/6`;
+                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/${tournamentId}`;
                 },
             }
         );
@@ -62,7 +63,7 @@ function RegisterPage() {
             success: (obj) => {
                 document.cookie = "auth_check=true";
                 document.cookie = `jwt_token=${obj.token}`;
-                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/6`;
+                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/${tournamentId}`;
             },
         });
     };
