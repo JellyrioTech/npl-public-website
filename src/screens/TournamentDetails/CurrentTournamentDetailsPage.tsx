@@ -39,12 +39,13 @@ function CurrentTournamentDetailsPage() {
         return (
             <div className="py-8 lg:py-20 w-full">
                 <div className="flex flex-col lg:flex-row justify-between items-center">
-                    <img
-                        src={ruleBook}
+                    <h1
                         className={`${
                             index % 2 === 0 ? "lg:order-1" : "lg:order-2"
-                        } w-[150px] lg:w-[218px] h-auto`}
-                    />
+                        } w-[150px] lg:w-[218px] h-auto font-bold text-[80px]`}
+                    >
+                        {index + 1}
+                    </h1>
                     <div
                         className={`flex ${
                             index % 2 === 0

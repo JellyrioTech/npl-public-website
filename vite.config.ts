@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://spain-engineer-shipments-clone.trycloudflare.com",
+                              target: "https://reseller-decorative-weed-distant.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://spain-engineer-shipments-clone.trycloudflare.com",
+                              target: "https://reseller-decorative-weed-distant.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
