@@ -108,13 +108,20 @@ function CurrentTournamentDetailsPage() {
                             className="w-[100px] h-[100px] mt-4 mb-6"
                         />
                         <p className="text-regTitle font-light">
-                            Position 1{" "}
+                            Player 1{" "}
                             <span className="font-bold">${section.amount}</span>
                         </p>
                         <p className="text-regTitle font-light">
-                            Position 2{" "}
+                            Player 2{" "}
                             <span className="font-bold">${section.amount}</span>
                         </p>
+                        <div className="border-t-2 border-neutral-50 mt-8 flex flex-col gap-1 pt-3">
+                            {section.lists?.map((list) => (
+                                <p className="text-smBody">
+                                    {"->"} {list}
+                                </p>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
