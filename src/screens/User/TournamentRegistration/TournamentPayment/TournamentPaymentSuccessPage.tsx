@@ -1,5 +1,5 @@
-import appstoreDownload from "../../../../assets/App Store download.png";
-import amazonAppStore from "../../../../assets/amazon_appstore.png";
+import facebookIcon from "../../../../assets/facebook_icon.png";
+import youtubeIcon from "../../../../assets/youtube_icon.png";
 import checkmark from "../../../../../public/checkmarkpng.png";
 import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseContainer";
 
@@ -26,33 +26,33 @@ const TournamentPaymentSuccessPage: React.FC = () => {
                     What’s Next?
                 </h2>
                 <p className="text-regBody lg:text-lgBody font-medium mt-1.5 lg:mt-3">
-                    Download our app
+                    Follow us on Facebook and Youtube by clicking below
                 </p>
                 <div className="flex justify-between gap-5 mt-3">
                     <a
-                        href="https://apps.apple.com/us/app/nesterin-pickleball-league/id6590604559"
+                        href="https://www.facebook.com/profile.php?id=61564428110467"
                         target="_blank"
                     >
-                        <img src={appstoreDownload} className="w-[140px]" />
+                        <img src={facebookIcon} className="w-[80px]" />
                     </a>
                     <a
-                        href="https://www.amazon.com/gp/product/B0DCKB7ZM6"
+                        href="https://www.youtube.com/@NesterinPickleballLeague"
                         target="_blank"
                     >
-                        <img src={amazonAppStore} className="w-[140px]" />
+                        <img src={youtubeIcon} className="w-[250px]" />
                     </a>
                 </div>
 
                 <p className="mt-8 text-regBody lg:text-lgBody">
-                    You will need this app during the tournament in order to see
-                    and manage your games. Visit the app and find out all the
-                    player registered to the tournament and more information
-                    about the players participating.{" "}
+                    We will post all our recent update on our social media like
+                    Facebook regarding this tournament. You will also be able to
+                    check any changes or any upcoming tournament. This will also
+                    support us to expand our community
                 </p>
                 <p className="mt-3 lg:mt-6 text-regBody lg:text-lgBody">
-                    Check out more details about the tournament in the app like
-                    location, rules and so on. We will also send you email
-                    notifications when the tournament date approaches.
+                    Check out more details about the tournament in the our
+                    website like location, rules and so on. We will also send
+                    you email notifications when the tournament date approaches.
                 </p>
             </div>
         </TournamentRegistrationBaseContainer>
