@@ -51,7 +51,7 @@ function App() {
                     </Route>
 
                     <Route
-                        path={routes.CurrentTournamentRegistration}
+                        path={`${routes.CurrentTournamentRegistration}/:tournamentId?`}
                         element={<ContentLayout />}
                     >
                         <Route

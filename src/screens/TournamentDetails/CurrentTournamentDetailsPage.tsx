@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TournamentRoutesVM } from "../../commonVM/TournamentVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
@@ -10,6 +10,9 @@ import tournamentRegistrationSection3Image from "../../../public/tournamentRegis
 import icon from "../../assets/listIcon.png";
 
 function CurrentTournamentDetailsPage() {
+    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const defaultTournamentId = 3;
+
     const navigator = useNavigate();
     const [tournament, setTournament] = useState<
         Partial<TournamentServiceResponse.GetPublicTournamentInfoStruct>
@@ -17,17 +20,27 @@ function CurrentTournamentDetailsPage() {
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
-        const tournamentId = 3;
-        TournamentRoutesVM.getPublicTournamentInfo(tournamentId, {
-            loaderCallback: (loader) => {
-                loader ? showLoader() : hideLoader();
-            },
-            errorCallBack: () => {},
-            success: (obj) => {
-                setTournament(obj);
-            },
-        });
-    }, []);
+        TournamentRoutesVM.getPublicTournamentInfo(
+            tournamentId === undefined || tournamentId === ""
+                ? defaultTournamentId
+                : parseInt(tournamentId),
+            {
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
+                errorCallBack: () => {},
+                success: (obj) => {
+                    setTournament(obj);
+                },
+            }
+        );
+
+        if (!tournamentId) {
+            navigator(
+                `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+            );
+        }
+    }, [tournamentId, defaultTournamentId]);
 
     function formatRuleByIndexOrder(
         header: string,
