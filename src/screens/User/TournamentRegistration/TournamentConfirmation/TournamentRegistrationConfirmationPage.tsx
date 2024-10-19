@@ -37,7 +37,6 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
                     loader ? showLoader() : hideLoader();
                 },
                 errorCallBack: (code: number) => {
-                    console.log("Yooo");
                     if (code === 2) {
                         naivgate(routes.Home);
                         return;
@@ -65,6 +64,7 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
             );
             return;
         }
+        console.log("tournamentID from confirm:", tournamentId);
         TournamentRegistrationConfirmationVM.registerTournament(
             Number(tournamentId),
             {

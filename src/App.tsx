@@ -60,7 +60,7 @@ function App() {
                         />
                     </Route>
                     <Route
-                        path={routes.Register}
+                        path={`${routes.Register}/:tournamentId?`}
                         element={<RegistrationLayout />}
                     >
                         <Route index element={<RegisterPage />} />

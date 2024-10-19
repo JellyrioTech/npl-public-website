@@ -10,14 +10,14 @@ export default defineConfig(({ mode }) => {
                 mode === "development"
                     ? {
                           "/gameService": {
-                              target: "https://cooper-usps-depends-realistic.trycloudflare.com",
+                              target: "https://cemetery-dayton-works-translator.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>
                                   path.replace(/^\/gameService/, ""),
                           },
                           "/ssoService": {
-                              target: "https://cooper-usps-depends-realistic.trycloudflare.com",
+                              target: "https://cemetery-dayton-works-translator.trycloudflare.com",
                               changeOrigin: true,
                               secure: false,
                               rewrite: (path) =>

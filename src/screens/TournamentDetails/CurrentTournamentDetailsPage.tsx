@@ -224,7 +224,7 @@ function CurrentTournamentDetailsPage() {
                                     ) : (
                                         <NSPLButtonSquare
                                             onClick={() =>
-                                                navigator(routes.Register)
+                                                (window.location.pathname = `${routes.Register}/${tournamentId}`)
                                             }
                                             text={"Register Now"}
                                         ></NSPLButtonSquare>
@@ -322,22 +322,20 @@ function CurrentTournamentDetailsPage() {
         return (
             <>
                 <div className="w-full max-w-[1200px] mx-auto">
-                    <div className="py-14">
-                        <div className="flex flex-col justify-center items-center py-2">
-                            <div className="mt-8 lg:mt-14 w-[90%] max-w-[854px] py-12 lg:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
-                                <p className="text-secondary-300 text-smTitle lg:text-lglTitle font-bold">
-                                    Looks Like There's No Tournament Here
-                                </p>
-                                <div className="pt-5 lg:pt-8">
-                                    <NSPLButtonSquare
-                                        onClick={() =>
-                                            navigator(
-                                                `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
-                                            )
-                                        }
-                                        text={"Go To Open Tournament"}
-                                    ></NSPLButtonSquare>
-                                </div>
+                    <div className="flex flex-col justify-center items-center">
+                        <div className="flex flex-col justify-center items-center mt-8 lg:mt-14 w-[90%] max-w-[854px] py-12 lg:py-16 border rounded-[30px] bg-gradient-green">
+                            <p className="text-secondary-300 text-smTitle lg:text-lglTitle font-bold">
+                                Looks Like There's No Tournament Here
+                            </p>
+                            <div className="pt-5 lg:pt-8">
+                                <NSPLButtonSquare
+                                    onClick={() =>
+                                        navigator(
+                                            `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+                                        )
+                                    }
+                                    text={"Go To Open Tournament"}
+                                ></NSPLButtonSquare>
                             </div>
                         </div>
                     </div>

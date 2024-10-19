@@ -28,7 +28,7 @@ const TournamentPaymentSuccessPage: React.FC = () => {
                 <p className="text-regBody lg:text-lgBody font-medium mt-1.5 lg:mt-3">
                     Follow us on Facebook and Youtube by clicking below
                 </p>
-                <div className="flex justify-between gap-5 mt-3">
+                <div className="flex justify-between items-center gap-5 mt-6">
                     <a
                         href="https://www.facebook.com/profile.php?id=61564428110467"
                         target="_blank"
@@ -39,7 +39,7 @@ const TournamentPaymentSuccessPage: React.FC = () => {
                         href="https://www.youtube.com/@NesterinPickleballLeague"
                         target="_blank"
                     >
-                        <img src={youtubeIcon} className="w-[250px]" />
+                        <img src={youtubeIcon} className="w-[200px]" />
                     </a>
                 </div>
 
