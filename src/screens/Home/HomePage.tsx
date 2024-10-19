@@ -1,5 +1,4 @@
 import landingBG from "../../../public/bgimg.png";
-import { useNavigate } from "react-router-dom";
 import { routes } from "../../util/routes";
 import NPLButtonSquare from "../../components/NPLButtonSquare";
 
