@@ -1,13 +1,12 @@
 import landingBG from "../../../public/bgimg.png";
-import { useNavigate } from "react-router-dom";
 import { routes } from "../../util/routes";
 import NPLButtonSquare from "../../components/NPLButtonSquare";
 
 function HomePage() {
-    const navigate = useNavigate();
+    const tournamentId = "3";
 
     const handleRegisterForCurrentTournamentButton = () => {
-        navigate(routes.CurrentTournamentRegistration);
+        window.location.pathname = `${routes.CurrentTournamentRegistration}/${tournamentId}`;
     };
 
     return (

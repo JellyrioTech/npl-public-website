@@ -9,8 +9,10 @@ import logo from "../../../public/App_logo_white.png";
 import arrowLeft from "../../../public/arrowLeft.png";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import NSPLCheckboxField from "../../components/NSPLCheckboxField";
+import { useParams } from "react-router-dom";
 
 function RegisterPage() {
+    const { tournamentId } = useParams<{ tournamentId: string }>();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +24,7 @@ function RegisterPage() {
 
     const navigate = useNavigate();
     const { showLoader, hideLoader } = useLoader();
-    const tournamentId = 3;
+    // const tournamentId = 3;
 
     const handleRegistrationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -235,7 +237,9 @@ function RegisterPage() {
         <div className="w-full max-w-[1200px] mx-auto py-10">
             <button
                 className="ml-4 lg:ml-0 flex gap-2 items-center mb-8 hover:scale-105"
-                onClick={() => navigate(routes.CurrentTournamentRegistration)}
+                onClick={() =>
+                    (window.location.pathname = `${routes.CurrentTournamentRegistration}/${tournamentId}`)
+                }
             >
                 <img src={arrowLeft} className="w-4 h-4" />
                 <p className="text-regBody font-bold">Go Back</p>

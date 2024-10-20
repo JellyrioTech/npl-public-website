@@ -1,6 +1,6 @@
 export const routes = {
     Home: "/",
-    CurrentTournamentRegistration: "/tournament-registration",
+    CurrentTournamentRegistration: `/tournamentRegistration`,
     Contact: "/contact",
     Register: "/register",
     Login: "/login",

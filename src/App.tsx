@@ -51,7 +51,7 @@ function App() {
                     </Route>
 
                     <Route
-                        path={routes.CurrentTournamentRegistration}
+                        path={`${routes.CurrentTournamentRegistration}/:tournamentId?`}
                         element={<ContentLayout />}
                     >
                         <Route
@@ -60,7 +60,7 @@ function App() {
                         />
                     </Route>
                     <Route
-                        path={routes.Register}
+                        path={`${routes.Register}/:tournamentId?`}
                         element={<RegistrationLayout />}
                     >
                         <Route index element={<RegisterPage />} />

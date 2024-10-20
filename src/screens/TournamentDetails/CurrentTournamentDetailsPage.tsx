@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TournamentRoutesVM } from "../../commonVM/TournamentVM";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
@@ -10,6 +10,9 @@ import tournamentRegistrationSection3Image from "../../../public/tournamentRegis
 import icon from "../../assets/listIcon.png";
 
 function CurrentTournamentDetailsPage() {
+    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const defaultTournamentId = 3;
+
     const navigator = useNavigate();
     const [tournament, setTournament] = useState<
         Partial<TournamentServiceResponse.GetPublicTournamentInfoStruct>
@@ -17,17 +20,30 @@ function CurrentTournamentDetailsPage() {
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
-        const tournamentId = 3;
-        TournamentRoutesVM.getPublicTournamentInfo(tournamentId, {
-            loaderCallback: (loader) => {
-                loader ? showLoader() : hideLoader();
-            },
-            errorCallBack: () => {},
-            success: (obj) => {
-                setTournament(obj);
-            },
-        });
-    }, []);
+        TournamentRoutesVM.getPublicTournamentInfo(
+            tournamentId === undefined || tournamentId === ""
+                ? defaultTournamentId
+                : parseInt(tournamentId),
+            {
+                loaderCallback: (loader) => {
+                    loader ? showLoader() : hideLoader();
+                },
+                errorCallBack: () => {
+                    console.log("no tournament");
+                    console.log(tournament);
+                },
+                success: (obj) => {
+                    setTournament(obj);
+                },
+            }
+        );
+
+        if (!tournamentId) {
+            navigator(
+                `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+            );
+        }
+    }, [tournamentId, defaultTournamentId]);
 
     function formatRuleByIndexOrder(
         header: string,
@@ -167,126 +183,172 @@ function CurrentTournamentDetailsPage() {
         });
     }
 
-    return (
-        <>
-            <div className="w-full max-w-[1200px] mx-auto">
-                {/* SECTION 1 - Registration Date */}
-                <div className="py-14">
-                    <div className="flex flex-col justify-center items-center py-2">
-                        <h2 className="uppercase font-regular text-regTitle lg:text-xlTitle font-light">
-                            JOIN THE UPCOMING MONEYBALL
-                        </h2>
-                        <h1 className="uppercase font-bold text-5xl lg:text-[80px] font-display  leading-tight lg:leading-none">
-                            ARENA BATTLE SERIES
-                        </h1>
-                        <div className="mt-8 lg:mt-14 w-[90%] max-w-[854px] py-12 lg:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
-                            <p className="text-secondary-300 text-regTitle lg:text-3xlTitle font-bold">
-                                {CommonUtil.DateHelper.formatDateToMonthDayYear(
-                                    tournament.startDate?.toString() as string
-                                )}
-                                <span className="text-regTitle lg:text-xlTitle font-bold">
-                                    {" "}
-                                    at{" "}
-                                    {CommonUtil.DateHelper.formatTimeToHourMin(
+    const openTournamentBody = () => {
+        return (
+            <>
+                <div className="w-full max-w-[1200px] mx-auto">
+                    {/* SECTION 1 - Registration Date */}
+                    <div className="py-14">
+                        <div className="flex flex-col justify-center items-center py-2">
+                            <h2 className="uppercase font-regular text-regTitle lg:text-xlTitle font-light">
+                                JOIN THE UPCOMING MONEYBALL
+                            </h2>
+                            <h1 className="uppercase font-bold text-5xl lg:text-[80px] font-display  leading-tight lg:leading-none">
+                                ARENA BATTLE SERIES
+                            </h1>
+                            <div className="mt-8 lg:mt-14 w-[90%] max-w-[854px] py-12 lg:py-16 border rounded-[30px] bg-gradient-green flex flex-col justify-center items-center">
+                                <p className="text-secondary-300 text-regTitle lg:text-3xlTitle font-bold">
+                                    {CommonUtil.DateHelper.formatDateToMonthDayYear(
                                         tournament.startDate?.toString() as string
                                     )}
-                                </span>
+                                    <span className="text-regTitle lg:text-xlTitle font-bold">
+                                        {" "}
+                                        at{" "}
+                                        {CommonUtil.DateHelper.formatTimeToHourMin(
+                                            tournament.startDate?.toString() as string
+                                        )}
+                                    </span>
+                                </p>
+                                <p className="text-regBody lg:text-regTitle font-medium text-neutral-100 pt-3 lg:pt-5">
+                                    Location:{" "}
+                                    <span className="uppercase">
+                                        ORLANDO RACKET SPORTS
+                                    </span>
+                                </p>
+                                <div className="pt-10 lg:pt-20">
+                                    {tournament.status !== "open" ? (
+                                        <p className=" text-neutral-500 font-medium text-smTitle lg:text-regTitle">
+                                            This Tournament Is Not Taking Any
+                                            Players
+                                        </p>
+                                    ) : (
+                                        <NSPLButtonSquare
+                                            onClick={() =>
+                                                (window.location.pathname = `${routes.Register}/${tournamentId}`)
+                                            }
+                                            text={"Register Now"}
+                                        ></NSPLButtonSquare>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SECTION 2 - Prize Pool*/}
+                    <div className="py-16 lg:py-24">
+                        <div className="flex flex-col justify-center items-center">
+                            <p className="text-xlTitle lg:text-3xlTitle font-bold">
+                                More Challenge, Epic Prizes
                             </p>
-                            <p className="text-regBody lg:text-regTitle font-medium text-neutral-100 pt-3 lg:pt-5">
-                                Location:{" "}
-                                <span className="uppercase">
-                                    ORLANDO RACKET SPORTS
-                                </span>
+                            {getRankCards()}
+                        </div>
+                    </div>
+                </div>
+
+                {/* SECTION 3 - Entry Fee and Capacity */}
+                <div className="w-full">
+                    <div className="w-[90%] max-w-[1200px] mx-auto">
+                        {/* SECTION 3 - Entry Fee and Players*/}
+                        <div className="py-16 lg:py-24">
+                            <div className="flex justify-between">
+                                <div className="pt-10 lg:pt-24">
+                                    <div className="inline-block border-2 border-black px-2 py-1 lg:px-2.5 lg:py-2 mb-4 lg:mb-6">
+                                        <p className="text-regTitle lg:text-2xl font-semibold">
+                                            Entry Fee:{" "}
+                                            <span className="text-secondary-700">
+                                                ${tournament.entryFee}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <p className="text-regTitle lg:text-xlTitle font-medium mb-2 lg:mb-4">
+                                        Total Warriors Waiting In Arena
+                                    </p>
+                                    <p className="text-2xlTitle lg:text-[64px] font-bold text-secondary-700">{`${
+                                        tournament.totalRegistered || 0
+                                    }/${tournament.capacity || 0}`}</p>
+                                </div>
+                                <img
+                                    src={tournamentRegistrationSection3Image}
+                                    className="lg:mr:0 w-[200px] h-auto lg:w-[465px]"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <hr className="border border-500 drop-shadow-lg" />
+                </div>
+
+                {/* SECTION 4 - Rules */}
+                <div className="w-[90%] max-w-[1200px] mx-auto">
+                    <div className="py-12 lg:py-20">
+                        <div className="flex flex-col justify-center items-center">
+                            <h2 className="text-xlTitle lg:text-3xlTitle font-bold text-center mb-6 lg:mb-10">
+                                Rules and Tournament Formats
+                            </h2>
+                            {tournament.rules?.sections?.map((section, index) =>
+                                formatRuleByIndexOrder(
+                                    section.header,
+                                    section.body,
+                                    section.lists,
+                                    index
+                                )
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* SECTION 5 - Ending Button */}
+                <div className="w-full bg-gradient-green-flip">
+                    <div className="pt-20 pb-24 lg:pt-24 lg:pb-28">
+                        <div className="flex flex-col justify-center items-center gap-8 lg:gap-12">
+                            <p className="text-neutral-100 text-[26px] lg:text-2xlTitle font-bold text-center font-display uppercase">
+                                Are your ready to see your true potential and{" "}
+                                <br />
+                                write your own legacy?
                             </p>
-                            <div className="pt-10 lg:pt-20">
+                            <div>
                                 <NSPLButtonSquare
                                     onClick={() => navigator(routes.Register)}
-                                    text={"Register Now"}
+                                    text={"REGISTER NOW"}
                                 ></NSPLButtonSquare>
                             </div>
                         </div>
                     </div>
                 </div>
+            </>
+        );
+    };
 
-                {/* SECTION 2 - Prize Pool*/}
-                <div className="py-16 lg:py-24">
+    const unavailableTournamentBody = () => {
+        return (
+            <>
+                <div className="w-full max-w-[1200px] mx-auto">
                     <div className="flex flex-col justify-center items-center">
-                        <p className="text-xlTitle lg:text-3xlTitle font-bold">
-                            More Challenge, Epic Prizes
-                        </p>
-                        {getRankCards()}
-                    </div>
-                </div>
-            </div>
-
-            {/* SECTION 3 - Entry Fee and Capacity */}
-            <div className="w-full">
-                <div className="w-[90%] max-w-[1200px] mx-auto">
-                    {/* SECTION 3 - Entry Fee and Players*/}
-                    <div className="py-16 lg:py-24">
-                        <div className="flex justify-between">
-                            <div className="pt-10 lg:pt-24">
-                                <div className="inline-block border-2 border-black px-2 py-1 lg:px-2.5 lg:py-2 mb-4 lg:mb-6">
-                                    <p className="text-regTitle lg:text-2xl font-semibold">
-                                        Entry Fee:{" "}
-                                        <span className="text-secondary-700">
-                                            ${tournament.entryFee}
-                                        </span>
-                                    </p>
-                                </div>
-                                <p className="text-regTitle lg:text-xlTitle font-medium mb-2 lg:mb-4">
-                                    Total Warriors Waiting In Arena
-                                </p>
-                                <p className="text-2xlTitle lg:text-[64px] font-bold text-secondary-700">{`${
-                                    tournament.totalRegistered || 0
-                                }/${tournament.capacity || 0}`}</p>
+                        <div className="flex flex-col justify-center items-center mt-8 lg:mt-14 w-[90%] max-w-[854px] py-12 lg:py-16 border rounded-[30px] bg-gradient-green">
+                            <p className="text-secondary-300 text-smTitle lg:text-lglTitle font-bold">
+                                Looks Like There's No Tournament Here
+                            </p>
+                            <div className="pt-5 lg:pt-8">
+                                <NSPLButtonSquare
+                                    onClick={() =>
+                                        navigator(
+                                            `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+                                        )
+                                    }
+                                    text={"Go To Open Tournament"}
+                                ></NSPLButtonSquare>
                             </div>
-                            <img
-                                src={tournamentRegistrationSection3Image}
-                                className="lg:mr:0 w-[200px] h-auto lg:w-[465px]"
-                            />
                         </div>
                     </div>
                 </div>
-                <hr className="border border-500 drop-shadow-lg" />
-            </div>
+            </>
+        );
+    };
 
-            {/* SECTION 4 - Rules */}
-            <div className="w-[90%] max-w-[1200px] mx-auto">
-                <div className="py-12 lg:py-20">
-                    <div className="flex flex-col justify-center items-center">
-                        <h2 className="text-xlTitle lg:text-3xlTitle font-bold text-center mb-6 lg:mb-10">
-                            Rules and Tournament Formats
-                        </h2>
-                        {tournament.rules?.sections?.map((section, index) =>
-                            formatRuleByIndexOrder(
-                                section.header,
-                                section.body,
-                                section.lists,
-                                index
-                            )
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {/* SECTION 5 - Ending Button */}
-            <div className="w-full bg-gradient-green-flip">
-                <div className="pt-20 pb-24 lg:pt-24 lg:pb-28">
-                    <div className="flex flex-col justify-center items-center gap-8 lg:gap-12">
-                        <p className="text-neutral-100 text-[26px] lg:text-2xlTitle font-bold text-center font-display uppercase">
-                            Are your ready to see your true potential and <br />
-                            write your own legacy?
-                        </p>
-                        <div>
-                            <NSPLButtonSquare
-                                onClick={() => navigator(routes.Register)}
-                                text={"REGISTER NOW"}
-                            ></NSPLButtonSquare>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    return (
+        <>
+            {tournament.tournamentId === undefined
+                ? unavailableTournamentBody()
+                : openTournamentBody()}
         </>
     );
 }
