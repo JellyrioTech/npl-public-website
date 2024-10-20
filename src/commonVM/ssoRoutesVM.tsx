@@ -88,6 +88,8 @@ export namespace SSORoutesVM {
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
         }
+        document.cookie = "auth_check=true";
+        document.cookie = `jwt_token=${resp.token}`;
 
         return cb.success({
             token: resp.token,

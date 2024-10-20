@@ -64,9 +64,7 @@ function RegisterPage() {
             errorCallBack: (_, error) => {
                 setError(error);
             },
-            success: (obj) => {
-                document.cookie = "auth_check=true";
-                document.cookie = `jwt_token=${obj.token}`;
+            success: () => {
                 window.location.pathname = `${
                     UserRoutes.TournamentConfirmRegistration
                 }/${GetTournamentId(tournamentId)}`;
