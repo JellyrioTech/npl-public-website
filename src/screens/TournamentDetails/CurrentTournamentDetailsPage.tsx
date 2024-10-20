@@ -8,10 +8,10 @@ import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import { routes } from "../../util/routes";
 import tournamentRegistrationSection3Image from "../../../public/tournamentRegistrationSection3Image.png";
 import icon from "../../assets/listIcon.png";
+import { DefaultTournamentID } from "../../DefaultTournamentId";
 
 function CurrentTournamentDetailsPage() {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
-    const defaultTournamentId = 3;
+    const { tournamentId } = useParams<{ tournamentId?: string }>();
 
     const navigator = useNavigate();
     const [tournament, setTournament] = useState<
@@ -22,7 +22,7 @@ function CurrentTournamentDetailsPage() {
     useEffect(() => {
         TournamentRoutesVM.getPublicTournamentInfo(
             tournamentId === undefined || tournamentId === ""
-                ? defaultTournamentId
+                ? DefaultTournamentID
                 : parseInt(tournamentId),
             {
                 loaderCallback: (loader) => {
@@ -40,10 +40,10 @@ function CurrentTournamentDetailsPage() {
 
         if (!tournamentId) {
             navigator(
-                `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+                `${routes.CurrentTournamentRegistration}/${DefaultTournamentID}`
             );
         }
-    }, [tournamentId, defaultTournamentId]);
+    }, [tournamentId]);
 
     function formatRuleByIndexOrder(
         header: string,
@@ -224,7 +224,12 @@ function CurrentTournamentDetailsPage() {
                                     ) : (
                                         <NSPLButtonSquare
                                             onClick={() =>
-                                                (window.location.pathname = `${routes.Register}/${tournamentId}`)
+                                                (window.location.pathname = `${
+                                                    routes.Register
+                                                }/${
+                                                    tournamentId ||
+                                                    DefaultTournamentID
+                                                }`)
                                             }
                                             text={"Register Now"}
                                         ></NSPLButtonSquare>
@@ -331,7 +336,7 @@ function CurrentTournamentDetailsPage() {
                                 <NSPLButtonSquare
                                     onClick={() =>
                                         navigator(
-                                            `${routes.CurrentTournamentRegistration}/${defaultTournamentId}`
+                                            `${routes.CurrentTournamentRegistration}/${DefaultTournamentID}`
                                         )
                                     }
                                     text={"Go To Open Tournament"}

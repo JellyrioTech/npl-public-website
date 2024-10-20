@@ -1,16 +1,18 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Cookies from "js-cookie";
 import Footer from "../components/Footer";
 import { useLoader } from "../components/LoaderProvider";
 import Loader from "../components/Loader";
+import { GetTournamentId } from "../DefaultTournamentId";
 
 const UserMainRouteGuard: React.FC = () => {
+    const { tournamentId } = useParams<{ tournamentId: string }>();
     const authCheck = Cookies.get("auth_check");
     const { loading } = useLoader();
     console.log(authCheck);
     if (authCheck === undefined || authCheck === "false") {
-        return <Navigate to={"/register"} />;
+        return <Navigate to={`/register/${GetTournamentId(tournamentId)}`} />;
     }
 
     return (

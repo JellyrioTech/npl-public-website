@@ -10,9 +10,10 @@ import arrowLeft from "../../../public/arrowLeft.png";
 import NSPLButtonSquare from "../../components/NPLButtonSquare";
 import NSPLCheckboxField from "../../components/NSPLCheckboxField";
 import { useParams } from "react-router-dom";
+import { GetTournamentId } from "../../DefaultTournamentId";
 
 function RegisterPage() {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const { tournamentId } = useParams<{ tournamentId?: string }>();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,7 +25,6 @@ function RegisterPage() {
 
     const navigate = useNavigate();
     const { showLoader, hideLoader } = useLoader();
-    // const tournamentId = 3;
 
     const handleRegistrationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,7 +47,9 @@ function RegisterPage() {
                     }
                 },
                 success: () => {
-                    window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/${tournamentId}`;
+                    window.location.pathname = `${
+                        UserRoutes.TournamentConfirmRegistration
+                    }/${GetTournamentId(tournamentId)}`;
                 },
             }
         );
@@ -65,7 +67,9 @@ function RegisterPage() {
             success: (obj) => {
                 document.cookie = "auth_check=true";
                 document.cookie = `jwt_token=${obj.token}`;
-                window.location.pathname = `${UserRoutes.TournamentConfirmRegistration}/${tournamentId}`;
+                window.location.pathname = `${
+                    UserRoutes.TournamentConfirmRegistration
+                }/${GetTournamentId(tournamentId)}`;
             },
         });
     };
@@ -238,7 +242,9 @@ function RegisterPage() {
             <button
                 className="ml-4 lg:ml-0 flex gap-2 items-center mb-8 hover:scale-105"
                 onClick={() =>
-                    (window.location.pathname = `${routes.CurrentTournamentRegistration}/${tournamentId}`)
+                    (window.location.pathname = `${
+                        routes.CurrentTournamentRegistration
+                    }/${GetTournamentId(tournamentId)}`)
                 }
             >
                 <img src={arrowLeft} className="w-4 h-4" />

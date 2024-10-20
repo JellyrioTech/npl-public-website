@@ -8,9 +8,10 @@ import { useLoader } from "../../../../components/LoaderProvider";
 import NSPLCheckboxField from "../../../../components/NSPLCheckboxField";
 import NSPLButtonSquare from "../../../../components/NPLButtonSquare";
 import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseContainer";
+import { GetTournamentId } from "../../../../DefaultTournamentId";
 
 const TournamentRegistrationConfirmationPage: React.FC = () => {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const { tournamentId } = useParams<{ tournamentId?: string }>();
     const [, setUserStatus] = useState<
         TournamentRegisterTypes.status | undefined
     >(undefined);
@@ -31,7 +32,7 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
 
     useEffect(() => {
         TournamentRegistrationConfirmationVM.getTournamentDetails(
-            Number(tournamentId),
+            GetTournamentId(tournamentId),
             {
                 loaderCallback: (loader) => {
                     loader ? showLoader() : hideLoader();
@@ -44,7 +45,9 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
                 },
                 success: (obj) => {
                     if (obj.userStatus === "pending") {
-                        window.location.pathname = `${UserRoutes.TournamentPayment}/${tournamentId}`;
+                        window.location.pathname = `${
+                            UserRoutes.TournamentPayment
+                        }/${GetTournamentId(tournamentId)}`;
                         return;
                     }
                     setUserStatus(obj.userStatus);
@@ -64,9 +67,8 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
             );
             return;
         }
-        console.log("tournamentID from confirm:", tournamentId);
         TournamentRegistrationConfirmationVM.registerTournament(
-            Number(tournamentId),
+            GetTournamentId(tournamentId),
             {
                 loaderCallback: (loader) => {
                     loader ? showLoader() : hideLoader();
@@ -75,7 +77,9 @@ const TournamentRegistrationConfirmationPage: React.FC = () => {
                     setError(errorMsg || "");
                 },
                 success: () => {
-                    window.location.pathname = `${UserRoutes.TournamentPayment}/${tournamentId}`;
+                    window.location.pathname = `${
+                        UserRoutes.TournamentPayment
+                    }/${GetTournamentId(tournamentId)}`;
                 },
             }
         );

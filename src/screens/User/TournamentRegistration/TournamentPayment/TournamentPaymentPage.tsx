@@ -9,19 +9,20 @@ import PaymentForm from "./PaymentForm";
 import { UserRoutes } from "../../../../util/routes";
 import { useLoader } from "../../../../components/LoaderProvider";
 import TournamentRegistrationBaseContainer from "../TournamentRegistrationBaseContainer";
+import { GetTournamentId } from "../../../../DefaultTournamentId";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUB_KEY;
 const stripePromise = loadStripe(stripeKey);
 
 const TournamentPaymentPage: React.FC = () => {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const { tournamentId } = useParams<{ tournamentId?: string }>();
     const [payment, setPayment] = useState<Partial<PaymentResponse>>({});
     const [paymentDoc, setPaymentDoc] = useState("");
     const [error, setError] = useState("");
     const { showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
-        TournamentPaymentVM.getPaymentIntent(Number(tournamentId), {
+        TournamentPaymentVM.getPaymentIntent(GetTournamentId(tournamentId), {
             loaderCallback: (loader) => {
                 loader ? showLoader() : hideLoader();
             },
@@ -104,7 +105,9 @@ const TournamentPaymentPage: React.FC = () => {
                                 customerId={payment.customerId || ""}
                                 errorCb={setError}
                                 onSuccess={() => {
-                                    window.location.pathname = `${UserRoutes.TournamentPaymentSuccess}/${tournamentId}`;
+                                    window.location.pathname = `${
+                                        UserRoutes.TournamentPaymentSuccess
+                                    }/${GetTournamentId(tournamentId)}`;
                                 }}
                             />
                         </Elements>

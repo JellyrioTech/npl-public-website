@@ -13,13 +13,17 @@ import { useLoader } from "../../components/LoaderProvider";
 import NSPLInputField from "../../components/NSPLInputField";
 import { AdminRoutes } from "../../util/routes";
 import { toast } from "react-toastify";
+import {
+    DefaultTournamentID,
+    GetTournamentId,
+} from "../../DefaultTournamentId";
 
 type TournamemntDetailsProps = {};
 
 const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
     _: TournamemntDetailsProps
 ) => {
-    const { tournamentId } = useParams<{ tournamentId: string }>();
+    const { tournamentId } = useParams<{ tournamentId?: string }>();
     const [tournament, setTournament] =
         useState<
             Partial<TournamentServiceResponse.GetActiveTournamentInArena_Struct>
@@ -28,7 +32,7 @@ const TournamentDetailsPage: React.FC<TournamemntDetailsProps> = (
         TournamentServiceResponse.RegisteredPlayers_Struct[]
     >([]);
 
-    const id = parseInt(tournamentId!);
+    const id = GetTournamentId(tournamentId);
     const { showLoader, hideLoader } = useLoader();
     const [error] = useState<string | null>();
     const [playerToDelete, setPlayerToDelete] =
