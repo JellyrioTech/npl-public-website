@@ -13,10 +13,7 @@ import { useLoader } from "../../components/LoaderProvider";
 import NSPLInputField from "../../components/NSPLInputField";
 import { AdminRoutes } from "../../util/routes";
 import { toast } from "react-toastify";
-import {
-    DefaultTournamentID,
-    GetTournamentId,
-} from "../../DefaultTournamentId";
+import { GetTournamentId } from "../../DefaultTournamentId";
 
 type TournamemntDetailsProps = {};
 
