@@ -48,8 +48,8 @@ export namespace SSORoutesVM {
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
         }
-        document.cookie = "auth_check=true";
-        document.cookie = `jwt_token=${resp.token}`;
+        Cookies.set("auth_check", "true");
+        Cookies.set("jwt_token", resp.token);
         cb.loaderCallback(true);
         const gameServiceResp =
             await NetworkModule.userService.registerUserToGameService(
