@@ -2,6 +2,7 @@ import { AsyncResponseCallback } from "npl-service-module";
 import { ErrorResponse } from "npl-service-module/dist/utils/Responses";
 import { NetworkModule } from "../NetworkEngine";
 import { UserServiceResponse } from "npl-service-module/dist/services/Response/UserService.response";
+import Cookies from "js-cookie";
 
 export namespace SSORoutesVM {
     export async function verifyEmailUnique(
@@ -88,8 +89,10 @@ export namespace SSORoutesVM {
         if (resp instanceof ErrorResponse) {
             return cb.errorCallBack(1, resp.errorMessage);
         }
-        document.cookie = "auth_check=true";
-        document.cookie = `jwt_token=${resp.token}`;
+        Cookies.set("auth_check", "true");
+        Cookies.set("jwt_token", resp.token);
+        // document.cookie = "auth_check=true";
+        // document.cookie = `jwt_token=${resp.token}`;
 
         return cb.success({
             token: resp.token,
