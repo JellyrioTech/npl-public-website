@@ -3,16 +3,33 @@ import logo from "../../public/App_logo_white.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
 import { MenuList } from "../routes/MenuList";
+import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
+import { NavbarVM } from "./Navbar/NavbarVM";
+import { toast } from "react-toastify";
+import { CommonUtil } from "../util/CommonUtil";
 
 function NavBar() {
     const navigator = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobileDisplay, setIsMobileDisplay] = useState(false);
+    const [tournamentListOpen, setTournamentListOpen] = useState(false);
+    const [openTournaments, setOpenTournaments] =
+        useState<Partial<TournamentServiceResponse.SearchTournamentRspObj>[]>();
 
     const location = useLocation();
     const isLandingPage = location.pathname === routes.Home;
 
     useEffect(() => {
+        NavbarVM.getOpenTournaments({
+            loaderCallback: (loader) => {},
+            errorCallBack: (_, error) => {
+                toast.error(error);
+            },
+            success: (result) => {
+                setOpenTournaments(result);
+            },
+        });
+
         const handleResize = () => {
             setIsMobileDisplay(window.innerWidth < 1024);
         };
@@ -66,8 +83,54 @@ function NavBar() {
         </div>
     );
 
+    const openTournamentListDropdown = (
+        <>
+            <button
+                className="inline-flex items-center text-lgbody font-regular text-neutral-100  hover:underline"
+                onClick={() => toggleTournamentListDropdown()}
+            >
+                Tournaments
+                <svg
+                    className="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 4 4 4-4"
+                    />
+                </svg>
+            </button>
+            {tournamentListOpen && (
+                <div className="z-10 flex flex-col absolute mt-8 text-neutral-900 rounded-md bg-neutral-100 shadow-lg py-1 gap-2 text-center">
+                    {openTournaments?.map((item) => (
+                        <a
+                            className="px-4 py-2 text-lgbody font-regular hover:bg-slate-300"
+                            onClick={() =>
+                                (window.location.pathname = `${routes.CurrentTournamentRegistration}/${item.id}`)
+                            }
+                        >
+                            {CommonUtil.DateHelper.formatDateToMonthDayYear(
+                                item.startDate || ""
+                            )}
+                        </a>
+                    ))}
+                </div>
+            )}
+        </>
+    );
+
     function onToggleMenu() {
         setMenuOpen(!menuOpen);
+    }
+
+    function toggleTournamentListDropdown() {
+        setTournamentListOpen(!tournamentListOpen);
     }
 
     function onClickNavigation(route: String) {
@@ -129,21 +192,25 @@ function NavBar() {
 
                 {!isMobileDisplay && (
                     <div className={`flex gap-7 cursor-pointer`}>
-                        {MenuList.map((item) => {
-                            return (
-                                <a
-                                    className={`text-lgbody font-regular text-neutral-100  hover:underline ${
-                                        !isLandingPage && "text-tertiary-500"
-                                    } ${
-                                        item.route === location.pathname &&
-                                        "font-bold"
-                                    } `}
-                                    onClick={() => navigator(item.route)}
-                                >
-                                    {item.name}
-                                </a>
-                            );
-                        })}
+                        <>
+                            {openTournamentListDropdown}
+                            {MenuList.map((item) => {
+                                return (
+                                    <a
+                                        className={`text-lgbody font-regular text-neutral-100  hover:underline ${
+                                            !isLandingPage &&
+                                            "text-tertiary-500"
+                                        } ${
+                                            item.route === location.pathname &&
+                                            "font-bold"
+                                        } `}
+                                        onClick={() => navigator(item.route)}
+                                    >
+                                        {item.name}
+                                    </a>
+                                );
+                            })}
+                        </>
                     </div>
                 )}
             </div>
