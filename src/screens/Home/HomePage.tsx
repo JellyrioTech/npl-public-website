@@ -3,7 +3,7 @@ import { routes } from "../../util/routes";
 import NPLButtonSquare from "../../components/NPLButtonSquare";
 
 function HomePage() {
-    const tournamentId = "3";
+    const tournamentId = "4";
 
     const handleRegisterForCurrentTournamentButton = () => {
         window.location.pathname = `${routes.CurrentTournamentRegistration}/${tournamentId}`;
@@ -25,7 +25,7 @@ function HomePage() {
                     Arena Battle Series
                 </p>
                 <p className="text-neutral-100 font-roboto text-xl lg:text-2xl">
-                    October 27 at 12:00 pm
+                    November 13 at 12:00 pm
                 </p>
                 <div className="mt-4">
                     <NPLButtonSquare
