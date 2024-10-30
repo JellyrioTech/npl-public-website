@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import logo from "../../public/App_logo_white.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../util/routes";
-import { MenuList } from "../routes/MenuList";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
 import { NavbarVM } from "./Navbar/NavbarVM";
 import { toast } from "react-toastify";
@@ -39,6 +38,61 @@ function NavBar() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const tournamentListDropdown = (
+        <>
+            <button
+                className={`inline-flex items-center ${
+                    !isMobileDisplay &&
+                    "inline-flex items-center text-lgbody font-regular text-neutral-100  hover:underline"
+                } ${!isLandingPage && "text-tertiary-500"}`}
+                onClick={() => toggleTournamentListDropdown()}
+            >
+                Tournaments
+                <svg
+                    className="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 4 4 4-4"
+                    />
+                </svg>
+            </button>
+            {tournamentListOpen && (
+                <div
+                    className={`${
+                        isMobileDisplay
+                            ? "underline"
+                            : "z-10 flex flex-col absolute mt-8 text-neutral-900 rounded-md bg-neutral-100 shadow-lg py-1 gap-2 text-center"
+                    }`}
+                >
+                    {openTournaments?.map((item) => (
+                        <a
+                            className={`${
+                                isMobileDisplay
+                                    ? ""
+                                    : "px-4 py-2 text-lgbody font-regular hover:bg-slate-300"
+                            }`}
+                            onClick={() =>
+                                (window.location.pathname = `${routes.CurrentTournamentRegistration}/${item.id}`)
+                            }
+                        >
+                            {CommonUtil.DateHelper.formatDateToMonthDayYear(
+                                item.startDate || ""
+                            )}
+                        </a>
+                    ))}
+                </div>
+            )}
+        </>
+    );
+
     const mobileMenuUI = (
         <div className="absolute top-0 left-0 z-50 w-full h-screen bg-white p-5">
             <div
@@ -66,63 +120,66 @@ function NavBar() {
                 </svg>
             </div>
             <div className="flex flex-col justify-center items-center gap-6 text-lg pt-10 cursor-pointer">
-                {MenuList.map((item) => {
-                    return (
-                        <a
-                            className="hover:underline"
-                            onClick={() => {
-                                onToggleMenu();
-                                navigator(item.route);
-                            }}
-                        >
-                            {item.name}
-                        </a>
-                    );
-                })}
+                <a
+                    className="hover:underline"
+                    onClick={() => {
+                        onToggleMenu();
+                        navigator(routes.Home);
+                    }}
+                >
+                    Home
+                </a>
+                {tournamentListDropdown}
+                <a
+                    className="hover:underline"
+                    onClick={() => {
+                        onToggleMenu();
+                        navigator(routes.About);
+                    }}
+                >
+                    About Us
+                </a>
+                <a
+                    className="hover:underline"
+                    onClick={() => {
+                        onToggleMenu();
+                        navigator(routes.Contact);
+                    }}
+                >
+                    Contact Us
+                </a>
             </div>
         </div>
     );
 
-    const openTournamentListDropdown = (
-        <>
-            <button
-                className="inline-flex items-center text-lgbody font-regular text-neutral-100  hover:underline"
-                onClick={() => toggleTournamentListDropdown()}
+    const navMenu = (
+        <div className={`flex gap-7 cursor-pointer`}>
+            <a
+                className={`text-lgbody font-regular text-neutral-100  hover:underline ${
+                    !isLandingPage && "text-tertiary-500"
+                }`}
+                onClick={() => navigator(routes.Home)}
             >
-                Tournaments
-                <svg
-                    className="w-2.5 h-2.5 ms-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6"
-                >
-                    <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m1 1 4 4 4-4"
-                    />
-                </svg>
-            </button>
-            {tournamentListOpen && (
-                <div className="z-10 flex flex-col absolute mt-8 text-neutral-900 rounded-md bg-neutral-100 shadow-lg py-1 gap-2 text-center">
-                    {openTournaments?.map((item) => (
-                        <a
-                            className="px-4 py-2 text-lgbody font-regular hover:bg-slate-300"
-                            onClick={() =>
-                                (window.location.pathname = `${routes.CurrentTournamentRegistration}/${item.id}`)
-                            }
-                        >
-                            {CommonUtil.DateHelper.formatDateToMonthDayYear(
-                                item.startDate || ""
-                            )}
-                        </a>
-                    ))}
-                </div>
-            )}
-        </>
+                Home
+            </a>
+            {tournamentListDropdown}
+            <a
+                className={`text-lgbody font-regular text-neutral-100  hover:underline ${
+                    !isLandingPage && "text-tertiary-500"
+                }`}
+                onClick={() => navigator(routes.About)}
+            >
+                About Us
+            </a>
+            <a
+                className={`text-lgbody font-regular text-neutral-100  hover:underline ${
+                    !isLandingPage && "text-tertiary-500"
+                }`}
+                onClick={() => navigator(routes.Contact)}
+            >
+                Contact Us
+            </a>
+        </div>
     );
 
     function onToggleMenu() {
@@ -190,29 +247,7 @@ function NavBar() {
                     </svg>
                 </button>
 
-                {!isMobileDisplay && (
-                    <div className={`flex gap-7 cursor-pointer`}>
-                        <>
-                            {openTournamentListDropdown}
-                            {MenuList.map((item) => {
-                                return (
-                                    <a
-                                        className={`text-lgbody font-regular text-neutral-100  hover:underline ${
-                                            !isLandingPage &&
-                                            "text-tertiary-500"
-                                        } ${
-                                            item.route === location.pathname &&
-                                            "font-bold"
-                                        } `}
-                                        onClick={() => navigator(item.route)}
-                                    >
-                                        {item.name}
-                                    </a>
-                                );
-                            })}
-                        </>
-                    </div>
-                )}
+                {!isMobileDisplay && navMenu}
             </div>
         </nav>
     );
