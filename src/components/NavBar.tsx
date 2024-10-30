@@ -20,7 +20,7 @@ function NavBar() {
 
     useEffect(() => {
         NavbarVM.getOpenTournaments({
-            loaderCallback: (loader) => {},
+            loaderCallback: () => {},
             errorCallBack: (_, error) => {
                 toast.error(error);
             },
