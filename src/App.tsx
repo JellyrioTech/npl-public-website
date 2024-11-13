@@ -29,6 +29,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePageLayout from "./screens/Layouts/HomePageLayout";
 import RegistrationLayout from "./screens/Layouts/RegistrationLayout";
+import MerchStorePage from "./screens/MerchStorePage";
 
 function App() {
     return (
@@ -158,6 +159,9 @@ function App() {
                         element={<AdminRouteGuard />}
                     >
                         <Route index element={<GameDetailPage />} />
+                    </Route>
+                    <Route path={routes.MerchStore} element={<ContentLayout />}>
+                        <Route index element={<MerchStorePage />} />
                     </Route>
                 </Routes>
             </Router>

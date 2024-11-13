@@ -11,6 +11,7 @@ export const routes = {
     Admin: "/admin/inside",
     Error: "/404",
     User: "/main/inside",
+    MerchStore: "/store",
 };
 
 export const UserRoutes = {
