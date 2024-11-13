@@ -29,6 +29,14 @@ function Footer() {
                                 </li>
                                 <li className="mb-4">
                                     <a
+                                        href="https://www.instagram.com/nesterinpickleballleague/"
+                                        className="hover:underline "
+                                    >
+                                        Instagram
+                                    </a>
+                                </li>
+                                <li className="mb-4">
+                                    <a
                                         href="https://www.youtube.com/@NesterinPickleballLeague"
                                         className="hover:underline "
                                     >

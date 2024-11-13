@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer";
 import Loader from "../../components/Loader";
 import { useLoader } from "../../components/LoaderProvider";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/Navbar/NavBar";
 import { Outlet } from "react-router-dom";
 
 const ContentLayout: React.FC = () => {

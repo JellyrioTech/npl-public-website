@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import logo from "../../public/App_logo_white.png";
+import logo from "../../../public/App_logo_white.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import { routes } from "../util/routes";
+import { routes } from "../../util/routes";
 import { TournamentServiceResponse } from "npl-service-module/dist/services/Response/TournamentService.response";
-import { NavbarVM } from "./Navbar/NavbarVM";
+import { NavbarVM } from "./NavbarVM";
 import { toast } from "react-toastify";
-import { CommonUtil } from "../util/CommonUtil";
+import { CommonUtil } from "../../util/CommonUtil";
 
 function NavBar() {
     const navigator = useNavigate();
@@ -131,6 +131,15 @@ function NavBar() {
                 </a>
                 {tournamentListDropdown}
                 <a
+                    className="font-bold hover:underline"
+                    onClick={() => {
+                        onToggleMenu();
+                        navigator(routes.MerchStore);
+                    }}
+                >
+                    Merch Store
+                </a>
+                <a
                     className="hover:underline"
                     onClick={() => {
                         onToggleMenu();
@@ -163,6 +172,14 @@ function NavBar() {
                 Home
             </a>
             {tournamentListDropdown}
+            <a
+                className={`text-lgbody font-bold text-neutral-100  hover:underline ${
+                    !isLandingPage && "text-tertiary-500"
+                }`}
+                onClick={() => navigator(routes.MerchStore)}
+            >
+                Merch Store
+            </a>
             <a
                 className={`text-lgbody font-regular text-neutral-100  hover:underline ${
                     !isLandingPage && "text-tertiary-500"

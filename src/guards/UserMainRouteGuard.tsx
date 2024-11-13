@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Navbar/NavBar";
 import Cookies from "js-cookie";
 import Footer from "../components/Footer";
 import { useLoader } from "../components/LoaderProvider";
